@@ -15,5 +15,5 @@ root.render(
     <BrowserRouter>
       <Routes />
     </BrowserRouter>
-  </ErrorBoundary>
+  </ErrorBoundary>,
 );
