@@ -8,6 +8,7 @@ import CssBaseline from '@mui/material/CssBaseline';
 import IconButton from "@mui/material/IconButton";
 import SearchIcon from "@mui/icons-material/Search";
 import TextField from "@mui/material/TextField";
+import Drawer from "../../../components/molecules/Drawer";
 
 const StyledToolbar = styled(Toolbar)({
   display: "flex",
@@ -18,7 +19,7 @@ const Search = styled("div")(({ theme }) => ({
   backgroundColor: "white",
   padding: "0 10px",
   borderRadius: theme.shape.borderRadius,
-  width: "40%",
+  width: "30%",
 }));
 
 const Icons = styled(Box)(({ theme }) => ({
@@ -45,7 +46,7 @@ const BLogo = styled("img")(({ theme }) => ({
   display: "none",
   // backgroundColor: "white",
   // borderRadius: "20%",
-  marginLeft: "5%",
+  // marginLeft: "2%",
   height: "50px",
   [theme.breakpoints.up("sm")]: {
     display: "flex",
@@ -67,37 +68,17 @@ const Header = () => {
     // <div style="background">
     <>
       <CssBaseline />
-      <AppBar position="sticky" style={{ padding: "0", backgroundColor: "#7088ff   " }}>
+      <AppBar position="sticky" style={{ padding: "0", backgroundColor: "#7088ff" }}>
         <StyledToolbar>
+          <div style={{display:"flex", alignItems:"center"}}>
 
+          <Drawer />
           <BLogo src={Logo} />
           <SLogo src={HLogo} />
+          </div>
 
-          {/* <div style={{
-            backgroundColor: "white",
-            padding: "0 10px",
-            borderRadius: "30px",
-            width: "20%"
-          }}>
-            <Search> <InputBase placeholder='search..'></InputBase></Search> 
-            </div> */}
-            <form style={{borderRadius:"30px"}}>
-              <TextField
-                id="search-bar"
-                className="text"
-                style={{ backgroundColor: "white", borderRadius: "30px", width: "80%",border:"none" }}
-                // onInput={(e) => {
-                //   setSearchQuery(e.target.value);
-                // }}
-                variant="outlined"
-                placeholder="Search..."
-                size="small"
-              />
-              <IconButton type="submit" aria-label="search">
-                <SearchIcon style={{ fill: "black" }} />
-              </IconButton>
-            </form>
          
+            <Search> <InputBase placeholder='search..'></InputBase></Search> 
 
 
           <div style={{ marginRight: "5%" }}>

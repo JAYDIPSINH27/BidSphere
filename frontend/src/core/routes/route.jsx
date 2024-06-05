@@ -9,7 +9,7 @@ import PageNotFound from '../../shared/components/PageNotFound';
 import PaymentStatus from '../../components/molecules/PaymentStatus';
 // import PrivateRoute from './PrivateRoute';
 import Tenders from '../../components/pages/TenderIssuer/Tenders';
-
+import AddTender from '../../components/pages/TenderIssuer/AddTenders';
 function RouteConfig() {
   return (
     <Routes>
@@ -22,6 +22,7 @@ function RouteConfig() {
       <Route path="/payment-success" element={<PaymentStatus status="success" />} />
       <Route path="/payment-failure" element={<PaymentStatus status="failure" />} />
       <Route path="/bid-issuer/tenders" element={<Tenders/>} />
+      <Route path="/bid-issuer/tenders/add" element={<AddTender/>} />
       <Route path="*" element={<PageNotFound />} />
     </Routes>
   );

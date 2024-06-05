@@ -17,17 +17,11 @@ import LiveHelpIcon from '@mui/icons-material/LiveHelp';
 import HelpCenterIcon from '@mui/icons-material/HelpCenter';
 import GavelIcon from '@mui/icons-material/Gavel';
 import PolicyIcon from '@mui/icons-material/Policy';
-const FooterContainer = styled(Box)(({theme})=>({
-  display: 'flex',
-  flexDirection: 'column',
-  // minHeight: '100vh',
-  backgroundColor: '#e5e5e5',
-  [theme.breakpoints.down("lg")]: {
 
-    display: "flex",
-    flexDirection: "row",
-    justifyContent: "center",
-  },
+const FooterContainer = styled(Box)(({ theme }) => ({
+  display: 'flex',
+  // flexDirection: 'column',
+  backgroundColor: '#e5e5e5',
 }));
 
 const Main = styled('main')({
@@ -41,60 +35,61 @@ const StyledContainer = styled(Container)({
 const Footer = () => {
   return (
     <FooterContainer>
-      <Divider />
-      <StyledContainer >
-        <Grid container spacing={4}>
-          <Grid item  xs={12} sm={12} md={3} >
-            <img src={Logo} alt="Logo" style={{ width:"15rem" }} />
+      <Divider style={{border:"2"}}/>
+      <StyledContainer>
+        <Grid container spacing={4} justifyContent="center"
+  alignItems="center">
+          <Grid item md={3}>
+            <img src={Logo} alt="Logo" style={{ width: "15rem" }} />
           </Grid>
-          
-          <Grid item  xs={12} sm={12} md={3} style={{alignItems:"center",justifyContent:"center"}}>
+
+          <Grid item  md={3} >
             <Typography variant="h6" gutterBottom>
               Quick Links
             </Typography>
             <Box>
               <Link href="#" color="inherit" display="block">
-                <span><HomeIcon fontSize='8' style={{marginRight:"2px"}}/></span>
+                <span><HomeIcon fontSize='8' style={{ marginRight: "2px" }} /></span>
                 Home
               </Link>
               <Link href="#" color="inherit" display="block">
-              <span><InfoIcon fontSize='8' style={{marginRight:"2px"}}/></span>
+                <span><InfoIcon fontSize='8' style={{ marginRight: "2px" }} /></span>
                 About
               </Link>
               <Link href="#" color="inherit" display="block">
-              <span><MiscellaneousServicesIcon fontSize='8' style={{marginRight:"2px"}}/></span>
+                <span><MiscellaneousServicesIcon fontSize='8' style={{ marginRight: "2px" }} /></span>
                 Services
               </Link>
               <Link href="#" color="inherit" display="block">
-              <span><ContactsIcon fontSize='8' style={{marginRight:"2px"}}/></span>
+                <span><ContactsIcon fontSize='8' style={{ marginRight: "2px" }} /></span>
                 Contact
               </Link>
             </Box>
           </Grid>
-          <Grid item  xs={12} sm={12} md={3}>
+          <Grid item  md={3} justifyContent="center" alignItems="center">
             <Typography variant="h6" gutterBottom>
               Support
             </Typography>
             <Box>
               <Link href="#" color="inherit" display="block">
-              <span><LiveHelpIcon fontSize='8' style={{marginRight:"2px"}}/></span>
+                <span><LiveHelpIcon fontSize='8' style={{ marginRight: "2px" }} /></span>
                 FAQ
               </Link>
               <Link href="#" color="inherit" display="block">
-              <span><HelpCenterIcon fontSize='8' style={{marginRight:"2px"}}/></span>
+                <span><HelpCenterIcon fontSize='8' style={{ marginRight: "2px" }} /></span>
                 Help Center
               </Link>
               <Link href="#" color="inherit" display="block">
-              <span><GavelIcon fontSize='8' style={{marginRight:"2px"}}/></span>
+                <span><GavelIcon fontSize='8' style={{ marginRight: "2px" }} /></span>
                 Terms of Service
               </Link>
               <Link href="#" color="inherit" display="block">
-              <span><PolicyIcon fontSize='8' style={{marginRight:"2px"}}/></span>
+                <span><PolicyIcon fontSize='8' style={{ marginRight: "2px" }} /></span>
                 Privacy Policy
               </Link>
             </Box>
           </Grid>
-          <Grid item xs={12} sm={12} md={3}>
+          <Grid item  md={3} justifyContent="center" alignItems="center">
             <Typography variant="h6" gutterBottom>
               Social Media
             </Typography>
