@@ -13,7 +13,7 @@ const AddTender = () => {
     navigate('/bid-issuer/tenders/add');
   };
   return (
-    <Paper elevation={1} style={{ height: "100vh" }}>
+    <Paper style={{ height: "100vh", marginBottom: "1rem", padding: "1rem", overflow:"auto"}}>
       <Box>
         <BreadCrumb />
       </Box>
@@ -28,8 +28,6 @@ const AddTender = () => {
         </Box>
 
         <TenderForm />
-
-
 
       </Box>
     </Paper >
