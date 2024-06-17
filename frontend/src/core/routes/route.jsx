@@ -7,6 +7,7 @@ import App from '../App';
 import Pricing from '../../components/pages/Pricing';
 import PageNotFound from '../../shared/components/PageNotFound';
 import PaymentStatus from '../../components/molecules/PaymentStatus';
+import Faq  from '../../components/pages/Faq';
 // import PrivateRoute from './PrivateRoute';
 
 function RouteConfig() {
@@ -20,6 +21,7 @@ function RouteConfig() {
       <Route path="/pricing" element={<Pricing />} />
       <Route path="/payment-success" element={<PaymentStatus status="success" />} />
       <Route path="/payment-failure" element={<PaymentStatus status="failure" />} />
+      <Route path="/faq" element = {<Faq/>}/>
       <Route path="*" element={<PageNotFound />} />
     </Routes>
   );
