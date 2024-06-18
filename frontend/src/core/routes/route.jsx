@@ -18,9 +18,9 @@ function RouteConfig() {
       {/* <Route index element={<DashBoard />} /> */}
       {/* </Route> */}
       {/* <Route index element={<DashBoard />} /> */}
-      <Route path="/pricing" element={<Pricing />} />
+      {/* <Route path="/pricing" element={<Pricing />} />
       <Route path="/payment-success" element={<PaymentStatus status="success" />} />
-      <Route path="/payment-failure" element={<PaymentStatus status="failure" />} />
+      <Route path="/payment-failure" element={<PaymentStatus status="failure" />} /> */}
       <Route path="/bid-issuer/tenders" element={<Tenders/>} />
       <Route path="/bid-issuer/tenders/add" element={<AddTender/>} />
       <Route path="*" element={<PageNotFound />} />
