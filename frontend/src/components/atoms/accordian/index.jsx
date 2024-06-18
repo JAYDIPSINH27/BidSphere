@@ -14,7 +14,7 @@ export const Accordian = ({title, body, index}) => {
           onClick={toggleAccordion}
         >
           {title}
-          <span className={`float-right transform ${!isOpen ?  
+          <span className={`float-right transform ${isOpen ?  
                                  'rotate-180' : 'rotate-0'}  
                                  transition-transform duration-300`}> 
                     <svg className='h-3 w-3 fill-bg-bsnavyblue' version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlnsXlink="http://www.w3.org/1999/xlink" viewBox="0 0 330 330" xmlSpace="preserve" stroke="#000000">
