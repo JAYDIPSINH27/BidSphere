@@ -11,7 +11,7 @@ export const Accordian = ({title, body, index}) => {
         <button
           type="button"
           className="w-full px-6 py-4 text-left font-medium text-gray-800 hover:bg-bsbase focus:outline-none focus:bg-bsbase"
-          onClick={toggleAccordion} onBlur={toggleAccordion}
+          onClick={toggleAccordion}
         >
           {title}
           <span className={`float-right transform ${!isOpen ?  
