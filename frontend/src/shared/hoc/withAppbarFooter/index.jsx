@@ -1,13 +1,14 @@
 /* eslint-disable func-names */
 import React from 'react';
-import Header from '../../components/Header';
-import Footer from '../../components/Footer';
+import AppBar from '../../components/AppBar';
+import FooterBar from '../../components/FooterBar';
 
 const withNavbar = WrappedComponent => function (props) {
     return (
         <>
-            <Header />
-            <div className='h-screen'>
+            <AppBar />
+
+            <div className=''>
 
                 <WrappedComponent
                     {...props}
@@ -15,7 +16,7 @@ const withNavbar = WrappedComponent => function (props) {
 
             </div>
 
-            <Footer />
+            <FooterBar />
         </>
     );
 };
