@@ -4,22 +4,27 @@ import Faqs from "../../templates/Faq";
 function Faq() {
     const faqs = [
         {
-          category: "General",
+          category: "General Information",
           items: [
             {
-              question: "What is this service?",
+              question: "What is Bidsphere?",
               answer:
-                "This is a comprehensive service that provides a wide range of features and tools to help you achieve your goals.",
+              "A tender bidding application is an online platform where suppliers and vendors can find, submit bids for, and track tenders or procurement opportunities issued by buyers or contracting authorities."
+            },
+            {
+              question: "Who can use the Bidsphere application?",
+              answer:
+                "The application can be used by organizations or individuals who want to get bidding done on their issued projects/tenders and suppliers, contractors, service providers, and buyers from various industries looking to win the tender contracts posted through competitive bidding.",
             },
             {
               question: "How does it work?",
               answer:
-                "It's simple - just sign up and start using the platform. Our intuitive interface makes it easy to get started.",
+                "It's simple - just sign up and upload the necessary documents requested at the time of signup depending on the role registering for. We will review it and once approved you can start using the platform. Our intuitive interface makes it easy to get started.",
             },
             {
-              question: "Is there a free trial?",
+              question: "Is there a cost to using this application?",
               answer:
-                "Yes, we offer a 14-day free trial so you can explore the platform and see if it's the right fit for you.",
+                "No, we don't charge any fee from our users. This application is free to use for both tender issuers and bidders.",
             },
           ],
         },
