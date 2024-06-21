@@ -20,7 +20,7 @@ function Faq() {
             {
               question: "How does it work?",
               answer:
-                "It's simple - just sign up and upload the necessary documents requested at the time of signup depending on the role registering for. We will review it and once approved you can start using the platform. Our intuitive interface makes it easy to get started.",
+                "It's simple - just sign up and upload the necessary documents requested at the time of signup depending on the role registering for. We will review them and once approved you can start using the platform. Our intuitive interface makes it easy to get started.",
             },
             {
               question: "Is there a cost to using this application?",
@@ -30,62 +30,50 @@ function Faq() {
           ],
         },
         {
-          category: "Pricing",
-          items: [
-            {
-              question: "How much does it cost?",
-              answer:
-                "We offer several pricing plans to fit your needs. You can check out our pricing page for more details.",
-            },
-            {
-              question: "Are there any discounts available?",
-              answer:
-                "Yes, we offer discounts for annual subscriptions and for teams. You can learn more about our discounts on the pricing page.",
-            },
-            {
-              question: "Do you offer refunds?",
-              answer:
-                "We stand behind our product, so we offer a 30-day money-back guarantee. If you're not satisfied, you can request a full refund.",
-            },
-          ],
-        },
-        {
           category: "Features",
           items: [
             {
-              question: "What features are included?",
+              question: "How do I search for tenders?",
               answer:
-                "Our platform includes a wide range of features, such as analytics, collaboration tools, and customization options. You can check out our features page for more details.",
+                "For both the tender issuers and bidders we have provided the tender search feature. The tender issuers can see all the tenders posted by them and filter based on keywords, date and status. The bidders can see all the tenders and ",
             },
             {
-              question: "Can I customize the platform?",
-              answer: "Yes, our platform is highly customizable. You can tailor it to your specific needs and preferences.",
+              question: "What if I need to get some info on the tender before placing a bid?",
+              answer: "We have a Q&A Page/Hep desk page where the bidders can create a ticket asking their question about a bid, any other user can respond to the ticket. The issuers are also notified about the ticket and their reply will be highlighted differently for the user"
             },
             {
-              question: "Do you offer integrations?",
+              question: "Can I edit or delete a tender after posting it?",
               answer:
-                "Absolutely! We offer integrations with a variety of popular tools and platforms. You can check out our integrations page to see what's available.",
+                "Yes, you can edit, update, or delete a tender from the tender management section on your issuer dashboard.",
             },
+            {
+              question: "How do I receive notifications about new tenders?",
+              answer: "Ensure you have email notifications enabled in your account settings. You will receive alerts when new tenders are posted."
+            }
           ],
         },
         {
-          category: "Support",
+          category: "Support and Troubleshooting",
           items: [
             {
-              question: "What kind of support do you offer?",
+              question: "How can I contact customer support?",
               answer:
-                "We have a dedicated support team available to assist you with any questions or issues you may have. You can reach out to us via email, phone, or our support portal.",
+                "You can reach out to us via email or phone mentioned in the contact us section. We have a dedicated support team available to assist you with any questions or issues you may have. Please note that our working hours are Mon - Fri 8 a.m. to 5 p.m. and Sat - Sun 8 a.m. to 12 p.m.",
             },
             {
-              question: "Do you have a knowledge base?",
+              question: "What should I do if I encounter technical issues?",
               answer:
-                "Yes, we have a comprehensive knowledge base with articles, tutorials, and FAQs to help you get the most out of our platform.",
+                "If you experience any technical issues, please contact our support team through 'Contact Us' section. Provide detailed information about the problem for quicker resolution.",
             },
             {
               question: "How quickly can I expect a response?",
               answer:
                 "We strive to respond to all support inquiries within 1 business day. However, during peak times, it may take a bit longer.",
             },
+            {
+              question: "Can I see details of other bidders?",
+              answer:"After placing your bid, you can view limited details such as names and bid amounts of other bidders while sensitive information remains protected."
+            }
           ],
         },
       ];
