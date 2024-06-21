@@ -10,7 +10,7 @@ export const Accordian = ({title, body, index}) => {
         <div key={index} className="border-b border-gray-200 last:border-b-0">
         <button
           type="button"
-          className="w-full px-6 py-4 text-left font-medium text-gray-800 hover:bg-bsbase focus:outline-none focus:bg-bsbase"
+          className="w-full px-6 py-4 text-left font-medium text-gray-800 hover:bg-bslightgreen focus:outline-none focus:bg-bslightgreen"
           onClick={toggleAccordion}
         >
           {title}
