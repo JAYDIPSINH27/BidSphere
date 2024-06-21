@@ -10,7 +10,8 @@ import PaymentStatus from "../../components/molecules/PaymentStatus";
 import Faq from "../../components/pages/Faq";
 import Contact from "../../components/pages/Contact";
 // import PrivateRoute from './PrivateRoute';
-
+import Tenders from '../../components/pages/TenderIssuer/Tenders';
+import AddTender from '../../components/pages/TenderIssuer/AddTenders';
 function RouteConfig() {
   return (
     <Routes>
@@ -20,15 +21,9 @@ function RouteConfig() {
       {/* </Route> */}
       {/* <Route index element={<DashBoard />} /> */}
       <Route path="/pricing" element={<Pricing />} />
-      <Route
-        path="/payment-success"
-        element={<PaymentStatus status="success" />}
-      />
-      <Route
-        path="/payment-failure"
-        element={<PaymentStatus status="failure" />}
-      />
-      <Route path="/faq" element={<Faq />} />
+      <Route path="/payment-success" element={<PaymentStatus status="success" />} />
+      <Route path="/payment-failure" element={<PaymentStatus status="failure" />} />
+      <Route path="/faq" element = {<Faq/>}/>
       <Route path="/contact" element={<Contact />} />
       <Route path="*" element={<PageNotFound />} />
     </Routes>
