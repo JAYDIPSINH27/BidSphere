@@ -7,6 +7,7 @@ import App from '../App';
 import Pricing from '../../components/pages/Pricing';
 import PageNotFound from '../../shared/components/PageNotFound';
 import PaymentStatus from '../../components/molecules/PaymentStatus';
+import Faq  from '../../components/pages/Faq';
 // import PrivateRoute from './PrivateRoute';
 import Tenders from '../../components/pages/TenderIssuer/Tenders';
 import AddTender from '../../components/pages/TenderIssuer/AddTenders';
@@ -23,6 +24,8 @@ function RouteConfig() {
       <Route path="/payment-failure" element={<PaymentStatus status="failure" />} /> */}
       <Route path="/bid-issuer/tenders" element={<Tenders/>} />
       <Route path="/bid-issuer/tenders/add" element={<AddTender/>} />
+      <Route path="/payment-failure" element={<PaymentStatus status="failure" />} />
+      <Route path="/faq" element = {<Faq/>}/>
       <Route path="*" element={<PageNotFound />} />
     </Routes>
   );

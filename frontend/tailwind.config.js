@@ -68,6 +68,10 @@ module.exports = withMT({
         logo:{
           primary:"#00008e"
         }
+        bsnavyblue: "#1D3557",
+        bslightgreen: "#A8DADC",
+        bslightblue: "#457B9D",
+        bsbase: "#F1FAEE",
       },
       borderRadius: {
         "4xl": "32px",
@@ -76,3 +80,5 @@ module.exports = withMT({
   },
   plugins: [],
 });
+
+
