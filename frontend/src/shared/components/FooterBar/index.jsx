@@ -79,9 +79,9 @@ const FooterBar = () => {
                   Contact Us
                 </p>
                 <div className='flex flex-col gap-y-2'>
-                  <a href="" className='footer-link'>Mail Address: Halifax, NS</a>
+                  <a href="" className='footer-link'>Mail Address: 6299 South St, Halifax, Nova Scotia, Canada</a>
                   <a href="mailto:bidshphere@gmail.com" className='footer-link'>bidshphere@gmail.com</a>
-                  <a href="tel:+17828826260" className='footer-link'>+1 (782)-882-6260 </a>
+                  <a href="tel:+11234567890" className='footer-link'>+1 (123) 456-7890 </a>
                 </div>
               </div>
 

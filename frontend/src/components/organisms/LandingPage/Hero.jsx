@@ -24,7 +24,7 @@ const Hero = () => {
                 bidders seamlessly.
               </p>
               <div
-                className="relative isolate overflow-hidden bg-white px-6 py-20 text-center sm:px-16 sm:shadow-sm">
+                className="relative isolate overflow-hidden px-6 py-20 text-center sm:px-16 sm:shadow-sm">
                 <p className="mx-auto max-w-2xl text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">
                   Looking for new tenders, We are your go-to destination
 

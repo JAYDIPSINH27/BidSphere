@@ -36,22 +36,23 @@ export const navLinks = [
     id: "home",
     title: "Home",
   },
+  // {
+  //   id: "about",
+  //   title: "About",
+  // },
+  // {
+  //   id: "tenders",
+  //   title: "Tenders",
+  // },
+  // {
+  //   id: "Reviews",
+  //   title: "Reviews",
+  // },
+  // {
+  //   id: "blog",
+  //   title: "Blog",
+  // },
   {
-    id: "about",
-    title: "About",
-  },
-  {
-    id: "tenders",
-    title: "Tenders",
-  },
-  {
-    id: "Reviews",
-    title: "Reviews",
-  },
-  {
-    id: "blog",
-    title: "Blog",
-  },{
     id:"faq",
     title:"FAQ",
   },

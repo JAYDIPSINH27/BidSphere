@@ -33,7 +33,6 @@ const RecentTenders = () => {
   
   const recentlyAddedTenders = tenders.filter(tender => new Date(tender.publish_date) >= dateThreshold);
   
-  console.log(recentlyAddedTenders);
   return (
     <section id="popular">
 
