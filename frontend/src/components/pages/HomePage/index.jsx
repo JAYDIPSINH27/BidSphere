@@ -16,7 +16,7 @@ const HomePage = () => {
       <Tenders/>
       <Reviews/>
       <Blogs/>
-      <CTA/>
+      {/* <CTA/> */}
     </div>
 
   )
