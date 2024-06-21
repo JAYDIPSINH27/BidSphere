@@ -58,6 +58,7 @@ const Tenders = () => {
                   intitial={{opacity:0}}
                   animate={{opacity:1}}
                   transition={{ease:"easeInOut",duration:0.5}}
+                  key={tender.id}
                     id={tender.id}
                     title={tender.title}
                     sector={tender.sector}
