@@ -37,9 +37,9 @@
     /* img {
         @apply w-full h-full object-cover select-none;
     } */
-    body {
+    /* body {
         background-color: #f1faee;
-      }
+      } */
 }
 
 @layer components {

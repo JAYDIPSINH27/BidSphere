@@ -51,7 +51,15 @@ export const navLinks = [
   {
     id: "blog",
     title: "Blog",
+  },{
+    id:"faq",
+    title:"FAQ",
   },
+  {
+    id:"contact",
+    title:"Contact"
+  }
+
 ];
 
 export const statistics = [

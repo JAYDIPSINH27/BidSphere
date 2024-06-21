@@ -8,13 +8,13 @@ const withNavbar = WrappedComponent => function (props) {
         <>
             <AppBar />
 
-            <div className=''>
+            {/* <div className=''> */}
 
                 <WrappedComponent
                     {...props}
                 />
 
-            </div>
+            {/* </div> */}
 
             <FooterBar />
         </>

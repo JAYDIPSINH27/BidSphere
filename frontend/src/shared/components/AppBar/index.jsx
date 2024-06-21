@@ -10,7 +10,7 @@ import {
 import Logo from '../../../../public/bidphere_logo_notext_v1.png'
 import { navLinks } from './../../constants/index';
 import { motion } from 'framer-motion'
-
+import {Link} from 'react-router-dom'
 
 const AppBar = () => {
   const [openNav, setOpenNav] = React.useState(false);
@@ -27,7 +27,7 @@ const AppBar = () => {
       {
         navLinks.map((link) => {
           return <li key={link.id}>
-            <a href={`#${link.id}`} className='link text-white'>{link.title}</a>
+            <Link to={`/${link.id}`} className='link text-white'>{link.title}</Link>
           </li>
         })
       }
@@ -46,10 +46,14 @@ const AppBar = () => {
       <Navbar
         className="sticky top-0 z-10 h-max max-w-full rounded-none px-4 py-2 lg:px-8 lg:py-4 bg-dark-primary">
         <div className="flex items-center justify-between text-blue-gray-900 cursor-pointer">
+        <Link to="/">
           <div className="flex align-middle ">
+           
             <img className="mr-4  py-1.5 align-middle" src={Logo} alt="Logo" width="10%" />
+         
             <Typography color="white" className="align-middle mt-3 font-bold ">BidSphere</Typography>
           </div>
+          </Link>
           <div className="flex items-center gap-4">
             <div className="mr-4 hidden lg:block">{navList}</div>
             <div className="flex items-center gap-x-1">

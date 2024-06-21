@@ -44,7 +44,7 @@ export const leftSideVariants = {
             type: "spring",
             duration: 2,
             bounce: 0.3,
-            delay: 0.5,
+            // delay: 0.1,
         },
     },
 };
@@ -61,7 +61,7 @@ export const rightSideVariants = {
             type: "spring",
             duration: 2,
             bounce: 0.3,
-            delay: 0.5,
+            delay: 0.3,
         },
     },
 };
@@ -78,6 +78,7 @@ export const centerVariants = {
             duration: 2,
             type: "spring",
             bounce: 0.1,
+            delay:0.4
         },
     },
 };

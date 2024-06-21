@@ -1,5 +1,6 @@
 import withNavbar from "../../../shared/hoc/withNavBar";
 import Faqs from "../../templates/Faq";
+import withAppbarFooter from '../../../shared/hoc/withAppbarFooter';
 
 function Faq() {
     const faqs = [
@@ -96,4 +97,4 @@ function Faq() {
     );
 }
 
-export default withNavbar(Faq);
+export default withAppbarFooter(Faq);
