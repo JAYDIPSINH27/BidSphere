@@ -1,23 +1,23 @@
-import { defineConfig } from 'vite';
-import react from '@vitejs/plugin-react';
-import eslint from 'vite-plugin-eslint';
-import path from 'path';
+import { defineConfig } from "vite";
+import react from "@vitejs/plugin-react";
+import eslint from "vite-plugin-eslint";
+import path from "path";
 
 export default defineConfig({
   plugins: [react()],
   esbuild: {
-    loader: 'jsx',
+    loader: "jsx",
     include: /src\/.*\.jsx?$/,
     exclude: [],
   },
   build: {
-    outDir: 'dist',
+    outDir: "dist",
     rollupOptions: {
-      input: './src/core/index.jsx',
+      input: "index.html",
     },
   },
   server: {
-    host: '0.0.0.0',
+    host: "0.0.0.0",
   },
   test: {
     globals: true,
@@ -26,14 +26,14 @@ export default defineConfig({
     force: true,
     esbuildOptions: {
       loader: {
-        '.js': 'jsx',
+        ".js": "jsx",
       },
     },
   },
   resolve: {
     alias: {
-      '@organism/': path.resolve('./src/components/organisms'),
-      '@http': path.resolve('./src/services/http'),
+      "@organism/": path.resolve("./src/components/organisms"),
+      "@http": path.resolve("./src/services/http"),
     },
   },
 });
