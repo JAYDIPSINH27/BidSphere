@@ -2,7 +2,7 @@ import React, { forwardRef } from 'react'
 
 const Tender = forwardRef(({ id, title, sector, duration, thumbnail, organization: { name, pic }, ending_date }, ref) => {
   return (
-    <div className='group relative h-[400px] border-[1.5px] border-solid border-transparent rounded-4xl overflow-hidden transition-colors duration-300'
+    <div className='group relative h-[350px] border-[1.5px] border-solid border-transparent rounded-4xl overflow-hidden transition-colors duration-300'
       ref={ref} data-id={id} data-category={sector.toLowerCase()} data-difficulty="short"
 
     >
@@ -22,9 +22,9 @@ const Tender = forwardRef(({ id, title, sector, duration, thumbnail, organizatio
               <p className='text-sm font-semibold !leading-[normal] text-gray-10'>
                 {sector}
               </p>
-              <p className='text-sm font-demibold text-gray-10'>
+              {/* <p className='text-sm font-demibold text-gray-10'>
                 {duration}
-              </p>
+              </p> */}
 
             </div>
 
