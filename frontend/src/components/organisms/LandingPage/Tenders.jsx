@@ -34,7 +34,7 @@ const Tenders = () => {
                 categories.map((category, index) => {
                   return (
                     <div
-                      className={`group flex items-center justify-center px-8 py-6 min-w-[120px] bg-white rounded-t-4xl hover:bg-gray-30 [&:is(.active)]:!bg-gray-10 cursor-pointer transition-colors duration-300 ${activeCategory === category ? "active" : ""}`} 
+                      className={`group flex items-center justify-center px-8 py-6 min-w-[120px] bg-white rounded-t-4xl hover:bg-gray-30 [&:is(.active)]:!bg-bsnavyblue cursor-pointer transition-colors duration-300 ${activeCategory === category ? "active" : ""}`} 
                 
                       key={index}
                       onClick={() => handleCategory(category)}
@@ -50,7 +50,7 @@ const Tenders = () => {
               }
             </div>
 
-            <div className='grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-2 w-full min-h-[540px] p-4 bg-gray-10 rounded-4xl'>
+            <div className='grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-2 w-full min-h-[540px] p-4 bg-bsnavyblue rounded-4xl'>
               {categorizedCourses.map((tender) => {
                 return (
                   <MotionTender

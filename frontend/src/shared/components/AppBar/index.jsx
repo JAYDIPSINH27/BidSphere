@@ -35,16 +35,18 @@ const AppBar = () => {
     </ul>
   );
   return (
-    <motion.div animate={{ y:0 }}
-      initial={{ y: -50 }}
-      transition={{
-        duration: 2,
-        type: "spring",
-        bounce: 0.3,
-      }}
+    <motion.div 
+    // animate={}
+      // initial={{y:-50, opacity:0}}
+      // animate={{y:0, opacity:1}}
+      // transition={{
+      //   delay: 1,
+      //   type: "easeIn",
+      //   bounce: 1.5,
+      // }}
     >
       <Navbar
-        className="sticky top-0 z-10 h-max max-w-full rounded-none px-4 py-2 lg:px-8 lg:py-4 bg-bsnavyblue" blurred={false}>
+        className=" top-0 z-10 h-max max-w-full rounded-none px-4 py-2 lg:px-8 lg:py-4 bg-bsnavyblue fixed" blurred={false}>
         <div className="flex items-center justify-between text-blue-gray-900 cursor-pointer" >
         <Link to="/">
           <div className="flex align-middle ">

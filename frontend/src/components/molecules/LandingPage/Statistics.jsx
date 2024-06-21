@@ -10,7 +10,7 @@ const Statistics = () => {
       viewport={{ margin: "0px 0px -200px 0px", once: true }}
       className='py-[20px]'>
       <div className='container'>
-        <div className='flex justify-center lg:justify-between itmes-start flex-wrap gap-8 rounded-4xl bg-gray-10 py-14 px-20'>
+        <div className='flex justify-center lg:justify-between itmes-start flex-wrap gap-8 rounded-4xl bg-bsnavyblue py-14 px-20'>
           {statistics.map((stat, index) => {
             return (
               <div key={index} className="w-[145px] flex flex-col items-center gap-y-4">
