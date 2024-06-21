@@ -1,7 +1,12 @@
 import withNavbar from "../../../shared/hoc/withNavBar";
+import ContactTemplate from "../../templates/Contact/index";
 
 function Contact() {
-  return <h1>CONTACT US</h1>;
+  return (
+    <div>
+      <ContactTemplate />
+    </div>
+  );
 }
 
 export default withNavbar(Contact);
