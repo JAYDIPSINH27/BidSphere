@@ -7,10 +7,10 @@ export const Accordian = ({title, body, index}) => {
       setIsOpen(!isOpen);
     };
     return(
-        <div key={index} className="border-b border-gray-200 last:border-b-0">
+        <div key={index} className="border-b border-gray-300 last:border-b-0">
         <button
           type="button"
-          className="w-full px-6 py-4 text-left font-medium text-gray-800 hover:bg-bsbase focus:outline-none focus:bg-bsbase"
+          className="w-full px-6 py-4 text-left font-medium text-gray-800 hover:bg-bslightgreen focus:outline-none focus:bg-bslightgreen"
           onClick={toggleAccordion}
         >
           {title}
@@ -22,7 +22,7 @@ export const Accordian = ({title, body, index}) => {
                 </span> 
         </button>
         {isOpen &&
-        <div className="px-6 py-4 text-gray-500">{body}</div>
+        <div className="px-6 py-4 text-gray-600">{body}</div>
         }
       </div>
 )
