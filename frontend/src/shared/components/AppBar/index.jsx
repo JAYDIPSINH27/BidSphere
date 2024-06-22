@@ -67,11 +67,11 @@ const AppBar = () => {
                 <span className="text-primary-50">Sign Up</span>
               </Button>
               <Button
-                variant="gradient"
+                
                 size="sm"
-                className="hidden lg:inline-block"
+                className="hidden lg:inline-block bg-bslightgreen"
               >
-                <span>Sign In</span>
+                <span className="text-black">Sign In</span>
               </Button>
             </div>
             <IconButton
@@ -119,8 +119,8 @@ const AppBar = () => {
             <Button fullWidth variant="text" className="" size="sm" >
               <span className="text-primary-50" >Sign Up</span>
             </Button>
-            <Button fullWidth variant="gradient" size="sm" className="">
-              <span>Sign in</span>
+            <Button fullWidth  size="sm" className="bg-bslightgreen">
+              <span className="text-black" >Sign in</span>
             </Button>
           </div>
         </MobileNav>
