@@ -5,7 +5,7 @@ import {motion} from 'framer-motion'
 import { leftSideVariants,rightSideVariants } from '../../../shared/constants/motion'
 const About = () => {
   return (
-    <section>
+    <section id="about">
       <div className='container'>
         <div className='flex flex-col-reverse lg:flex-row items-center justify-between gap-8'>
           {/* Left Side */}

@@ -3,7 +3,7 @@ import { Review, SectionHeader,SliderNavigation } from '../../molecules/LandingP
 import { register } from 'swiper/element'
 import { reviews } from '../../../shared/constants'
 import {motion} from 'framer-motion'
-import { centerVariants } from '../../../shared/constants/motion'
+import { centerVariants, leftSideVariants } from '../../../shared/constants/motion'
 register()
 
 const Reviews = () => {
@@ -33,7 +33,7 @@ const Reviews = () => {
    }
   , [])
   return (
-    <section>
+    <section id="reviews">
       <div className='container'>
         <div className='flex flex-col gap-y-24'>
           <SectionHeader
@@ -45,7 +45,7 @@ const Reviews = () => {
           variants={centerVariants}
           initial='hidden'
           whileInView="visible"
-          viewport={{margin:"0px 0px -200px 0px",once:true}}
+          viewport={{once:true}}
           className='flex flex-col gap-y-4'>
 
             <swiper-container ref={sliderRef}>
