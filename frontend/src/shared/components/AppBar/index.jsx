@@ -1,16 +1,15 @@
-import React, { useEffect } from "react";
 import {
-  Navbar,
-  MobileNav,
-  Typography,
   Button,
+  Collapse,
   IconButton,
-  Card,
+  Navbar,
+  Typography
 } from "@material-tailwind/react";
-import Logo from '../../../../public/bidphere_logo_notext_v1.png'
+import { motion } from 'framer-motion';
+import React from "react";
+import { Link } from 'react-router-dom';
+import Logo from '../../../../public/bidphere_logo_notext_v1.png';
 import { navLinks } from './../../constants/index';
-import { motion } from 'framer-motion'
-import {Link} from 'react-router-dom'
 
 const AppBar = () => {
   const [openNav, setOpenNav] = React.useState(false);
@@ -114,7 +113,7 @@ const AppBar = () => {
             </IconButton>
           </div>
         </div>
-        <MobileNav open={openNav}>
+        <Collapse open={openNav}>
           {navList}
           <div className="flex items-center gap-x-1">
             <Button fullWidth variant="text" className="" size="sm" >
@@ -124,7 +123,7 @@ const AppBar = () => {
               <span className="text-black" >Sign in</span>
             </Button>
           </div>
-        </MobileNav>
+        </Collapse>
       </Navbar>
     </motion.div>
   );
