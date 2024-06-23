@@ -16,14 +16,14 @@ const SectionHeader = ({title, link}) => {
           title
         }
       </motion.h2>
-      <motion.a
+      {/* <motion.a
       variants={rightSideVariants}
       initial="hidden"
       whileInView="visible"
       viewport={{once:true}}
       href={link} className='link text-xl'>
         See All
-      </motion.a>
+      </motion.a> */}
     </div>
   )
 }

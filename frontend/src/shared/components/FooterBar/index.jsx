@@ -8,6 +8,11 @@ import LiveHelpIcon from '@mui/icons-material/LiveHelp';
 import HelpCenterIcon from '@mui/icons-material/HelpCenter';
 import GavelIcon from '@mui/icons-material/Gavel';
 import PolicyIcon from '@mui/icons-material/Policy';
+import { Link } from 'react-router-dom';
+import Modal from '../../../components/molecules/LandingPage/Modal';
+import { footerData } from '../../constants';
+
+
 
 
 const FooterBar = () => {
@@ -18,10 +23,12 @@ const FooterBar = () => {
           <div className='flex flex-col'>
             <div className='flex items-start justify-between flex-wrap gap-8'>
               <div className='footer-col'>
-                <h2 className='text-h3 text-white'>
-                  {/* <img src={Logo} alt="Logo" /> */}
-                  BidSphere
-                </h2>
+                <Link to="/">
+                  <h2 className='text-h3 text-white'>
+                    {/* <img src={Logo} alt="Logo" /> */}
+                    BidSphere
+                  </h2>
+                </Link>
                 <p className='text-base !leading-[normal] text-gray-80'>
                   Your Trusted Partner in Tender Bidding and Procurement.
                 </p>
@@ -47,10 +54,10 @@ const FooterBar = () => {
                   Quick Links
                 </p>
                 <div className='flex flex-col gap-y-2'>
-                  <a href="" className='footer-link'>Home</a>
-                  <a href="" className='footer-link'>About Us</a>
-                  <a href="" className='footer-link'>Services</a>
-                  <a href="" className='footer-link'>Contact Us</a>
+                  <Link to="/" className='footer-link'>Home</Link>
+                  <a href="#about" className='footer-link'>About Us</a>
+                  <a href="#tenders" className='footer-link'>Tenders</a>
+                  <Link to="/contact" className='footer-link'>Contact Us</Link>
                 </div>
               </div>
 
@@ -59,18 +66,20 @@ const FooterBar = () => {
                   Support
                 </p>
                 <div className='flex flex-col gap-y-2'>
-                  <a href="" className='footer-link'>
+                  <Link to="/faq" className='footer-link'>
                     <LiveHelpIcon className='text-white mr-2' />
-                    FAQ</a>
-                  <a href="" className='footer-link'>
-                    <HelpCenterIcon className='text-white mr-2' />
-                    Help Center</a>
-                  <a href="" className='footer-link'>
+                    FAQ</Link>
+
+                  <div>
                     <GavelIcon className='text-white mr-2' />
-                    Terms of Service</a>
-                  <a href="" className='footer-link'>
+                    <Modal title={footerData.termsandservice.title} content={footerData.termsandservice.content} />
+                  </div>
+
+                  <div>
                     <PolicyIcon className='text-white mr-2' />
-                    Privacy Policy</a>
+                    <Modal title={footerData.privacypolicy.title} content={footerData.privacypolicy.content} />
+                  </div>
+
                 </div>
               </div>
 

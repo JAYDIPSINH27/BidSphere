@@ -61,7 +61,7 @@ export const rightSideVariants = {
             type: "spring",
             duration: 2,
             bounce: 0.3,
-            delay: 0.3,
+            // delay: 0.3,
         },
     },
 };
@@ -69,16 +69,17 @@ export const rightSideVariants = {
 export const centerVariants = {
     hidden: {
         opacity: 0,
-        y: -100,
+        y: 50,
     },
     visible: {
         opacity: 1,
         y: 0,
         transition: {
             duration: 2,
+            // delay:0.1,
             type: "spring",
             bounce: 0.1,
-            delay:0.4
+            
         },
     },
 };

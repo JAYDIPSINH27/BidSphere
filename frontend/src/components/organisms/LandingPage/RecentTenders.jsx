@@ -38,12 +38,12 @@ const RecentTenders = () => {
 
 
       <div className='container flex flex-col gap-y-24 px-1'>
-        <SectionHeader title="Explore Most Recent Tenders" link="#" />
+        <SectionHeader title="Explore Most Recent Tenders"  />
         <motion.div 
-        variants={centerVariants}
-        initial='hidden'
-        whileInView="visible"
-        viewport={{margin:"0px 0px -200px 0px",once:true}}
+        // variants={centerVariants}
+        // initial='hidden'
+        // whileInView="visible"
+        // viewport={{margin:"0px 0px -200px 0px",once:true}}
         className='flex flex-col gap-y-4'>
           <swiper-container ref={sliderRef}>
             

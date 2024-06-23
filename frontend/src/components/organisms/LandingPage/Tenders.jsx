@@ -21,7 +21,7 @@ const Tenders = () => {
     }
   }
   return (
-    <section>
+    <section id="tenders">
       <div className='container '>
         <div className='flex flex-col gap-y-24'>
           <SectionHeader
