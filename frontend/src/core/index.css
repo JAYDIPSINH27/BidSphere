@@ -84,7 +84,7 @@
     }
 }
 
-::-webkit-scrollbar {
+/* ::-webkit-scrollbar {
     width: 10px;
     height: 8px;
 }
@@ -94,7 +94,7 @@
     border-radius: 100vmax;
     border: 2px solid transparent;
     background-clip: content-box;
-}
+} */
 
 .header__menu-icon span {
     display: block;

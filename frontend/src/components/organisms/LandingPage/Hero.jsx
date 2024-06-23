@@ -5,7 +5,7 @@ import { leftSideVariants,rightSideVariants } from '../../../shared/constants/mo
 
 const Hero = () => {
   return (
-    <section className='flex items-center pt-2 mt-5'>
+    <section className='flex items-center pt-2 mt-20 lg:mt-5'>
 
       <div className='container flex items-center justify-center '>
         <div className='flex justify-between items-center flex-col-reverse lg:flex-row  lg:pt-0 gap-8'>

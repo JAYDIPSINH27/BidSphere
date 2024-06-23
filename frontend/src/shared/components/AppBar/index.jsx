@@ -1,16 +1,15 @@
-import React, { useEffect } from "react";
 import {
-  Navbar,
-  MobileNav,
-  Typography,
   Button,
+  Collapse,
   IconButton,
-  Card,
+  Navbar,
+  Typography
 } from "@material-tailwind/react";
-import Logo from '../../../../public/bidphere_logo_notext_v1.png'
+import { motion } from 'framer-motion';
+import React from "react";
+import { Link } from 'react-router-dom';
+import Logo from '../../../../public/bidphere_logo_notext_v1.png';
 import { navLinks } from './../../constants/index';
-import { motion } from 'framer-motion'
-import {Link} from 'react-router-dom'
 
 const AppBar = () => {
   const [openNav, setOpenNav] = React.useState(false);
@@ -27,7 +26,7 @@ const AppBar = () => {
       {
         navLinks.map((link) => {
           return <li key={link.id}>
-            <Link to={`/${link.id}`} className='link text-white'>{link.title}</Link>
+            <Link to={`/${link.path}`} className='link text-white'>{link.title}</Link>
           </li>
         })
       }
@@ -36,6 +35,7 @@ const AppBar = () => {
   );
   return (
     <motion.div 
+    className="mb-10"
     // animate={}
       // initial={{y:-50, opacity:0}}
       // animate={{y:0, opacity:1}}
@@ -67,11 +67,11 @@ const AppBar = () => {
                 <span className="text-primary-50">Sign Up</span>
               </Button>
               <Button
-                variant="gradient"
+                
                 size="sm"
-                className="hidden lg:inline-block"
+                className="hidden lg:inline-block bg-bslightgreen"
               >
-                <span>Sign In</span>
+                <span className="text-black">Sign In</span>
               </Button>
             </div>
             <IconButton
@@ -113,17 +113,17 @@ const AppBar = () => {
             </IconButton>
           </div>
         </div>
-        <MobileNav open={openNav}>
+        <Collapse open={openNav}>
           {navList}
           <div className="flex items-center gap-x-1">
             <Button fullWidth variant="text" className="" size="sm" >
               <span className="text-primary-50" >Sign Up</span>
             </Button>
-            <Button fullWidth variant="gradient" size="sm" className="">
-              <span>Sign in</span>
+            <Button fullWidth  size="sm" className="bg-bslightgreen">
+              <span className="text-black" >Sign in</span>
             </Button>
           </div>
-        </MobileNav>
+        </Collapse>
       </Navbar>
     </motion.div>
   );
