@@ -12,7 +12,7 @@ const Tender = forwardRef(({ id, title, sector, duration, thumbnail, organizatio
       </div>
 
       <div className='absolute bottom-0 inset-x-0 h-24 p-2 m-2 bg-white border-[1.5px] border-solid border-transparent rounded-3xl transition-colors duration-300 grop-hover:border-grey-10'>
-        <a href="#" className='flex flex-col justify-between h-full ' title={title}>
+        <a href="" className='flex flex-col justify-between h-full ' title={title}>
           {/* {title} */}
           <div className='flex justify-between gap-4'>
             <p className='text-lg font-medium text-gray-10 whitespace-nowrap text-ellipsis overflow-hidden'>
