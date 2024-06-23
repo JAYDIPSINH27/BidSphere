@@ -33,7 +33,8 @@ import {
 
 export const navLinks = [
   {
-    id: "",
+    id: "home",
+    path:"",
     title: "Home",
   },
   // {
@@ -54,10 +55,12 @@ export const navLinks = [
   // },
   {
     id:"faq",
+    path:"faq",
     title:"FAQ",
   },
   {
     id:"contact",
+    path:"contact",
     title:"Contact"
   }
 

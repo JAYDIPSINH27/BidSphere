@@ -27,7 +27,7 @@ const AppBar = () => {
       {
         navLinks.map((link) => {
           return <li key={link.id}>
-            <Link to={`/${link.id}`} className='link text-white'>{link.title}</Link>
+            <Link to={`/${link.path}`} className='link text-white'>{link.title}</Link>
           </li>
         })
       }
@@ -36,6 +36,7 @@ const AppBar = () => {
   );
   return (
     <motion.div 
+    className="mb-10"
     // animate={}
       // initial={{y:-50, opacity:0}}
       // animate={{y:0, opacity:1}}
