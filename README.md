@@ -93,6 +93,32 @@ To deploy the React app to Netlify using Github repository, follow these steps:
 ### frontend/src/components/atoms/accordian/index.jsx
 
 _line 20_
+
 ```
 The arrow svg is used from (https://www.svgrepo.com/svg/80156/down-arrow) which is opened licensed svg vector and icons site.
 ```
+
+### frontend/src/components/molecules/ContactForm/index.jsx
+
+_Lines 30 - 32_
+
+```
+if (!formData.email.match(/^[^\s@]+@[^\s@]+\.[^\s@]+$/)) {
+      errors.email = "Invalid email format";
+    }
+
+```
+
+The code above was created by adapting the code in [JavaScript Email Validation: Tutorial with Code Snippets](https://mailtrap.io/blog/javascript-email-validation/) as shown below:
+
+```
+function validateEmail(email) {
+  const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+  return emailRegex.test(email);
+}
+
+```
+
+- <!---How---> The code in [JavaScript Email Validation: Tutorial with Code Snippets](https://mailtrap.io/blog/javascript-email-validation/) was implemented by using the regular expression for email validation.
+- <!---Why---> [JavaScript Email Validation: Tutorial with Code Snippets](https://mailtrap.io/blog/javascript-email-validation/)'s Code was used because it provides a simple and effective way to validate email addresses.
+- <!---How---> [JavaScript Email Validation: Tutorial with Code Snippets](https://mailtrap.io/blog/javascript-email-validation/)'s Code was modified by integrating it into the form validation logic.
