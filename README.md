@@ -1,7 +1,7 @@
 # CSCI 5709 Grp-14
 
 - _Date Created_: 24 May 2024
-- _Last Modification Date_: 23 June 2024
+- _Last Modification Date_: 24 June 2024
 - _Deployed Application URL_: <https://bidsphere.netlify.app/>
 - _Repository GitLab URL_: <https://git.cs.dal.ca/kumawat/csci-5709-grp-14/-/tree/main>
 
@@ -699,3 +699,10 @@ export default {
 - [A World of Free Vector Art at Your Fingertips!](https://www.freevector.com/)
 
 
+### The following 4 CSS validation errors have been detected by [w3](https://jigsaw.w3.org/), but these can be ignored as these classes are from tailwind css which has been imported and used as a css utility framework.
+```
+.shadow-none	Invalid RGB function
+.focus\:shadow-none:focus	Invalid RGB function
+.active\:shadow-none:active	Invalid RGB function
+.disabled\:shadow-none:disabled	Invalid RGB function
+```
