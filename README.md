@@ -693,7 +693,7 @@ export default {
 - [Responsive Landing Page](https://github.com/xdcode2/course-website)'s Code was modified by integrating it with our other color schemes and requirements.
 
 ### frontend/src/shared/assets
-- All the image assets in this folder are referenced from multiple sources whicha are as below:
+- All the image assets in this folder are referenced from multiple sources which are as below:
 - [Enjoy the versatility of vector graphics](https://www.freepik.com/vectors)
 - [Responsive Landing Page](https://github.com/xdcode2/course-website)
 - [A World of Free Vector Art at Your Fingertips!](https://www.freevector.com/)
