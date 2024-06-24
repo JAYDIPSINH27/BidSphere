@@ -83,7 +83,7 @@ To deploy the React app to Netlify using Github repository, follow these steps:
 ## Built With
 
 - [React](https://reactjs.org/) - The web framework used
-- [Vite] (https://vitejs.dev/guide/) - Build tool
+- [Vite](https://vitejs.dev/guide/) - Build tool
 - [Netlify](https://www.netlify.com/) - For deployment
 - [Node.js](https://nodejs.org/) - JavaScript runtime environment
 - [npm](https://www.npmjs.com/) - Dependency Management
@@ -92,7 +92,7 @@ To deploy the React app to Netlify using Github repository, follow these steps:
 
 ### frontend/src/components/atoms/accordian/index.jsx
 
-_line 20_
+_Line 20_
 
 ```
 The arrow svg is used from (https://www.svgrepo.com/svg/80156/down-arrow) which is opened licensed svg vector and icons site.
