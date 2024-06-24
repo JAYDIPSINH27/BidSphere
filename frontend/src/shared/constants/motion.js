@@ -12,9 +12,9 @@ export const navbarVariants = {
     slide: {
         y: 0,
         transition: {
-            duration: 2,
+            duration: 1,
             type: "spring",
-            bounce: 0.3,
+            bounce: 0.2,
         },
     },
 };
@@ -42,8 +42,8 @@ export const leftSideVariants = {
         x: 0,
         transition: {
             type: "spring",
-            duration: 2,
-            bounce: 0.3,
+            duration: 1,
+            bounce: 0.2,
             // delay: 0.1,
         },
     },
@@ -59,8 +59,8 @@ export const rightSideVariants = {
         x: 0,
         transition: {
             type: "spring",
-            duration: 2,
-            bounce: 0.3,
+            duration: 1,
+            bounce: 0.2,
             // delay: 0.3,
         },
     },
@@ -75,7 +75,7 @@ export const centerVariants = {
         opacity: 1,
         y: 0,
         transition: {
-            duration: 2,
+            duration: 1,
             // delay:0.1,
             type: "spring",
             bounce: 0.1,
