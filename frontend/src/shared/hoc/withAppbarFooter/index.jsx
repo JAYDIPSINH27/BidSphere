@@ -4,21 +4,21 @@ import AppBar from '../../components/AppBar';
 import FooterBar from '../../components/FooterBar';
 
 const withNavbar = WrappedComponent => function (props) {
-    return (
-        <>
-            <AppBar />
+  return (
+    <>
+      <AppBar />
 
-            {/* <div className=''> */}
+      {/* <div className=''> */}
 
-                <WrappedComponent
-                    {...props}
-                />
+      <WrappedComponent
+        {...props}
+      />
 
-            {/* </div> */}
+      {/* </div> */}
 
-            <FooterBar />
-        </>
-    );
+      <FooterBar />
+    </>
+  );
 };
 
 export default withNavbar;

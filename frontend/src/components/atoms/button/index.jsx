@@ -1,6 +1,6 @@
-import React from "react";
+import React from 'react';
 
-const Button = ({ type = "button", children, onClick = () => {} }) => {
+function Button({ type = 'button', children, onClick = () => {} }) {
   return (
     <button
       type={type}
@@ -10,6 +10,6 @@ const Button = ({ type = "button", children, onClick = () => {} }) => {
       {children}
     </button>
   );
-};
+}
 
 export default Button;

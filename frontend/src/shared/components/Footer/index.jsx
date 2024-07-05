@@ -1,13 +1,12 @@
 import React from 'react';
-import { Grid, Link, Typography } from '@mui/material';
+import {
+  Grid, Link, Typography, Box, Container,
+} from '@mui/material';
 import FacebookIcon from '@mui/icons-material/Facebook';
 import TwitterIcon from '@mui/icons-material/Twitter';
 import InstagramIcon from '@mui/icons-material/Instagram';
 import LinkedInIcon from '@mui/icons-material/LinkedIn';
-import Logo from '../../../../public/bidphere_logo_v1.png'
-import HLogo from '../../../../public/bidphere_logo_notext_v1.png'
 import { styled } from '@mui/material/styles';
-import { Box, Container } from '@mui/material';
 import Divider from '@mui/material/Divider';
 import HomeIcon from '@mui/icons-material/Home';
 import InfoIcon from '@mui/icons-material/Info';
@@ -17,6 +16,8 @@ import LiveHelpIcon from '@mui/icons-material/LiveHelp';
 import HelpCenterIcon from '@mui/icons-material/HelpCenter';
 import GavelIcon from '@mui/icons-material/Gavel';
 import PolicyIcon from '@mui/icons-material/Policy';
+import HLogo from '../../../../public/bidphere_logo_notext_v1.png';
+import Logo from '../../../../public/bidphere_logo_v1.png';
 
 const FooterContainer = styled(Box)(({ theme }) => ({
   display: 'flex',
@@ -32,64 +33,68 @@ const StyledContainer = styled(Container)({
   padding: '2rem 0',
 });
 
-const Footer = () => {
+function Footer() {
   return (
     <FooterContainer>
-      <Divider style={{border:"2"}}/>
+      <Divider style={{ border: '2' }} />
       <StyledContainer>
-        <Grid container spacing={4} justifyContent="center"
-  alignItems="center">
+        <Grid
+          container
+          spacing={4}
+          justifyContent="center"
+          alignItems="center"
+        >
           <Grid item md={3}>
-            <img src={Logo} alt="Logo" style={{ width: "15rem" }} />
+            <img src={Logo} alt="Logo" style={{ width: '15rem' }} />
           </Grid>
 
-          <Grid item  md={3} >
+          <Grid item md={3}>
             <Typography variant="h6" gutterBottom>
               Quick Links
             </Typography>
             <Box>
               <Link href="#" color="inherit" display="block">
-                <span><HomeIcon fontSize='8' style={{ marginRight: "2px" }} /></span>
+                <span><HomeIcon fontSize="8" style={{ marginRight: '2px' }} /></span>
                 Home
               </Link>
               <Link href="#" color="inherit" display="block">
-                <span><InfoIcon fontSize='8' style={{ marginRight: "2px" }} /></span>
+                <span><InfoIcon fontSize="8" style={{ marginRight: '2px' }} /></span>
                 About
               </Link>
               <Link href="#" color="inherit" display="block">
-                <span><MiscellaneousServicesIcon fontSize='8' style={{ marginRight: "2px" }} /></span>
+                <span><MiscellaneousServicesIcon fontSize="8" style={{ marginRight: '2px' }} /></span>
                 Services
               </Link>
               <Link href="#" color="inherit" display="block">
-                <span><ContactsIcon fontSize='8' style={{ marginRight: "2px" }} /></span>
+                <span><ContactsIcon fontSize="8" style={{ marginRight: '2px' }} /></span>
                 Contact
               </Link>
             </Box>
           </Grid>
-          <Grid item  md={3} justifyContent="center" alignItems="center">
+          <Grid item md={3} justifyContent="center" alignItems="center">
             <Typography variant="h6" gutterBottom>
               Support
             </Typography>
             <Box>
               <Link href="#" color="inherit" display="block">
-                <span><LiveHelpIcon fontSize='8' style={{ marginRight: "2px" }} /></span>
+                <span><LiveHelpIcon fontSize="8" style={{ marginRight: '2px' }} /></span>
                 FAQ
               </Link>
               <Link href="#" color="inherit" display="block">
-                <span><HelpCenterIcon fontSize='8' style={{ marginRight: "2px" }} /></span>
+                <span><HelpCenterIcon fontSize="8" style={{ marginRight: '2px' }} /></span>
                 Help Center
               </Link>
               <Link href="#" color="inherit" display="block">
-                <span><GavelIcon fontSize='8' style={{ marginRight: "2px" }} /></span>
+                <span><GavelIcon fontSize="8" style={{ marginRight: '2px' }} /></span>
                 Terms of Service
               </Link>
               <Link href="#" color="inherit" display="block">
-                <span><PolicyIcon fontSize='8' style={{ marginRight: "2px" }} /></span>
+                <span><PolicyIcon fontSize="8" style={{ marginRight: '2px' }} /></span>
                 Privacy Policy
               </Link>
             </Box>
           </Grid>
-          <Grid item  md={3} justifyContent="center" alignItems="center">
+          <Grid item md={3} justifyContent="center" alignItems="center">
             <Typography variant="h6" gutterBottom>
               Social Media
             </Typography>
@@ -112,6 +117,6 @@ const Footer = () => {
       </StyledContainer>
     </FooterContainer>
   );
-};
+}
 
 export default Footer;

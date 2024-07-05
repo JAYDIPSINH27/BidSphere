@@ -1,13 +1,13 @@
-import React from "react";
-import ContactFormContainer from "../../organisms/ContactFormContainer/index";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import React from 'react';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {
   faMapMarkerAlt,
   faPhoneAlt,
   faClock,
-} from "@fortawesome/free-solid-svg-icons";
+} from '@fortawesome/free-solid-svg-icons';
+import ContactFormContainer from '../../organisms/ContactFormContainer/index';
 
-const ContactTemplate = () => {
+function ContactTemplate() {
   return (
     <section className="w-full py-12 md:py-24 lg:py-32">
       <div className="max-w-6xl mx-auto px-4 md:px-6 text-center">
@@ -70,6 +70,6 @@ const ContactTemplate = () => {
       </div>
     </section>
   );
-};
+}
 
 export default ContactTemplate;

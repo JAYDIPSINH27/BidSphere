@@ -1,7 +1,7 @@
-import React from "react";
-import ContactForm from "../../molecules/ContactForm/index";
+import React from 'react';
+import ContactForm from '../../molecules/ContactForm/index';
 
-const ContactFormContainer = () => {
+function ContactFormContainer() {
   return (
     <div className="max-w-2xl mx-auto p-8 bg-bslightgreen shadow-lg rounded-lg">
       <h2 className="text-2xl font-bold mb-4 text-center text-bsnavyblue">
@@ -10,6 +10,6 @@ const ContactFormContainer = () => {
       <ContactForm />
     </div>
   );
-};
+}
 
 export default ContactFormContainer;
