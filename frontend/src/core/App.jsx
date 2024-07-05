@@ -1,14 +1,19 @@
 /* external imports */
 import React from 'react';
 /* styles */
-// import './index.scss';
+import './index.css';
 /* internal components */
-import withNavbar from '../shared/hoc/withNavBar';
+import HomePage from '../components/pages/HomePage';
+
+import { Link } from 'react-router-dom';
 
 function App() {
   return (
-    <h1> HomePage </h1>
+    <>
+    <HomePage />
+    </>
+    
   );
 }
 
-export default withNavbar(App);
+export default App;
