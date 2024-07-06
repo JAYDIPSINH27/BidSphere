@@ -1,3 +1,8 @@
+/* eslint-disable jsx-a11y/no-static-element-interactions */
+/* eslint-disable max-len */
+/* eslint-disable react/jsx-props-no-multi-spaces */
+/* eslint-disable react/no-array-index-key */
+/* eslint-disable no-unused-vars */
 import React, { act } from 'react';
 import { motion } from 'framer-motion';
 import { SectionHeader, Tender } from '../../molecules/LandingPage';

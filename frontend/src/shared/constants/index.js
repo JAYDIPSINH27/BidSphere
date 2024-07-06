@@ -5,7 +5,7 @@ import {
   blog04,
   course01,
   course02,
-  course03,
+  // course03,
   course04,
   course05,
   course06,
@@ -96,7 +96,8 @@ export const aboutFeatures = [
   {
     title: 'Our Vision',
     description:
-      'We envision a world where every organization can seamlessly navigate the intricate landscape of procurement, forging lasting partnerships and fueling growth through transparent and efficient bidding processes.',
+      `We envision a world where every organization can seamlessly navigate the intricate landscape of procurement, forging lasting partnerships and fueling growth 
+      through transparent and efficient bidding processes.`,
   },
   {
     title: 'Trusted Expertise',
@@ -106,7 +107,8 @@ export const aboutFeatures = [
   {
     title: 'Comprehensive Solutions',
     description:
-      'From tender creation and bid evaluation to contract management and strategic sourcing, BidSphere offers a comprehensive suite of solutions tailored to your procurement needs.',
+      `From tender creation and bid evaluation to contract management and strategic 
+      sourcing, BidSphere offers a comprehensive suite of solutions tailored to your procurement needs.`,
   },
   {
     title: 'Global Connectivity',
@@ -452,13 +454,15 @@ export const footerData = {
     title: 'Terms of Service',
     content: `
     1. Introduction
-Welcome to BidSphere! These Terms of Service ("Terms") govern your use of our website and services. By accessing or using BidSphere, you agree to comply with and be bound by these Terms. If you do not agree with these Terms, please do not use our services.
+Welcome to BidSphere! These Terms of Service ("Terms") govern your use of our website and services. 
+By accessing or using BidSphere, you agree to comply with and be bound by these Terms. If you do not agree with these Terms, please do not use our services.
 2. Definitions
 "Platform" refers to the BidSphere website and any related applications or services.
 "User" refers to any individual or entity using the Platform, including both tender issuers and bidders.
 "Content" refers to any information, text, graphics, or other materials uploaded or appearing on the Platform.
 3. Account Registration
-Users must register for an account to access certain features of the Platform. You agree to provide accurate and complete information during registration and keep your account information updated.
+Users must register for an account to access certain features of the Platform. You agree to provide 
+accurate and complete information during registration and keep your account information updated.
 You are responsible for maintaining the confidentiality of your account credentials and for all activities that occur under your account.
 4. User Responsibilities
 Users agree to use the Platform for lawful purposes only.
@@ -483,9 +487,13 @@ The Platform is provided "as is" and "as available" without warranties of any ki
 BidSphere does not guarantee the accuracy, completeness, or reliability of any content or information provided through the Platform.
 BidSphere is not responsible for any errors or omissions, or for the results obtained from the use of the Platform.
 11. Limitation of Liability
-To the maximum extent permitted by law, BidSphere shall not be liable for any indirect, incidental, special, consequential, or punitive damages, or any loss of profits or revenues, whether incurred directly or indirectly, or any loss of data, use, goodwill, or other intangible losses, resulting from your use of the Platform.
+To the maximum extent permitted by law, BidSphere shall not be liable for any indirect, incidental, 
+special, consequential, or punitive damages, or any loss of profits or revenues, whether incurred 
+directly or indirectly, or any loss of data, use, goodwill, or other intangible losses, resulting from your use of the Platform.
 12. Indemnification
-You agree to indemnify, defend, and hold harmless BidSphere, its affiliates, and their respective officers, directors, employees, and agents from and against any claims, liabilities, damages, losses, and expenses, including reasonable legal fees, arising out of or in any way connected with your access to or use of the Platform.
+You agree to indemnify, defend, and hold harmless BidSphere, its affiliates, and their respective 
+officers, directors, employees, and agents from and against any claims, liabilities, damages, 
+losses, and expenses, including reasonable legal fees, arising out of or in any way connected with your access to or use of the Platform.
 13. Termination
 BidSphere may terminate or suspend your account and access to the Platform at any time, without prior notice or liability, for any reason, including if you breach these Terms.
 Upon termination, your right to use the Platform will immediately cease.
@@ -493,7 +501,8 @@ Upon termination, your right to use the Platform will immediately cease.
 These Terms shall be governed and construed in accordance with the laws of Nova Scotia, without regard to its conflict of law principles.
 Any legal action or proceeding arising under these Terms will be brought exclusively in the federal or state courts located in Nova Scotia.
 15. Changes to Terms
-BidSphere reserves the right to modify these Terms at any time. We will provide notice of any changes by posting the new Terms on the Platform. Your continued use of the Platform after the changes become effective constitutes your acceptance of the new Terms.
+BidSphere reserves the right to modify these Terms at any time. We will provide notice of any 
+changes by posting the new Terms on the Platform. Your continued use of the Platform after the changes become effective constitutes your acceptance of the new Terms.
 
 `,
   },
@@ -502,18 +511,23 @@ BidSphere reserves the right to modify these Terms at any time. We will provide 
     content:
     `
     1. Introduction
-  Welcome to BidSphere. We are committed to protecting your personal information and your right to privacy. If you have any questions or concerns about our policy or our practices with regards to your personal information, please contact us at support@bidsphere.com.
+  Welcome to BidSphere. We are committed to protecting your personal information and your right to privacy. 
+  If you have any questions or concerns about our policy or our practices with regards to your personal information, please contact us at support@bidsphere.com.
   
   2. Information We Collect
-  We collect personal information that you voluntarily provide to us when registering on the Platform, expressing an interest in obtaining information about us or our products and services, when participating in activities on the Platform, or otherwise contacting us.
+  We collect personal information that you voluntarily provide to us when registering on the Platform, 
+  expressing an interest in obtaining information about us or our products and services, when participating in activities on the Platform, or otherwise contacting us.
 
   The personal information we collect can include the following:
   - Name and Contact Data: We collect your first and last name, email address, postal address, phone number, and other similar contact data.
   - Credentials: We collect passwords, password hints, and similar security information used for authentication and account access.
-  - Payment Data: We collect data necessary to process your payment if you make purchases, such as your payment instrument number (e.g., a credit card number), and the security code associated with your payment instrument.
+  - Payment Data: We collect data necessary to process your payment if you make purchases, such as your payment 
+  instrument number (e.g., a credit card number), and the security code associated with your payment instrument.
 
   3. How We Use Your Information
-  We use personal information collected via our Platform for a variety of business purposes described below. We process your personal information for these purposes in reliance on our legitimate business interests, in order to enter into or perform a contract with you, with your consent, and/or for compliance with our legal obligations.
+  We use personal information collected via our Platform for a variety of business purposes described below. 
+  We process your personal information for these purposes in reliance on our legitimate business interests, in order to enter into or 
+  perform a contract with you, with your consent, and/or for compliance with our legal obligations.
 
   Specifically, we use the information we collect or receive to:
   - Facilitate account creation and logon process.
@@ -529,18 +543,24 @@ BidSphere reserves the right to modify these Terms at any time. We will provide 
   We only share information with your consent, to comply with laws, to provide you with services, to protect your rights, or to fulfill business obligations.
 
   Specifically, we may need to process or share your data in the following situations:
-  - Vendors, Consultants, and Other Third-Party Service Providers: We may share your data with third-party vendors, service providers, contractors, or agents who perform services for us or on our behalf and require access to such information to do that work.
-  - Business Transfers: We may share or transfer your information in connection with, or during negotiations of, any merger, sale of company assets, financing, or acquisition of all or a portion of our business to another company.
-  - Legal Obligations: We may disclose your information where we are legally required to do so in order to comply with applicable law, governmental requests, a judicial proceeding, court order, or legal process, such as in response to a court order or a subpoena.
+  - Vendors, Consultants, and Other Third-Party Service Providers: We may share your data with third-party vendors, service providers, contractors, or agents who perform services 
+  for us or on our behalf and require access to such information to do that work.
+  - Business Transfers: We may share or transfer your information in connection with, or during negotiations of, any merger, sale of company assets, financing, or acquisition 
+  of all or a portion of our business to another company.
+  - Legal Obligations: We may disclose your information where we are legally required to do so in order to comply with applicable law, governmental requests, a judicial 
+  proceeding, court order, or legal process, such as in response to a court order or a subpoena.
 
   5. Data Retention
-  We will only keep your personal information for as long as it is necessary for the purposes set out in this privacy policy, unless a longer retention period is required or permitted by law.
+  We will only keep your personal information for as long as it is necessary for the purposes set out in this privacy policy, unless a longer retention 
+  period is required or permitted by law.
 
   6. Data Security
-  We have implemented appropriate technical and organizational security measures designed to protect the security of any personal information we process. However, please also remember that we cannot guarantee that the internet itself is 100% secure.
+  We have implemented appropriate technical and organizational security measures designed to protect the security of any personal information we process. However, 
+  please also remember that we cannot guarantee that the internet itself is 100% secure.
 
   7. Your Privacy Rights
-  Depending on your location, you may have certain rights regarding your personal information. These may include the right to access, correct, update, or delete your personal information.
+  Depending on your location, you may have certain rights regarding your personal information. These may include the right to access, correct, update, 
+  or delete your personal information.
 
   8. Changes to This Privacy Policy
   We may update this privacy policy from time to time in order to reflect, for example, changes to our practices or for other operational, legal, or regulatory reasons.

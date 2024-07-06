@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 import Paper from '@mui/material/Paper';
 import React from 'react';
 import {

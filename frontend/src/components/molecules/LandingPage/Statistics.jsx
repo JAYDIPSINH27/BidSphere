@@ -1,3 +1,4 @@
+/* eslint-disable react/no-array-index-key */
 import React from 'react';
 import { motion } from 'framer-motion';
 import { statistics } from '../../../shared/constants';

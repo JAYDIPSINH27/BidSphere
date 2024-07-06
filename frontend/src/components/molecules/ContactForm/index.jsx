@@ -1,3 +1,4 @@
+/* eslint-disable no-shadow */
 import React, { useState } from 'react';
 import Input from '../../atoms/input/index';
 import Textarea from '../../atoms/textarea/index';
@@ -42,7 +43,6 @@ function ContactForm() {
     if (Object.keys(validationErrors).length > 0) {
       setErrors(validationErrors);
     } else {
-      console.log('Form submitted:', formData);
       setFormData({
         name: '',
         email: '',

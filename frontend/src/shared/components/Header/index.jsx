@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 import React, { useState } from 'react';
 import {
   AppBar, Avatar, Badge, InputBase, Toolbar, Typography, styled, Box, Menu, MenuItem,
@@ -5,9 +6,9 @@ import {
 import Mail from '@mui/icons-material/Mail';
 import Notifications from '@mui/icons-material/Notifications';
 import CssBaseline from '@mui/material/CssBaseline';
-import IconButton from '@mui/material/IconButton';
-import SearchIcon from '@mui/icons-material/Search';
-import TextField from '@mui/material/TextField';
+// import IconButton from '@mui/material/IconButton';
+// import SearchIcon from '@mui/icons-material/Search';
+// import TextField from '@mui/material/TextField';
 import HLogo from '../../../../public/bidphere_logo_notext_v1.png';
 import Logo from '../../../../public/bidphere_logo_v1.png';
 import Drawer from '../../../components/molecules/Drawer';

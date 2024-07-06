@@ -1,8 +1,10 @@
+/* eslint-disable react/jsx-no-undef */
+/* eslint-disable no-unused-vars */
 import * as React from 'react';
 import Typography from '@mui/material/Typography';
 import Breadcrumbs from '@mui/material/Breadcrumbs';
 import Link from '@mui/material/Link';
-import HomeIcon from '@mui/icons-material/Home';
+// import HomeIcon from '@mui/icons-material/Home';
 import GrainIcon from '@mui/icons-material/Grain';
 import WorkIcon from '@mui/icons-material/Work';
 import { useLocation, NavLink as RouterLink } from 'react-router-dom';
@@ -11,7 +13,6 @@ import { Box } from '@mui/material';
 export default function IconBreadcrumbs() {
   function handleClick(event) {
     event.preventDefault();
-    console.info('You clicked a breadcrumb.');
   }
 
   const location = useLocation();

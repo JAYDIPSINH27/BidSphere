@@ -1,4 +1,3 @@
-import TermsAndService from './Modal';
 export { default as Statistics } from './Statistics';
 export { default as SectionHeader } from './SectionHeader';
 export { default as SliderNavigation } from './SliderNavigation';
