@@ -1,28 +1,14 @@
+/* eslint-disable react/prop-types */
 import React from 'react';
-import PropTypes from 'prop-types';
-import { Button as AntButton } from 'antd';
 
-const Button = ({
-  children,
-  onClick = () => {},
-  ...rest
-}) => (
-  <AntButton
-    type="primary"
+const Button = ({ type = 'button', children, onClick = () => {} }) => (
+  <button
+    type={type}
     onClick={onClick}
-    {...rest}
+    className="px-6 py-2 text-white bg-bsnavyblue rounded-md focus:outline-none focus:ring-2 focus:ring-bsnavyblue"
   >
     {children}
-  </AntButton>
+  </button>
 );
-
-Button.propTypes = {
-  children: PropTypes.node.isRequired,
-  onClick: PropTypes.func,
-};
-
-Button.defaultProps = {
-  onClick: () => {},
-};
 
 export default Button;
