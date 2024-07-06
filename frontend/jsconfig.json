@@ -1,0 +1,18 @@
+{
+  "compilerOptions": {
+    "baseUrl": "src",
+    "paths": {
+      "@components/*": ["components/*"],
+      "@core/*": ["core/*"],
+      "@shared/*": ["shared/*"],
+      "@services/*": ["services/*"],
+      "@atoms/*": ["components/atoms/*"],
+      "@molecules/*": ["components/molecules/*"],
+      "@organisms/*": ["components/organisms/*"],
+      "@pages/*": ["components/pages/*"],
+      "@templates/*": ["components/templates/*"],
+      "@utils/*": ["components/utils/*"]
+    }
+  },
+  "include": ["src"]
+}
