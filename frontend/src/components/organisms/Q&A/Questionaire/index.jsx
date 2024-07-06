@@ -8,7 +8,7 @@ import { FaUser } from 'react-icons/fa';
 import { useDispatch, useSelector } from 'react-redux';
 /* internal components */
 import Button from '@atoms/button';
-import withAppBarFooter from '@shared/hoc/withAppBarFooter';
+import withNavbar from '@shared/hoc/withNavBar';
 import ModalWrapper from './sections/ModalWrapper';
 import { setquestionData } from './data/questionaire.slice';
 import { setModalVisible } from './sections/ModalWrapper/slice/modalSlice';
@@ -128,4 +128,4 @@ const Questions = () => {
   );
 };
 
-export default withAppBarFooter(Questions);
+export default withNavbar(Questions);

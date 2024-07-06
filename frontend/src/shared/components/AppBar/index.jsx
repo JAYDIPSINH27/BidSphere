@@ -35,7 +35,7 @@ function AppBar() {
   );
   return (
     <motion.div
-      className="mb-20"
+      className="mb-10"
     // animate={}
       // initial={{y:-50, opacity:0}}
       // animate={{y:0, opacity:1}}

@@ -15,7 +15,6 @@ function FooterBar() {
   return (
     <footer
       className="py-[70px] bg-gray-10"
-      style={{ position: 'absolute', bottom: '0', width: '100%' }}
     >
       <div className="container">
         <div>
