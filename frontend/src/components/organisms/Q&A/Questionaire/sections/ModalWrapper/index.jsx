@@ -21,9 +21,10 @@ const ModalWrapper = ({
 }) => {
   const [editorState, setEditorState] = useState(EditorState.createEmpty());
   const dispatch = useDispatch();
-  const qTitle = useSelector(state => state.modalReducer.qTitle);
-  const isModalVisible = useSelector(state => state.modalReducer.isModalVisible);
-  const { userFullName = '' } = useSelector(state => state.userSlice);
+  const qTitle = useSelector(state => state.QuesnAndAnswerReducer.QuestionaireReducer.ModelWrappereReducer.qTitle);
+  const isModalVisible = useSelector(state => state.QuesnAndAnswerReducer.QuestionaireReducer.ModelWrappereReducer.isModalVisible);
+  // const { userFullName = '' } = useSelector(state => state.userSlice);
+  const userFullName = 'John Doe';
 
   const onChange = (editorStateData) => {
     setEditorState(editorStateData);

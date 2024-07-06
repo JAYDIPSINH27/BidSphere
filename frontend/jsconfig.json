@@ -4,6 +4,7 @@
     "paths": {
       "@components/*": ["components/*"],
       "@core/*": ["core/*"],
+      "@data/*": ["data/*"],
       "@shared/*": ["shared/*"],
       "@services/*": ["services/*"],
       "@atoms/*": ["components/atoms/*"],

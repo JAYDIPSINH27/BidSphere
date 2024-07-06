@@ -131,6 +131,7 @@
         "map": [
           ["@components", "./src/components"],
           ["@core", "./src/core"],
+          ["@data", "./src/data"],
           ["@shared", "./src/shared"],
           ["@services", "./src/services"],
           ["@atoms", "./src/components/atoms"],

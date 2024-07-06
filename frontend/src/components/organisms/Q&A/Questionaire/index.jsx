@@ -8,6 +8,7 @@ import { FaUser } from 'react-icons/fa';
 import { useDispatch, useSelector } from 'react-redux';
 /* internal components */
 import Button from '@atoms/button';
+import withAppBarFooter from '@shared/hoc/withAppBarFooter';
 import ModalWrapper from './sections/ModalWrapper';
 import { setquestionData } from './data/questionaire.slice';
 import { setModalVisible } from './sections/ModalWrapper/slice/modalSlice';
@@ -22,10 +23,10 @@ const Questions = () => {
   const location = useLocation();
 
   const questionData = useSelector(
-    state => state.questionsDisplay.questionData,
+    state => state.QuesnAndAnswerReducer.QuestionaireReducer.questionData,
   );
   const isModalVisible = useSelector(
-    state => state.modalReducer.isModalVisible,
+    state => state.QuesnAndAnswerReducer.QuestionaireReducer.ModelWrappereReducer.isModalVisible,
   );
 
   useEffect(() => {
@@ -56,8 +57,9 @@ const Questions = () => {
         <Button
           title="Ask a Question"
           className={styles.askButton}
-          onClickHandler={handleButtonClick}
-        />
+          onClick={handleButtonClick}
+        >Ask a Question
+        </Button>
       </div>
       <div className={styles.questions}>
         <div className={styles.topQuestions}>Questionarium</div>
@@ -126,4 +128,4 @@ const Questions = () => {
   );
 };
 
-export default Questions;
+export default withAppBarFooter(Questions);

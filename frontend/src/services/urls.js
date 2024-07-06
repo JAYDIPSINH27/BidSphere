@@ -1,16 +1,18 @@
 export const baseURL = import.meta.env.VITE_BACKEND_URL;
 
-const questionAndAnswer = `${baseURL}/questionAndAnswer`;
-const commentURL = `${baseURL}/comments`;
+const questionAndAnswerURL = `${baseURL}/q&a`;
+
+const questionaireURL = `${questionAndAnswerURL}/questionaire`;
+const nestedCommentURL = `${questionAndAnswerURL}/nested-comments`;
 
 export const quesnAnsService = {
   questionaireService: {
-    getAllQuestions: `${questionAndAnswer}/getAllQuestions`,
-    postQuestion: `${questionAndAnswer}/postQuestion`,
+    getAllQuestions: `${questionaireURL}/getAllQuestions`,
+    postQuestion: `${questionaireURL}/postQuestion`,
   },
   nestedCommentService: {
-    getCommentsByQid: commentURL,
-    getQuestionById: `${questionAndAnswer}/getQuestionById`,
-    postReplyToComment: `${commentURL}/replyToComment`,
+    getQuestionById: `${questionaireURL}/getQuestionById`,
+    getCommentsByQid: nestedCommentURL,
+    postReplyToComment: `${nestedCommentURL}/replyToComment`,
   },
 };

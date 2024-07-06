@@ -1,10 +1,10 @@
 import { combineReducers } from '@reduxjs/toolkit';
-import commentReducer from '../sections/comment/slice/commentsSlice';
-import questionReducer from '../sections/question/slice/questionsSlice';
+import CommentSlice from '../sections/comment/slice/commentsSlice';
+import QuestionSlice from '../sections/question/slice/questionsSlice';
 
 const NestedCommentReducer = combineReducers({
-  commentReducer,
-  questionReducer,
+  CommentReducer: CommentSlice,
+  QuestionReducer: QuestionSlice,
 });
 
 export default NestedCommentReducer;

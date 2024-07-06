@@ -4,23 +4,19 @@ import eslint from 'vite-plugin-eslint';
 import path from 'path';
 
 export default defineConfig({
-  plugins: [react(), eslint()],
-  esbuild: {
-    loader: 'jsx',
-    include: /src\/.*\.jsx?$/,
-    exclude: [],
-  },
   build: {
     outDir: 'dist',
     rollupOptions: {
       input: 'index.html',
     },
   },
-  server: {
-    host: '0.0.0.0',
+  define: {
+    global: 'window',
   },
-  test: {
-    globals: true,
+  esbuild: {
+    loader: 'jsx',
+    include: /src\/.*\.jsx?$/,
+    exclude: [],
   },
   optimizeDeps: {
     force: true,
@@ -29,6 +25,13 @@ export default defineConfig({
         '.js': 'jsx',
       },
     },
+  },
+  plugins: [react(), eslint()],
+  server: {
+    host: '0.0.0.0',
+  },
+  test: {
+    globals: true,
   },
   resolve: {
     alias: {
