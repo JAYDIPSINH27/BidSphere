@@ -1,3 +1,5 @@
+/* eslint-disable react/prop-types */
+/* eslint-disable no-unused-vars */
 import React from 'react';
 import { motion } from 'framer-motion';
 import { leftSideVariants, rightSideVariants } from '../../../shared/constants/motion';
@@ -7,7 +9,6 @@ function SectionHeader({ title, link }) {
 
       <motion.h2
         variants={leftSideVariants}
-
         initial="hidden"
         whileInView="visible"
         viewport={{ once: true }}

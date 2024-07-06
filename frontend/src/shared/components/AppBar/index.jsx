@@ -69,7 +69,6 @@ function AppBar() {
                 <span className="text-primary-50">Sign Up</span>
               </Button>
               <Button
-
                 size="sm"
                 className="hidden lg:inline-block bg-bslightgreen"
               >

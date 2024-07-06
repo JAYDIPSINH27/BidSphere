@@ -1,7 +1,8 @@
+/* eslint-disable no-unused-vars */
 import React from 'react';
 
-import withAppbarFooter from '../../../shared/hoc/withAppbarFooter';
-import withHeaderFooter from '../../../shared/hoc/withHeaderFooter';
+import withAppBarFooter from '../../../shared/hoc/withAppBarFooter';
+// import withHeaderFooter from '../../../shared/hoc/withHeaderFooter';
 import { Statistics, CTA } from '../../molecules/LandingPage';
 import {
   About, Blogs, Tenders, Hero, Reviews, RecentTenders,
@@ -24,4 +25,4 @@ function HomePage() {
   );
 }
 
-export default withAppbarFooter(HomePage);
+export default withAppBarFooter(HomePage);

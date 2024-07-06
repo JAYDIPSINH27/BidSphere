@@ -1,6 +1,6 @@
-import withNavbar from '../../../shared/hoc/withNavBar';
+import React from 'react';
 import ContactTemplate from '../../templates/Contact/index';
-import withAppbarFooter from '../../../shared/hoc/withAppbarFooter';
+import withAppBarFooter from '../../../shared/hoc/withAppBarFooter';
 
 function Contact() {
   return (
@@ -10,4 +10,4 @@ function Contact() {
   );
 }
 
-export default withAppbarFooter(Contact);
+export default withAppBarFooter(Contact);

@@ -1,3 +1,5 @@
+/* eslint-disable no-unused-expressions */
+/* eslint-disable no-unused-vars */
 import React from 'react';
 import { register } from 'swiper/element';
 import { motion } from 'framer-motion';

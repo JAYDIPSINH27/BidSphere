@@ -1,3 +1,6 @@
+/* eslint-disable no-nested-ternary */
+/* eslint-disable no-shadow */
+/* eslint-disable no-unused-vars */
 import React, { useState } from 'react';
 import {
   Box,
@@ -75,7 +78,6 @@ function TenderForm() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log(formData);
   };
 
   return (

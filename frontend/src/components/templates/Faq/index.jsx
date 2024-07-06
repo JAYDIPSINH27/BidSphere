@@ -1,3 +1,5 @@
+/* eslint-disable react/prop-types */
+import React from 'react';
 import FaqGroup from '../../organisms/FaqGroup';
 
 function Faqs({ faqs }) {

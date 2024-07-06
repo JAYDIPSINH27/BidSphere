@@ -1,3 +1,5 @@
+/* eslint-disable react/no-unescaped-entities */
+/* eslint-disable react/prop-types */
 import React from 'react';
 
 function Review({
@@ -31,7 +33,6 @@ function Review({
 
           <p className="text-base text-gray-60">
             "{review}"
-
           </p>
           <p className="m-1.5 text-lg text-gray-10">
             ~{name}

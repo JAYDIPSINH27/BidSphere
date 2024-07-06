@@ -1,3 +1,6 @@
+/* eslint-disable max-len */
+/* eslint-disable react/prop-types */
+/* eslint-disable no-unused-vars */
 import React, { forwardRef } from 'react';
 
 const Tender = forwardRef(({
@@ -16,7 +19,9 @@ const Tender = forwardRef(({
       <img src={thumbnail} alt={title} />
     </div>
 
-    <div className="absolute bottom-0 inset-x-0 h-24 p-2 m-2 bg-white border-[1.5px] border-solid border-transparent rounded-3xl transition-colors duration-300 grop-hover:border-grey-10">
+    <div
+      className="absolute bottom-0 inset-x-0 h-24 p-2 m-2 bg-white border-[1.5px] border-solid border-transparent rounded-3xl transition-colors duration-300 grop-hover:border-grey-10"
+    >
       <a href="" className="flex flex-col justify-between h-full " title={title}>
         {/* {title} */}
         <div className="flex justify-between gap-4">

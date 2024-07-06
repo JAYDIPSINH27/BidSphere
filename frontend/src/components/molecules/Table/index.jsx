@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 import React from 'react';
 import Box from '@mui/material/Box';
 import { DataGrid } from '@mui/x-data-grid';
@@ -31,12 +32,9 @@ const columns = [
     field: 'status',
     headerName: 'Status',
     width: 110,
-    renderCell: (param) => {
-      console.log(param);
-      return (
-        <Chip label={param.value} color={param.value === 'Open' ? 'success' : 'error'} />
-      );
-    },
+    renderCell: param => (
+      <Chip label={param.value} color={param.value === 'Open' ? 'success' : 'error'} />
+    ),
   },
   {
 

@@ -1,14 +1,13 @@
+/* eslint-disable jsx-a11y/control-has-associated-label */
 import React from 'react';
 import FacebookIcon from '@mui/icons-material/Facebook';
 import TwitterIcon from '@mui/icons-material/Twitter';
 import InstagramIcon from '@mui/icons-material/Instagram';
 import LinkedInIcon from '@mui/icons-material/LinkedIn';
 import LiveHelpIcon from '@mui/icons-material/LiveHelp';
-import HelpCenterIcon from '@mui/icons-material/HelpCenter';
 import GavelIcon from '@mui/icons-material/Gavel';
 import PolicyIcon from '@mui/icons-material/Policy';
 import { Link } from 'react-router-dom';
-import Logo from '../../../../public/bidphere_logo_onlytext_v2.png';
 import Modal from '../../../components/molecules/LandingPage/Modal';
 import { footerData } from '../../constants';
 

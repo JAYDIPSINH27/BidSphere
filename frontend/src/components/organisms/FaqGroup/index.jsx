@@ -1,4 +1,6 @@
-import styles from './FaqGroup.module.scss';
+/* eslint-disable react/prop-types */
+/* eslint-disable react/no-array-index-key */
+/* eslint-disable react/react-in-jsx-scope */
 import Accordian from '../../atoms/accordian';
 
 function FaqGroup({ faqs }) {

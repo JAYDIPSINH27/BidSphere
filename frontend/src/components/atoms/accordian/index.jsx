@@ -1,3 +1,5 @@
+/* eslint-disable max-len */
+/* eslint-disable react/prop-types */
 import React, { useState } from 'react';
 
 export function Accordian({ title, body, index }) {
