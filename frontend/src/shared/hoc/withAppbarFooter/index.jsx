@@ -7,9 +7,9 @@ const withAppBarFooter = WrappedComponent => function (props) {
   return (
     <>
       <AppBar />
-      <WrappedComponent
-        {...props}
-      />
+      <div style={{ padding: '1rem' }}>
+        <WrappedComponent {...props} />
+      </div>
       <FooterBar />
     </>
   );

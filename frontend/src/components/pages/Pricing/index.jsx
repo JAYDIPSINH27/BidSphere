@@ -1,10 +1,10 @@
 import React from 'react';
 /* hoc */
-import withNavbar from '../../../shared/hoc/withNavBar';
+import withAppBarFooter from '../../../shared/hoc/withAppBarFooter';
 /* utility */
 import Utility from '../../utils/utility';
 
-function Pricing() {
+const Pricing = () => {
   const onHandlePayment = () => {
     Utility.initPayment({
       // title,
@@ -20,6 +20,6 @@ function Pricing() {
       Pay 100$ here
     </button>
   );
-}
+};
 
-export default withNavbar(Pricing);
+export default withAppBarFooter(Pricing);
