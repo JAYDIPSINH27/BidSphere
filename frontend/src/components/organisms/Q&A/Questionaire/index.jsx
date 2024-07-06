@@ -6,16 +6,15 @@ import cx from 'classnames';
 import { useNavigate, useLocation } from 'react-router-dom';
 import { FaUser } from 'react-icons/fa';
 import { useDispatch, useSelector } from 'react-redux';
+/* internal components */
+import Button from '@atoms/button';
+import ModalWrapper from './sections/ModalWrapper';
+import { setquestionData } from './data/questionaire.slice';
+import { setModalVisible } from './sections/ModalWrapper/slice/modalSlice';
 /* styles */
 import styles from './Questionaire.module.scss';
 /* services */
-import { getAllQuestions } from './Questions.service';
-/* internal components */
-import CustomBtn from '../../button';
-import ModalWrapper from '../modalWrapper';
-import { setquestionData } from './slice/questionSlice';
-import { setModalVisible } from '../modalWrapper/slice/modalSlice';
-import Navbar from '../../NavBar';
+import { getAllQuestions } from './service/Questionaire.service';
 
 const Questions = () => {
   const dispatch = useDispatch();
@@ -28,10 +27,6 @@ const Questions = () => {
   const isModalVisible = useSelector(
     state => state.modalReducer.isModalVisible,
   );
-  const userRole = useSelector((state) => state.userSlice.role);
-
-  const navbarStudentPage = ["Dashboard", "My Courses", "Community Forum", "Blogs"];
-  const navbarTeacherPage = ["Courses Dashboard", "Community Forum", "Blogs", "Pricing"];
 
   useEffect(() => {
     fetchQuestionData();
@@ -56,10 +51,9 @@ const Questions = () => {
   };
 
   return (
-    <div>
-      <Navbar pages={userRole === 'teacher' ? navbarTeacherPage : navbarStudentPage} />
+    <>
       <div className={styles.container}>
-        <CustomBtn
+        <Button
           title="Ask a Question"
           className={styles.askButton}
           onClickHandler={handleButtonClick}
@@ -69,7 +63,7 @@ const Questions = () => {
         <div className={styles.topQuestions}>Questionarium</div>
         {(questionData || []).map((questions) => {
           const {
-            _id: qId = '',  
+            _id: qId = '',
             qTitle = '',
             qDesc = '',
             totalAnswers = 0,
@@ -128,7 +122,7 @@ const Questions = () => {
       {isModalVisible && (
         <ModalWrapper title="Ask a Question" onSubmit={fetchQuestionData} />
       )}
-    </div>
+    </>
   );
 };
 

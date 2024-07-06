@@ -92,6 +92,7 @@
     "prefer-template": 2,
     "react/button-has-type": 0,
     "react/forbid-prop-types": 0,
+    "react/function-component-definition": 0,
     "react/jsx-first-prop-new-line": [
       2,
       "multiline"
@@ -111,18 +112,35 @@
     "react/prop-types": 1,
     "require-yield": 0
   },
+  "overrides": [
+    {
+      "files": ["*.js", "*.jsx", "*.ts", "*.tsx"],
+      "rules": {
+        "import/no-unresolved": [
+          "error",
+          {
+            "ignore": ["^@"]
+          }
+        ]
+      }
+    }
+  ],
   "settings": {
     "import/resolver": {
       "alias": {
         "map": [
+          ["@components", "./src/components"],
+          ["@core", "./src/core"],
+          ["@shared", "./src/shared"],
+          ["@services", "./src/services"],
+          ["@atoms", "./src/components/atoms"],
+          ["@molecules", "./src/components/molecules"],
           ["@organisms", "./src/components/organisms"],
-          ["@http", "./src/services/http"]
+          ["@pages", "./src/components/pages"],
+          ["@templates", "./src/components/templates"],
+          ["@utils", "./src/components/utils"]
         ],
-        "extensions": [
-          ".js",
-          ".jsx",
-          ".json"
-        ]
+        "extensions": [".js", ".jsx", ".ts", ".tsx"]
       }
     }
   }
