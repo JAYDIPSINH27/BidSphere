@@ -1,0 +1,45 @@
+.modalContainer {
+  font-weight: 600;
+  width: 36.4rem !important;
+  :global([class*='ant-modal-title']) {
+    display: flex;
+    justify-content: center;
+    font-size: 1.2rem;
+  }
+
+  :global([class*='ant-btn']) {
+    background-color: #4570b0;
+    color: #fff;
+  }
+
+  .postCreationContainer {
+    section {
+      padding: 1rem;
+      min-height: unset;
+    }
+
+    :global([class*='editorContainer']) {
+      background: #ffffff;
+      border-width: 1px;
+      border-style: solid;
+      border-color: #d9d9d9;
+      border-radius: 0.6rem;
+      min-height: 5rem;
+      height: auto;
+      padding: 0.5rem 0.7rem;
+      font-weight: 100;
+    }
+  }
+
+  :global([class*='ant-btn ant-btn-default']) {
+    background-color: rgb(62, 84, 170);
+    color: white;
+  }
+  :global([class*='ant-modal-title']) {
+    padding-left: 1rem;
+  }
+  :global([class*='ant-modal-footer']) {
+    padding-right: 1.2rem;
+    margin-top: 1rem;
+  }
+}

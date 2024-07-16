@@ -1,4 +1,6 @@
-import React from "react";
+/* eslint-disable react/no-array-index-key */
+/* eslint-disable react/prop-types */
+import React from 'react';
 import {
   Button,
   Dialog,
@@ -6,9 +8,9 @@ import {
   DialogBody,
   DialogFooter,
   Typography,
-} from "@material-tailwind/react";
+} from '@material-tailwind/react';
 
-const Modal = ({ title, content }) => {
+function Modal({ title, content }) {
   const [open, setOpen] = React.useState(false);
 
   const handleOpen = () => setOpen(!open);
@@ -51,4 +53,4 @@ const Modal = ({ title, content }) => {
   );
 }
 
-export default Modal
+export default Modal;

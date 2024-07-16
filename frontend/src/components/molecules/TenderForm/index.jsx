@@ -1,3 +1,6 @@
+/* eslint-disable no-nested-ternary */
+/* eslint-disable no-shadow */
+/* eslint-disable no-unused-vars */
 import React, { useState } from 'react';
 import {
   Box,
@@ -10,9 +13,7 @@ import {
 import ReactQuill from 'react-quill';
 import 'react-quill/dist/quill.snow.css';
 
-
-
-const TenderForm = () => {
+function TenderForm() {
   const [value, setValue] = useState('');
 
   const [formData, setFormData] = useState({
@@ -39,20 +40,18 @@ const TenderForm = () => {
         error = value === '' ? 'Name is required' : '';
         break;
       case 'email':
-        error =
-          value === ''
-            ? 'Email is required'
-            : !/\S+@\S+\.\S+/.test(value)
-              ? 'Invalid email address'
-              : '';
+        error = value === ''
+          ? 'Email is required'
+          : !/\S+@\S+\.\S+/.test(value)
+            ? 'Invalid email address'
+            : '';
         break;
       case 'contactNumber':
-        error =
-          value === ''
-            ? 'Contact number is required'
-            : !/^\d+$/.test(value)
-              ? 'Invalid contact number'
-              : '';
+        error = value === ''
+          ? 'Contact number is required'
+          : !/^\d+$/.test(value)
+            ? 'Invalid contact number'
+            : '';
         break;
       case 'employeeId':
         error = value === '' ? 'Employee ID is required' : '';
@@ -79,16 +78,15 @@ const TenderForm = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log(formData);
   };
 
   return (
 
-    // <Box style={{height:"100vh"}}>
+  // <Box style={{height:"100vh"}}>
 
-    <Box style={{ padding: "1rem", overflow: "auto" }}>
+    <Box style={{ padding: '1rem', overflow: 'auto' }}>
       <form onSubmit={handleSubmit}>
-        <Grid container spacing={3} alignContent={'center'} justifyContent={'center'}>
+        <Grid container spacing={3} alignContent="center" justifyContent="center">
           {/* <Grid  item xs={12}>
               <Box sx={{ border: '1px solid grey', padding: "2rem" }}>
                 <Typography variant="h6" gutterBottom>
@@ -130,7 +128,7 @@ const TenderForm = () => {
               </Box>
             </Grid> */}
           <Grid item xs={12}>
-            <Box sx={{ border: '1px solid grey', padding: "2rem" }}>
+            <Box sx={{ border: '1px solid grey', padding: '2rem' }}>
               <Typography variant="h6" gutterBottom>
                 General Information
               </Typography>
@@ -189,7 +187,7 @@ const TenderForm = () => {
           </Grid>
 
           <Grid item xs={12}>
-            <Box sx={{ border: '1px solid grey', padding: "2rem" }}>
+            <Box sx={{ border: '1px solid grey', padding: '2rem' }}>
               <Typography variant="h6" gutterBottom>
                 Purchase Representative Contact Details
               </Typography>
@@ -262,6 +260,6 @@ const TenderForm = () => {
     // </Box>
 
   );
-};
+}
 
 export default TenderForm;

@@ -4,20 +4,20 @@ import Header from '../../components/Header';
 import Footer from '../../components/Footer';
 
 const withNavbar = WrappedComponent => function (props) {
-    return (
-        <>
-            <Header />
-            <div className='h-screen'>
+  return (
+    <>
+      <Header />
+      <div className="h-screen">
 
-                <WrappedComponent
-                    {...props}
-                />
+        <WrappedComponent
+          {...props}
+        />
 
-            </div>
+      </div>
 
-            <Footer />
-        </>
-    );
+      <Footer />
+    </>
+  );
 };
 
 export default withNavbar;

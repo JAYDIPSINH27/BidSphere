@@ -1,20 +1,21 @@
-import React, { useState } from "react";
-import Input from "../../atoms/input/index";
-import Textarea from "../../atoms/textarea/index";
-import Button from "../../atoms/button/index";
+/* eslint-disable no-shadow */
+import React, { useState } from 'react';
+import Input from '../../atoms/input/index';
+import Textarea from '../../atoms/textarea/index';
+import Button from '../../atoms/button/index';
 
-const ContactForm = () => {
+function ContactForm() {
   const [formData, setFormData] = useState({
-    name: "",
-    email: "",
-    message: "",
+    name: '',
+    email: '',
+    message: '',
   });
   const [errors, setErrors] = useState({});
   const [showSuccess, setShowSuccess] = useState(false);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
-    setFormData((prevData) => ({
+    setFormData(prevData => ({
       ...prevData,
       [name]: value,
     }));
@@ -24,14 +25,13 @@ const ContactForm = () => {
     const errors = {};
 
     if (!formData.name.match(/^[A-Za-z][A-Za-z\s]*$/)) {
-      errors.name =
-        "Name should contain only letters and spaces and must start with a letter";
+      errors.name = 'Name should contain only letters and spaces and must start with a letter';
     }
     if (!formData.email.match(/^[^\s@]+@[^\s@]+\.[^\s@]+$/)) {
-      errors.email = "Invalid email format";
+      errors.email = 'Invalid email format';
     }
-    if (formData.message.trim() === "") {
-      errors.message = "Message cannot be empty";
+    if (formData.message.trim() === '') {
+      errors.message = 'Message cannot be empty';
     }
 
     return errors;
@@ -43,11 +43,10 @@ const ContactForm = () => {
     if (Object.keys(validationErrors).length > 0) {
       setErrors(validationErrors);
     } else {
-      console.log("Form submitted:", formData);
       setFormData({
-        name: "",
-        email: "",
-        message: "",
+        name: '',
+        email: '',
+        message: '',
       });
       setErrors({});
       setShowSuccess(true);
@@ -69,7 +68,7 @@ const ContactForm = () => {
           value={formData.name}
           onChange={handleChange}
           name="name"
-          className={errors.name ? "border-red-500" : "border-gray-950"}
+          className={errors.name ? 'border-red-500' : 'border-gray-950'}
         />
         {errors.name && (
           <span className="text-red-500 text-sm mt-1">{errors.name}</span>
@@ -80,7 +79,7 @@ const ContactForm = () => {
           value={formData.email}
           onChange={handleChange}
           name="email"
-          className={errors.email ? "border-red-500" : "border-gray-950"}
+          className={errors.email ? 'border-red-500' : 'border-gray-950'}
         />
         {errors.email && (
           <span className="text-red-500 text-sm mt-1">{errors.email}</span>
@@ -90,7 +89,7 @@ const ContactForm = () => {
           value={formData.message}
           onChange={handleChange}
           name="message"
-          className={errors.message ? "border-red-500" : "border-gray-950"}
+          className={errors.message ? 'border-red-500' : 'border-gray-950'}
         />
         {errors.message && (
           <span className="text-red-500 text-sm mt-1">{errors.message}</span>
@@ -100,6 +99,6 @@ const ContactForm = () => {
       </form>
     </div>
   );
-};
+}
 
 export default ContactForm;

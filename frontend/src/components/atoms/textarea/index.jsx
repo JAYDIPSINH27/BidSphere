@@ -1,6 +1,9 @@
-import React from "react";
+/* eslint-disable react/prop-types */
+import React from 'react';
 
-const Textarea = ({ placeholder = "", value, onChange, name, className }) => {
+function Textarea({
+  placeholder = '', value, onChange, name, className,
+}) {
   return (
     <textarea
       placeholder={placeholder}
@@ -8,8 +11,9 @@ const Textarea = ({ placeholder = "", value, onChange, name, className }) => {
       onChange={onChange}
       name={name}
       className={`w-full px-4 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-bsnavyblue ${className}`}
-    ></textarea>
+    >
+    </textarea>
   );
-};
+}
 
 export default Textarea;
