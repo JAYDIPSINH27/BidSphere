@@ -22,7 +22,6 @@ function AppBar() {
 
   const navList = (
     <ul className="mt-2 mb-4 flex flex-col gap-2 lg:mb-0 lg:mt-0 lg:flex-row lg:items-center lg:gap-6">
-
       {
         navLinks.map(link => (
           <li key={link.id}>
@@ -30,32 +29,20 @@ function AppBar() {
           </li>
         ))
       }
-
     </ul>
   );
+
   return (
-    <motion.div
-      className="mb-10"
-    // animate={}
-      // initial={{y:-50, opacity:0}}
-      // animate={{y:0, opacity:1}}
-      // transition={{
-      //   delay: 1,
-      //   type: "easeIn",
-      //   bounce: 1.5,
-      // }}
-    >
+    <motion.div className="mb-10">
       <Navbar
-        className=" top-0 z-10 h-max max-w-full rounded-none px-4 py-2 lg:px-8 lg:py-4 bg-bsnavyblue fixed"
+        className="top-0 z-10 h-max max-w-full rounded-none px-4 py-2 lg:px-8 lg:py-4 bg-bsnavyblue fixed"
         blurred={false}
       >
         <div className="flex items-center justify-between text-blue-gray-900 cursor-pointer">
           <Link to="/">
-            <div className="flex align-middle ">
-
-              <img className="mr-4  py-1.5 align-middle" src={Logo} alt="Logo" width="10%" />
-
-              <Typography color="white" className="align-middle mt-3 font-bold ">BidSphere</Typography>
+            <div className="flex align-middle">
+              <img className="mr-4 py-1.5 align-middle" src={Logo} alt="Logo" width="10%" />
+              <Typography color="white" className="align-middle mt-3 font-bold">BidSphere</Typography>
             </div>
           </Link>
           <div className="flex items-center gap-4">
@@ -68,12 +55,14 @@ function AppBar() {
               >
                 <span className="text-primary-50">Sign Up</span>
               </Button>
-              <Button
-                size="sm"
-                className="hidden lg:inline-block bg-bslightgreen"
-              >
-                <span className="text-black">Sign In</span>
-              </Button>
+              <Link to="/signin">
+                <Button
+                  size="sm"
+                  className="hidden lg:inline-block bg-bslightgreen"
+                >
+                  <span className="text-black">Sign In</span>
+                </Button>
+              </Link>
             </div>
             <IconButton
               variant="text"
@@ -120,9 +109,11 @@ function AppBar() {
             <Button fullWidth variant="text" className="" size="sm">
               <span className="text-primary-50">Sign Up</span>
             </Button>
-            <Button fullWidth size="sm" className="bg-bslightgreen">
-              <span className="text-black">Sign in</span>
-            </Button>
+            <Link to="/signin">
+              <Button fullWidth size="sm" className="bg-bslightgreen">
+                <span className="text-black">Sign In</span>
+              </Button>
+            </Link>
           </div>
         </Collapse>
       </Navbar>

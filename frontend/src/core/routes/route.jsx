@@ -10,6 +10,7 @@ import PageNotFound from '../../shared/components/PageNotFound';
 import PaymentStatus from '../../components/molecules/PaymentStatus';
 import Faq from '../../components/pages/Faq';
 import Contact from '../../components/pages/Contact';
+import Signin from '../../components/pages/Signin';
 // import PrivateRoute from './PrivateRoute';
 // import Tenders from '../../components/pages/TenderIssuer/Tenders';
 // import AddTender from '../../components/pages/TenderIssuer/AddTenders';
@@ -27,6 +28,7 @@ function RouteConfig() {
       <Route path="/faq" element={<Faq />} />
       <Route path="/q&a" element={<QuestionAndAnswer />} />
       <Route path="/contact" element={<Contact />} />
+      <Route path="/signin" element={<Signin />} />
       <Route path="*" element={<PageNotFound />} />
     </Routes>
   );
