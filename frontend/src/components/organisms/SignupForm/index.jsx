@@ -241,8 +241,7 @@ const SignupForm = () => {
       <CheckboxField
         label={(
           <span>
-            I agree to the
-            <a href="#terms" className="text-bsnavyblue font-bold hover:underline"> terms and conditions</a>
+            I agree to the <a href="#terms" className="text-bsnavyblue font-bold hover:underline">terms and conditions</a>
           </span>
         )}
         checked={formData.terms}
