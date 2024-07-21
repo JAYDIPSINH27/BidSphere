@@ -48,13 +48,15 @@ function AppBar() {
           <div className="flex items-center gap-4">
             <div className="mr-4 hidden lg:block">{navList}</div>
             <div className="flex items-center gap-x-1">
-              <Button
-                variant="text"
-                size="sm"
-                className="hidden lg:inline-block"
-              >
-                <span className="text-primary-50">Sign Up</span>
-              </Button>
+              <Link to="/signup">
+                <Button
+                  variant="text"
+                  size="sm"
+                  className="hidden lg:inline-block"
+                >
+                  <span className="text-primary-50">Sign Up</span>
+                </Button>
+              </Link>
               <Link to="/signin">
                 <Button
                   size="sm"
@@ -106,9 +108,11 @@ function AppBar() {
         <Collapse open={openNav}>
           {navList}
           <div className="flex items-center gap-x-1">
-            <Button fullWidth variant="text" className="" size="sm">
-              <span className="text-primary-50">Sign Up</span>
-            </Button>
+            <Link to="/signup">
+              <Button fullWidth variant="text" className="" size="sm">
+                <span className="text-primary-50">Sign Up</span>
+              </Button>
+            </Link>
             <Link to="/signin">
               <Button fullWidth size="sm" className="bg-bslightgreen">
                 <span className="text-black">Sign In</span>

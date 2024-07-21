@@ -1,10 +1,10 @@
 import React from 'react';
-import LoginTemplate from '../../templates/Signin';
+import SigninTemplate from '../../templates/Signin';
 import withAppBarFooter from '../../../shared/hoc/withAppBarFooter';
 
 const SigninPage = () => (
   <div>
-    <LoginTemplate />
+    <SigninTemplate />
   </div>
 );
 
