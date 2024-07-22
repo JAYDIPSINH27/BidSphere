@@ -39,14 +39,8 @@ const SigninForm = () => {
         }
         break;
       case 'password':
-        if (value.length < 8) {
-          errors.password = 'Password should be at least 8 characters long';
-        } else if (!/[A-Za-z]/.test(value)) {
-          errors.password = 'Password should contain at least one letter';
-        } else if (!/\d/.test(value)) {
-          errors.password = 'Password should contain at least one number';
-        } else if (!/[@$!%*#?&]/.test(value)) {
-          errors.password = 'Password should contain at least one special character';
+        if (!value) {
+          errors.password = 'Password is required.';
         } else {
           delete errors.password;
         }
@@ -63,14 +57,8 @@ const SigninForm = () => {
     if (!formData.email.match(/^[^\s@]+@[^\s@]+\.[^\s@]+$/)) {
       errors.email = 'Invalid email format';
     }
-    if (formData.password.length < 8) {
-      errors.password = 'Password should be at least 8 characters long';
-    } else if (!/[A-Za-z]/.test(formData.password)) {
-      errors.password = 'Password should contain at least one letter';
-    } else if (!/\d/.test(formData.password)) {
-      errors.password = 'Password should contain at least one number';
-    } else if (!/[@$!%*#?&]/.test(formData.password)) {
-      errors.password = 'Password should contain at least one special character';
+    if (!formData.password) {
+      errors.password = 'Password is required.';
     }
     return errors;
   };
@@ -81,12 +69,7 @@ const SigninForm = () => {
     if (Object.keys(validationErrors).length > 0) {
       setFormErrors(validationErrors);
     } else {
-      setFormData({
-        email: '',
-        password: '',
-        rememberMe: false,
-      });
-      setFormErrors({});
+      setFormErrors({ password: 'Wrong password. Please try again.' });
     }
   };
 
