@@ -1,3 +1,5 @@
+// Author: Christin Saji
+
 import React from 'react';
 import SignupTemplate from '../../templates/Signup';
 import withAppBarFooter from '../../../shared/hoc/withAppBarFooter';

@@ -1,3 +1,5 @@
+// Author: Christin Saji
+
 import React from 'react';
 import SignupForm from '../../organisms/SignupForm';
 
@@ -5,6 +7,7 @@ const SignupTemplate = () => (
   <section className="min-h-0 pt-8 pb-0">
     <div className="max-w-6xl mx-auto px-4 md:px-6 flex flex-wrap items-center justify-center lg:justify-between">
       <div className="w-full md:w-6/12 lg:w-6/12">
+        {/* Image Source: https://www.freepik.com/free-vector/sign-concept-illustration_5423351.htm#query=login&position=4&from_view=keyword&track=sph&uuid=1ceab958-6766-4791-bbd7-50a1d1d9fcf8 */}
         <img
           src="src/shared/assets/signup.jpg"
           className="w-full h-full object-cover"
