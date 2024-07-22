@@ -19,7 +19,7 @@ const RadioField = ({
       name={name}
       id={name + value}
       checked={checked}
-      className="form-radio h-4 w-4 text-bsnavyblue"
+      className={`appearance-none h-4 w-4 border border-bsnavyblue rounded-full bg-white checked:bg-bslightblue ${className}`}
     />
     <label htmlFor={name + value} className="ml-2 text-gray-900">{label}</label>
   </div>

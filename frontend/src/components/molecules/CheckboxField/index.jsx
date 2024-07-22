@@ -2,6 +2,7 @@
 
 /* eslint-disable react/prop-types */
 import React from 'react';
+import Checkbox from '../../atoms/checkbox';
 
 const CheckboxField = ({
   label,
@@ -12,17 +13,12 @@ const CheckboxField = ({
   className = '',
 }) => (
   <div className={`flex flex-col ${className}`}>
-    <div className="flex items-center">
-      <input
-        type="checkbox"
-        checked={checked}
-        onChange={onChange}
-        name={name}
-        id={name}
-        className="form-checkbox h-4 w-4 text-bsnavyblue"
-      />
-      <label htmlFor={name} className="ml-2 text-gray-900">{label}</label>
-    </div>
+    <Checkbox
+      label={label}
+      checked={checked}
+      onChange={onChange}
+      name={name}
+    />
     {error && <span className="text-red-500 text-sm mt-1">{error}</span>}
   </div>
 );
