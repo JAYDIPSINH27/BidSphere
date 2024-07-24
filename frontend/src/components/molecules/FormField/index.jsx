@@ -2,7 +2,6 @@
 
 /* eslint-disable react/prop-types */
 import React from 'react';
-import Input from '../../atoms/input';
 
 const FormField = ({
   type,
@@ -12,17 +11,19 @@ const FormField = ({
   name,
   label,
   error,
+  readOnly,
 }) => (
   <div className="mb-4">
-    <label htmlFor={name} className="block">{label}</label>
-    <Input
+    <label htmlFor={name} className="block text-bsnavyblue font-semibold">{label}</label>
+    <input
       type={type}
       placeholder={placeholder}
       value={value}
       onChange={onChange}
       name={name}
       id={name}
-      className={error ? 'border-red-500' : 'border-gray-950'}
+      className={`w-full px-4 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-bsnavyblue ${error ? 'border-red-500' : 'border-gray-950'}`}
+      readOnly={readOnly}
     />
     {error && <span className="text-red-500 text-sm mt-1">{error}</span>}
   </div>

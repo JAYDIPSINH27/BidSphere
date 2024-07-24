@@ -223,7 +223,7 @@ const SignupForm = () => {
         error={formErrors.address}
       />
       <div className="flex items-center space-x-4">
-        <span className="text-gray-900">Role:</span>
+        <span className="text-bsnavyblue font-semibold">Role:</span>
         <RadioField
           label="Bidder"
           value="bidder"
