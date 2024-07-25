@@ -14,6 +14,8 @@ import Signin from '../../components/pages/Signin';
 import Signup from '../../components/pages/Signup';
 import ProfilePage from '../../components/pages/ProfilePage';
 import VerifyEmail from '../../components/pages/VerifyEmail';
+import ForgetPassword from '../../components/pages/ForgetPassword';
+import ResetPassword from '../../components/pages/ResetPassword';
 // import PrivateRoute from './PrivateRoute';
 // import Tenders from '../../components/pages/TenderIssuer/Tenders';
 // import AddTender from '../../components/pages/TenderIssuer/AddTenders';
@@ -35,6 +37,8 @@ function RouteConfig() {
       <Route path="/signup" element={<Signup />} />
       <Route path="/profile" element={<ProfilePage />} />
       <Route path="/verify-email" element={<VerifyEmail />} />
+      <Route path="/forget-password" element={<ForgetPassword />} />
+      <Route path="/reset-password" element={<ResetPassword />} />
       <Route path="*" element={<PageNotFound />} />
     </Routes>
   );

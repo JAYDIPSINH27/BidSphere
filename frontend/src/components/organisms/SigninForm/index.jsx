@@ -100,7 +100,7 @@ const SigninForm = () => {
           onChange={handleChange}
           name="rememberMe"
         />
-        <a href="#" className="text-bsnavyblue hover:underline">Forgot password?</a>
+        <a href="forget-password" className="text-bsnavyblue hover:underline">Forgot password?</a>
       </div>
       <div className="flex justify-center mt-8">
         <Button type="submit" className="w-full md:w-auto px-8 py-3 text-lg">Sign In</Button>
