@@ -4,11 +4,15 @@
     "build": "esbuild server.js --platform=node --bundle --minify --outfile=dist/bundle.js"
   },
   "dependencies": {
+    "bcryptjs": "^2.4.3",
     "cors": "^2.8.5",
     "dotenv": "^16.4.5",
     "esbuild": "^0.21.3",
     "express": "^4.19.2",
+    "express-validator": "^7.1.0",
+    "jsonwebtoken": "^9.0.2",
     "mongoose": "^8.4.5",
+    "nodemailer": "^6.9.14",
     "nodemon": "^3.1.0",
     "stripe": "^15.8.0"
   },

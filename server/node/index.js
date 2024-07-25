@@ -7,6 +7,7 @@ const bodyParser = require('body-parser')
 /* routes */
 const paymentRouter = require('./src/routes/payment')
 const quesAndAnswerRouter = require('./src/routes/Q&A')
+const authRouter = require('./src/routes/auth');
 /* middleware */
 const corsMiddleware = require('./src/middleware/corsMiddleware');
 /* db connection */
@@ -24,6 +25,7 @@ app.use(bodyParser.json({ limit: '50mb' }));
 
 app.use('/api', paymentRouter.routes)
 app.use('/q&a', quesAndAnswerRouter.routes)
+app.use('/auth', authRouter);
 
 /* server */
 const port = process.env.PORT || 5001;
