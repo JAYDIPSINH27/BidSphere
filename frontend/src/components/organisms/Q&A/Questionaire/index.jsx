@@ -1,8 +1,8 @@
 /* external imports */
 import React, { useEffect } from 'react';
 import { message } from 'antd';
-import moment from 'moment';
 import cx from 'classnames';
+import moment from 'moment';
 import { useNavigate, useLocation } from 'react-router-dom';
 import { FaUser } from 'react-icons/fa';
 import { useDispatch, useSelector } from 'react-redux';
@@ -23,7 +23,7 @@ const Questions = () => {
   const location = useLocation();
 
   const questionData = useSelector(
-    state => state.QuesnAndAnswerReducer.QuestionaireReducer.questionData,
+    state => state.QuesnAndAnswerReducer.QuestionaireReducer.QuestionaireReducer.questionData,
   );
   const isModalVisible = useSelector(
     state => state.QuesnAndAnswerReducer.QuestionaireReducer.ModelWrappereReducer.isModalVisible,
@@ -53,73 +53,56 @@ const Questions = () => {
 
   return (
     <>
-      <div className={styles.container}>
-        <Button
-          title="Ask a Question"
-          className={styles.askButton}
-          onClick={handleButtonClick}
-        >Ask a Question
-        </Button>
-      </div>
       <div className={styles.questions}>
-        <div className={styles.topQuestions}>Questionarium</div>
-        {(questionData || []).map((questions) => {
-          const {
-            _id: qId = '',
-            qTitle = '',
-            qDesc = '',
-            totalAnswers = 0,
-            timeStamp = 0,
-            askedByUsername = '',
-          } = questions || {};
+        <div className={styles.topQuestions}>
+          <div>Q <sub style={{ bottom: 'unset' }}>&</sub> A</div>
+          <Button
+            title="Ask a Question"
+            className={styles.askButton}
+            onClick={handleButtonClick}
+          >Ask a Question
+          </Button>
+        </div>
+        <div className={styles.questionList}>
+          {(questionData || []).map((question) => {
+            const {
+              _id: qId = '',
+              qTitle = '',
+              qDesc = '',
+              timeStamp = 0,
+              askedByUsername = '',
+              totalAnswers = 0,
+            } = question || {};
 
-          return (
-            /* container */
-            <div key={qId} className={styles.questionContainer}>
-              {/* 1. answer section */}
-              <section className={styles.answerCountSection}>
-                <p
-                  className={cx(
-                    styles.answers,
-                    totalAnswers === 0 ? styles.noAnswer : '',
-                  )}
-                >
-                  {totalAnswers} answers
-                </p>
-              </section>
-              {/* 2. main question */}
-              <section
-                className={styles.questionArea}
-                onClick={() => handleQuestionClick(qId)}
+            return (
+              <div
+                key={qId}
                 role="button"
                 tabIndex={0}
+                className={styles.questionContainer}
+                onClick={() => handleQuestionClick(qId)}
               >
-                <div className={styles.qTitle} title={qTitle}>
-                  <p className={styles.qTitle__para}>
-                    {qTitle}
-                  </p>
-                </div>
-                <div className={styles.qDesc} title={qDesc}>
-                  <p className={styles.qDesc__para}>
-                    {qDesc}
-                  </p>
-                </div>
-              </section>
-              {/* 3. author */}
-              <section className={styles.authorSection}>
-                <p className={styles.creator}>
-                  <span className={styles.icon}>
-                    <FaUser />
+                <div className={styles.authorSection}>
+                  <FaUser className={styles.icon} />
+                  <span className={styles.authorName}>{askedByUsername}</span>
+                  <span className={styles.created}>asked {moment(timeStamp).fromNow()}</span>
+                  <span
+                    className={cx(styles.totalAnswers, {
+                      [styles.noAnswers]: totalAnswers === 0,
+                      [styles.hasAnswers]: totalAnswers > 0,
+                    })}
+                  >
+                    {totalAnswers} Answers
                   </span>
-                </p>
-                <span className={styles.authorName}>{askedByUsername}</span>
-                <p className={styles.created}>
-                  asked {moment(timeStamp).fromNow()}
-                </p>
-              </section>
-            </div>
-          );
-        })}
+                </div>
+                <div className={styles.questionContent}>
+                  <div className={styles.questionTitle}>{qTitle}</div>
+                  <div className={styles.questionDescription}>{qDesc}</div>
+                </div>
+              </div>
+            );
+          })}
+        </div>
       </div>
       {isModalVisible && (
         <ModalWrapper title="Ask a Question" onSubmit={fetchQuestionData} />

@@ -2,7 +2,7 @@
 /* eslint-disable react/prop-types */
 /* external imports */
 import React, { useState } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch /* , useSelector */ } from 'react-redux';
 import { useParams } from 'react-router-dom';
 import { message } from 'antd';
 import cx from 'classnames';
@@ -22,7 +22,8 @@ const Replies = ({ comment = {}, fetchComment }) => {
   const [replyText, setReplyText] = useState('');
   const [replyCardCollapse, setReplyCardCollapse] = useState(true);
   const [showReplyInput, setShowReplyInput] = useState(false);
-  const { userFullName = '' } = useSelector(state => state.userSlice);
+  // const { userFullName = '' } = useSelector(state => state.userSlice); // TODO
+  const userFullName = 'userFullName';
 
   const {
     userName = 'anonymous',
@@ -39,7 +40,7 @@ const Replies = ({ comment = {}, fetchComment }) => {
       questionId: qId,
       text: replyText,
       answeredDate: new Date().valueOf(),
-      userName: userFullName,
+      userName: /* userFullName */ 'userFullName',
     };
     await replyToComment(payload)
       .then((response) => {
@@ -81,7 +82,7 @@ const Replies = ({ comment = {}, fetchComment }) => {
 
   return (
     <div className={styles.replyContainer}>
-      <section
+      <div
         role="button"
         tabIndex={0}
         className={cx(styles.replyCard, { [styles.collapsed]: replyCardCollapse })}
@@ -144,7 +145,7 @@ const Replies = ({ comment = {}, fetchComment }) => {
               </button>
             )}
             {showReplyInput && (
-              <section className={styles.replyInputSection}>
+              <div className={styles.replyInputSection}>
                 <div className={styles.replyingUserLogo}>
                   <span
                     style={{
@@ -185,7 +186,7 @@ const Replies = ({ comment = {}, fetchComment }) => {
                     </span>
                   </div>
                 </div>
-              </section>
+              </div>
             )}
           </div>
           {/* 3. Show More */}
@@ -204,7 +205,7 @@ const Replies = ({ comment = {}, fetchComment }) => {
             </div>
           )}
         </div>
-      </section>
+      </div>
       {!replyCardCollapse && (
         <div className={styles.recurRepliesContainer}>
           {(replies || []).map(reply => (

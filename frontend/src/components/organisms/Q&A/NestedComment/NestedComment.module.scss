@@ -34,7 +34,8 @@
 }
 
 .totalAnswersSection {
-  margin: 3rem;
+  margin: 0 3rem;
+  padding: 1rem;
   .totalAnswers__count {
     font-size: 1.2rem;
     padding-bottom: 2rem;
@@ -49,6 +50,7 @@
   .answerText {
     color: #787878;
     outline: none;
+    background: none;
     width: 100%;
     border-bottom: 1px solid #757575;
     &:focus {
@@ -66,6 +68,7 @@
   display: flex;
   flex-direction: column;
   gap: 1.5rem;
+  padding-left: 1rem;
   .replyContainer {
     display: flex;
     flex-direction: column;
@@ -73,6 +76,7 @@
     padding-left: 3rem;
     .replyCard {
       @include twoColumnAlignment();
+      gap: 1rem;
       .leftPanel {
         @include userLogo();
         align-items: flex-start;
@@ -130,6 +134,7 @@
                 outline: none;
                 padding: 0.6rem 0;
                 font-size: 0.9rem;
+                padding-left: 0.3rem;
               }
               .actionBtns {
                 font-size: 0.9rem;
@@ -155,7 +160,7 @@
 }
 
 .replyPartBackground {
-  background-color: #f9f9f9;
+  background-color: #fff;
   border-radius: 1.3rem;
   padding: 1.3rem 1.3rem 0.8rem;
   width: 100%;

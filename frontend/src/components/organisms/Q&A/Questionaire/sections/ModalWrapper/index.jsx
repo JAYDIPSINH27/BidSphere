@@ -24,7 +24,7 @@ const ModalWrapper = ({
   const qTitle = useSelector(state => state.QuesnAndAnswerReducer.QuestionaireReducer.ModelWrappereReducer.qTitle);
   const isModalVisible = useSelector(state => state.QuesnAndAnswerReducer.QuestionaireReducer.ModelWrappereReducer.isModalVisible);
   // const { userFullName = '' } = useSelector(state => state.userSlice);
-  const userFullName = 'John Doe';
+  const userFullName = 'John Doe'; // TODO
 
   const onChange = (editorStateData) => {
     setEditorState(editorStateData);

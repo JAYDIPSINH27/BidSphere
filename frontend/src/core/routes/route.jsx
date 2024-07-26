@@ -4,6 +4,7 @@ import { Route, Routes } from 'react-router-dom';
 
 /* internal components */
 import QuestionAndAnswer from '@organisms/Q&A/Questionaire';
+import QnAPage from '@components/organisms/Q&A/NestedComment';
 import App from '../App';
 import Pricing from '../../components/pages/Pricing';
 import PageNotFound from '../../shared/components/PageNotFound';
@@ -26,6 +27,7 @@ function RouteConfig() {
       <Route path="/payment-failure" element={<PaymentStatus status="failure" />} />
       <Route path="/faq" element={<Faq />} />
       <Route path="/q&a" element={<QuestionAndAnswer />} />
+      <Route path="/q&a/:qId" element={<QnAPage />} />
       <Route path="/contact" element={<Contact />} />
       <Route path="*" element={<PageNotFound />} />
     </Routes>

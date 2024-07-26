@@ -11,9 +11,9 @@ import styles from '../../NestedComment.module.scss';
 const CommentContainer = () => {
   const { qId } = useParams();
   const dispatch = useDispatch();
-  const comment = useSelector(state => state.qnaPageReducer.commentReducer.comment);
-  const newCommentText = useSelector(state => state.qnaPageReducer.commentReducer.newCommentText);
-  const { userFullName = '' } = useSelector(state => state.userSlice);
+  const comment = useSelector(state => state.QuesnAndAnswerReducer.NestedCommentReducer.CommentReducer.comment);
+  const newCommentText = useSelector(state => state.QuesnAndAnswerReducer.NestedCommentReducer.CommentReducer.newCommentText);
+  // const { userFullName = '' } = useSelector(state => state.userSlice);
 
   useEffect(() => {
     fetchComment();
@@ -39,7 +39,7 @@ const CommentContainer = () => {
       parentId: comment?._id,
       text: newCommentText,
       parentLvlCmt: true,
-      userName: userFullName,
+      userName: /* userFullName, */ 'userFullName', // TODO
       answeredDate: new Date().valueOf(),
     };
     await replyToComment(payload)
@@ -60,7 +60,7 @@ const CommentContainer = () => {
   return (
     <>
       {/* Post Parent Level Comment */}
-      <section className={styles.totalAnswersSection}>
+      <div className={styles.totalAnswersSection}>
         <div className={styles.totalAnswers__count}>
           {(comment?.replies || []).length} answers
         </div>
@@ -79,14 +79,14 @@ const CommentContainer = () => {
         >
           Comment
         </button>
-      </section>
+      </div>
       {/* Comment Section */}
-      <section className={styles.commentsSection}>
+      <div className={styles.commentsSection}>
         <Replies
           comment={comment}
           fetchComment={fetchComment}
         />
-      </section>
+      </div>
     </>
   );
 };
