@@ -69,7 +69,7 @@ exports.verifyEmail = async (req, res) => {
     user.isVerified = true;
     await user.save();
 
-    res.status(200).json({ message: 'Email verified successfully.' });
+    res.redirect(`${process.env.FRONTEND_URL}/verification-success`);
   } catch (err) {
     res.status(400).json({ error: 'Invalid token.' });
   }

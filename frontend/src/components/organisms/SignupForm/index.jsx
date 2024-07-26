@@ -1,6 +1,8 @@
 // Author: Christin Saji
 
 import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
+import axios from 'axios';
 import FormField from '../../molecules/FormField';
 import CheckboxField from '../../molecules/CheckboxField';
 import RadioField from '../../molecules/RadioField';
@@ -18,6 +20,8 @@ const SignupForm = () => {
     terms: false,
   });
   const [formErrors, setFormErrors] = useState({});
+  const [signupSuccess, setSignupSuccess] = useState(false);
+  const navigate = useNavigate();
 
   const handleChange = (e) => {
     const {
@@ -146,115 +150,135 @@ const SignupForm = () => {
     return errors;
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     const validationErrors = validate();
     if (Object.keys(validationErrors).length > 0) {
       setFormErrors(validationErrors);
     } else {
-      setFormData({
-        name: '',
-        email: '',
-        phone: '',
-        address: '',
-        password: '',
-        confirmPassword: '',
-        role: '',
-        terms: false,
-      });
-      setFormErrors({});
+      try {
+        const response = await axios.post('http://localhost:5001/auth/signup', formData);
+        if (response.status === 201) {
+          setSignupSuccess(true);
+          setFormData({
+            name: '',
+            email: '',
+            phone: '',
+            address: '',
+            password: '',
+            confirmPassword: '',
+            role: '',
+            terms: false,
+          });
+          setFormErrors({});
+          setTimeout(() => {
+            setSignupSuccess(false);
+            navigate('/signin');
+          }, 5000);
+        }
+      } catch (err) {
+        setFormErrors({ general: err.response.data.error || 'Signup failed. Please try again.' });
+      }
     }
   };
 
   return (
-    <form onSubmit={handleSubmit} className="space-y-4">
-      <FormField
-        type="text"
-        placeholder="Your name"
-        value={formData.name}
-        onChange={handleChange}
-        name="name"
-        label="Name"
-        error={formErrors.name}
-      />
-      <FormField
-        type="email"
-        placeholder="Email address"
-        value={formData.email}
-        onChange={handleChange}
-        name="email"
-        label="Email Address"
-        error={formErrors.email}
-      />
-      <FormField
-        type="password"
-        placeholder="Password"
-        value={formData.password}
-        onChange={handleChange}
-        name="password"
-        label="Password"
-        error={formErrors.password}
-      />
-      <FormField
-        type="password"
-        placeholder="Confirm Password"
-        value={formData.confirmPassword}
-        onChange={handleChange}
-        name="confirmPassword"
-        label="Confirm Password"
-        error={formErrors.confirmPassword}
-      />
-      <FormField
-        type="text"
-        placeholder="Phone number"
-        value={formData.phone}
-        onChange={handleChange}
-        name="phone"
-        label="Phone Number"
-        error={formErrors.phone}
-      />
-      <FormField
-        type="text"
-        placeholder="Address"
-        value={formData.address}
-        onChange={handleChange}
-        name="address"
-        label="Address"
-        error={formErrors.address}
-      />
-      <div className="flex items-center space-x-4">
-        <span className="text-bsnavyblue font-semibold">Role:</span>
-        <RadioField
-          label="Bidder"
-          value="bidder"
+    <div className="relative">
+      {signupSuccess && (
+        <div className="fixed bottom-4 right-4 bg-green-500 font-medium text-white text-center py-2 px-4 rounded-lg shadow-lg">
+          Signup successful! Please check your email to verify your account.
+        </div>
+      )}
+      <form onSubmit={handleSubmit} className="space-y-4">
+        <FormField
+          type="text"
+          placeholder="Your name"
+          value={formData.name}
           onChange={handleChange}
-          name="role"
-          checked={formData.role === 'bidder'}
+          name="name"
+          label="Name"
+          error={formErrors.name}
         />
-        <RadioField
-          label="Tender Issuer"
-          value="issuer"
+        <FormField
+          type="email"
+          placeholder="Email address"
+          value={formData.email}
           onChange={handleChange}
-          name="role"
-          checked={formData.role === 'issuer'}
+          name="email"
+          label="Email Address"
+          error={formErrors.email}
         />
-      </div>
-      {formErrors.role && <span className="text-red-500 text-sm mt-1">{formErrors.role}</span>}
-      <CheckboxField
-        label={(
-          <span>
-            I agree to the <a href="#terms" className="text-bsnavyblue font-bold hover:underline">terms and conditions</a>
-          </span>
-        )}
-        checked={formData.terms}
-        onChange={handleChange}
-        name="terms"
-        error={formErrors.terms}
-      />
-      <div className="flex justify-center mt-8">
-        <Button type="submit" className="w-full md:w-auto px-8 py-3 text-lg">Sign Up</Button>
-      </div>
-    </form>
+        <FormField
+          type="password"
+          placeholder="Password"
+          value={formData.password}
+          onChange={handleChange}
+          name="password"
+          label="Password"
+          error={formErrors.password}
+        />
+        <FormField
+          type="password"
+          placeholder="Confirm Password"
+          value={formData.confirmPassword}
+          onChange={handleChange}
+          name="confirmPassword"
+          label="Confirm Password"
+          error={formErrors.confirmPassword}
+        />
+        <FormField
+          type="text"
+          placeholder="Phone number"
+          value={formData.phone}
+          onChange={handleChange}
+          name="phone"
+          label="Phone Number"
+          error={formErrors.phone}
+        />
+        <FormField
+          type="text"
+          placeholder="Address"
+          value={formData.address}
+          onChange={handleChange}
+          name="address"
+          label="Address"
+          error={formErrors.address}
+        />
+        <div className="flex items-center space-x-4">
+          <span className="text-bsnavyblue font-semibold">Role:</span>
+          <RadioField
+            label="Bidder"
+            value="bidder"
+            onChange={handleChange}
+            name="role"
+            checked={formData.role === 'bidder'}
+          />
+          <RadioField
+            label="Tender Issuer"
+            value="issuer"
+            onChange={handleChange}
+            name="role"
+            checked={formData.role === 'issuer'}
+          />
+        </div>
+        {formErrors.role && <span className="text-red-500 text-sm mt-1">{formErrors.role}</span>}
+        <CheckboxField
+          label={(
+            <span>
+              I agree to the <a href="#terms" className="text-bsnavyblue font-bold hover:underline">terms and conditions</a>
+            </span>
+          )}
+          checked={formData.terms}
+          onChange={handleChange}
+          name="terms"
+          error={formErrors.terms}
+        />
+        <div className="flex justify-center mt-8">
+          <Button type="submit" className="w-full md:w-auto px-8 py-3 text-lg">Sign Up</Button>
+        </div>
+        {formErrors.general && <p className="text-red-500 text-center">{formErrors.general}</p>}
+      </form>
+    </div>
   );
 };
 
