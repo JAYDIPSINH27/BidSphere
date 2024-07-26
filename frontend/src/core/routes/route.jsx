@@ -40,7 +40,7 @@ function RouteConfig() {
       <Route path="/verification-success" element={<VerificationSuccess />} />
       <Route path="/profile" element={<ProfilePage />} />
       <Route path="/forget-password" element={<ForgetPassword />} />
-      <Route path="/reset-password" element={<ResetPassword />} />
+      <Route path="/reset-password/:token" element={<ResetPassword />} />
       <Route path="/bidder-dashboard" element={<BidderDashboard />} />
       <Route path="/issuer-dashboard" element={<IssuerDashboard />} />
       <Route path="*" element={<PageNotFound />} />

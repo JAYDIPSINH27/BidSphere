@@ -2,16 +2,20 @@
 
 /* eslint-disable react/prop-types */
 import React, { useState } from 'react';
+import { useParams, useNavigate } from 'react-router-dom';
+import axios from 'axios';
 import FormField from '../../molecules/FormField';
 import Button from '../../atoms/button';
 
-const ResetPasswordForm = ({ onSetNewPassword }) => {
+const ResetPasswordForm = () => {
   const [password, setPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
   const [error, setError] = useState({});
+  const { token } = useParams();
+  const navigate = useNavigate();
 
   const validateField = (name, value) => {
-    const errors = {};
+    const errors = { ...error };
 
     switch (name) {
       case 'password':
@@ -23,17 +27,31 @@ const ResetPasswordForm = ({ onSetNewPassword }) => {
           errors.password = 'Password should contain at least one number';
         } else if (!/[@$!%*#?&]/.test(value)) {
           errors.password = 'Password should contain at least one special character';
+        } else {
+          delete errors.password;
         }
         break;
       case 'confirmPassword':
         if (value !== password) {
           errors.confirmPassword = 'Passwords do not match';
+        } else {
+          delete errors.confirmPassword;
         }
         break;
       default:
         break;
     }
-    return errors;
+    setError(errors);
+  };
+
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    if (name === 'password') {
+      setPassword(value);
+    } else if (name === 'confirmPassword') {
+      setConfirmPassword(value);
+    }
+    validateField(name, value);
   };
 
   const handleSetNewPassword = async (e) => {
@@ -46,12 +64,13 @@ const ResetPasswordForm = ({ onSetNewPassword }) => {
       setError(validationErrors);
     } else {
       try {
-        await onSetNewPassword(password);
+        await axios.post(`http://localhost:5001/auth/reset-password/${token}`, { password });
         setPassword('');
         setConfirmPassword('');
         setError({});
+        navigate('/signin');
       } catch (err) {
-        setError({ general: 'Password reset failed' });
+        setError({ general: 'Password reset failed. Please try again.' });
       }
     }
   };
@@ -64,7 +83,7 @@ const ResetPasswordForm = ({ onSetNewPassword }) => {
         type="password"
         placeholder="New Password"
         value={password}
-        onChange={e => setPassword(e.target.value)}
+        onChange={handleChange}
         name="password"
         label="New Password"
         error={error.password}
@@ -73,7 +92,7 @@ const ResetPasswordForm = ({ onSetNewPassword }) => {
         type="password"
         placeholder="Confirm Password"
         value={confirmPassword}
-        onChange={e => setConfirmPassword(e.target.value)}
+        onChange={handleChange}
         name="confirmPassword"
         label="Confirm Password"
         error={error.confirmPassword}

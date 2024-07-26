@@ -1,3 +1,5 @@
+// Author: Christin Saji
+
 import { jwtDecode } from 'jwt-decode';
 
 export const getUserFromToken = () => {
