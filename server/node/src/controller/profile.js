@@ -24,3 +24,14 @@ exports.updateProfile = async (req, res) => {
     res.status(500).json({ error: 'Internal server error.' });
   }
 };
+
+exports.deleteProfile = async (req, res) => {
+  try {
+    const user = await User.findByIdAndDelete(req.user._id);
+    if (!user) return res.status(404).json({ error: 'User not found.' });
+
+    res.status(200).json({ message: 'User account deleted successfully.' });
+  } catch (err) {
+    res.status(500).json({ error: 'Internal server error.' });
+  }
+};

@@ -3,6 +3,7 @@
 /* eslint-disable react/prop-types */
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
+import { useNavigate } from 'react-router-dom';
 import FormField from '../../molecules/FormField';
 import RadioField from '../../molecules/RadioField';
 import Button from '../../atoms/button';
@@ -25,6 +26,7 @@ const ProfileForm = ({ isEditing, setIsEditing }) => {
   });
   const [formErrors, setFormErrors] = useState({});
   const [loading, setLoading] = useState(true);
+  const navigate = useNavigate();
 
   useEffect(() => {
     const fetchProfile = async () => {
@@ -113,6 +115,21 @@ const ProfileForm = ({ isEditing, setIsEditing }) => {
   };
 
   const handleFileChange = () => {
+  };
+
+  const handleDelete = async () => {
+    const token = localStorage.getItem('token') || sessionStorage.getItem('token');
+    const config = {
+      headers: { Authorization: `Bearer ${token}` },
+    };
+    try {
+      await axios.delete('http://localhost:5001/profile/me', config);
+      localStorage.removeItem('token');
+      sessionStorage.removeItem('token');
+      navigate('/signin');
+    } catch (err) {
+      console.error('Failed to delete account:', err);
+    }
   };
 
   if (loading) {
@@ -212,6 +229,11 @@ const ProfileForm = ({ isEditing, setIsEditing }) => {
             Edit Profile
           </Button>
         )}
+      </div>
+      <div className="flex justify-center mt-8">
+        <Button type="button" onClick={handleDelete} className="bg-red-500 text-white">
+          Delete Account
+        </Button>
       </div>
     </form>
   );
