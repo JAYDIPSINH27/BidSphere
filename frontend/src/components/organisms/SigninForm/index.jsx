@@ -76,7 +76,11 @@ const SigninForm = () => {
         const response = await axios.post('http://localhost:5001/auth/signin', formData);
         if (response.status === 200) {
           const { token, role } = response.data;
-          localStorage.setItem('token', token);
+          if (formData.rememberMe) {
+            localStorage.setItem('token', token);
+          } else {
+            sessionStorage.setItem('token', token);
+          }
 
           if (role === 'bidder') {
             navigate('/bidder-dashboard');

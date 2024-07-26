@@ -1,7 +1,10 @@
 import { jwtDecode } from 'jwt-decode';
 
 export const getUserFromToken = () => {
-  const token = localStorage.getItem('token');
+  let token = localStorage.getItem('token');
+  if (!token) {
+    token = sessionStorage.getItem('token');
+  }
   if (token) {
     try {
       return jwtDecode(token);
@@ -15,4 +18,5 @@ export const getUserFromToken = () => {
 
 export const clearUserToken = () => {
   localStorage.removeItem('token');
+  sessionStorage.removeItem('token');
 };
