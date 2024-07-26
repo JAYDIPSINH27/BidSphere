@@ -7,6 +7,8 @@ import FormField from '../../molecules/FormField';
 import CheckboxField from '../../molecules/CheckboxField';
 import RadioField from '../../molecules/RadioField';
 import Button from '../../atoms/button';
+import Modal from '../../molecules/LandingPage/Modal';
+import { footerData } from '../../../shared/constants';
 
 const SignupForm = () => {
   const [formData, setFormData] = useState({
@@ -21,6 +23,7 @@ const SignupForm = () => {
   });
   const [formErrors, setFormErrors] = useState({});
   const [signupSuccess, setSignupSuccess] = useState(false);
+  const [isModalOpen, setIsModalOpen] = useState(false);
   const navigate = useNavigate();
 
   const handleChange = (e) => {
@@ -265,7 +268,7 @@ const SignupForm = () => {
         <CheckboxField
           label={(
             <span>
-              I agree to the <a href="#terms" className="text-bsnavyblue font-bold hover:underline">terms and conditions</a>
+              I agree to the <button type="button" className="text-bsnavyblue font-bold hover:underline" onClick={() => setIsModalOpen(true)}>terms and conditions</button>
             </span>
           )}
           checked={formData.terms}
@@ -278,6 +281,12 @@ const SignupForm = () => {
         </div>
         {formErrors.general && <p className="text-red-500 text-center">{formErrors.general}</p>}
       </form>
+      <Modal
+        isOpen={isModalOpen}
+        onClose={() => setIsModalOpen(false)}
+        title="Terms and Conditions"
+        content={footerData.termsandservice.content}
+      />
     </div>
   );
 };

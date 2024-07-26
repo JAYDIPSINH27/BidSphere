@@ -10,11 +10,12 @@ import {
   Typography,
 } from '@material-tailwind/react';
 
-function Modal({ title, content }) {
-  const [open, setOpen] = React.useState(false);
-
-  const handleOpen = () => setOpen(!open);
-
+function Modal({
+  title,
+  content,
+  isOpen,
+  onClose,
+}) {
   const formatContentToJSX = () => {
     const sections = content.trim().split(/\n(?=\d+\.)/).map(section => section.trim());
 
@@ -31,25 +32,21 @@ function Modal({ title, content }) {
   };
 
   return (
-    <>
-      <button className="footer-link" onClick={handleOpen}>{title}</button>
-      <Dialog open={open} handler={handleOpen} className=" overflow-none">
-        <DialogHeader>{title}
-          <DialogFooter className="space-x-1">
-
-            <Button variant="text" color="blue-gray" onClick={handleOpen}>
-              close
-            </Button>
-          </DialogFooter>
-        </DialogHeader>
-        <DialogBody className="h-[40rem] p-10 overflow-scroll mb-10">
-          <Typography className="font-normal">
-            {formatContentToJSX()}
-          </Typography>
-        </DialogBody>
-
-      </Dialog>
-    </>
+    <Dialog open={isOpen} handler={onClose} className="overflow-none">
+      <DialogHeader>
+        {title}
+        <DialogFooter className="space-x-1">
+          <Button variant="text" color="blue-gray" onClick={onClose}>
+            Close
+          </Button>
+        </DialogFooter>
+      </DialogHeader>
+      <DialogBody className="h-[40rem] p-10 overflow-scroll mb-10">
+        <Typography className="font-normal">
+          {formatContentToJSX()}
+        </Typography>
+      </DialogBody>
+    </Dialog>
   );
 }
 

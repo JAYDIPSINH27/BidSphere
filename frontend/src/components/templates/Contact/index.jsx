@@ -45,7 +45,7 @@ function ContactTemplate() {
                 <p className="text-gray-600">
                   Mobile: +1 (123) 456-7890
                   <br />
-                  Mail: bidsphere@gmail.com
+                  Mail: bidsphere24@gmail.com
                 </p>
               </div>
             </div>
