@@ -92,3 +92,53 @@ exports.signin = async (req, res) => {
     res.status(500).json({ error: 'Internal server error.' });
   }
 };
+
+exports.requestPasswordReset = async (req, res) => {
+  try {
+    const { email } = req.body;
+    const user = await User.findOne({ email });
+    if (!user) return res.status(400).json({ error: 'User not found.' });
+
+    const token = jwt.sign({ _id: user._id }, process.env.JWT_SECRET, { expiresIn: '1h' });
+    const resetUrl = `${process.env.FRONTEND_URL}/reset-password/${token}`;
+
+    const mailOptions = {
+      from: process.env.EMAIL,
+      to: email,
+      subject: 'Reset Your Password',
+      text: `Click the link to reset your password: ${resetUrl}`,
+    };
+
+    transporter.sendMail(mailOptions);
+
+    res.status(200).json({ message: 'Password reset link sent to your email.' });
+  } catch (err) {
+    res.status(500).json({ error: 'Internal server error.' });
+  }
+};
+
+exports.resetPassword = async (req, res) => {
+  try {
+    const token = req.params.token;
+    const { password } = req.body;
+
+    if (
+      password.length < 8 ||
+      !/[A-Za-z]/.test(password) ||
+      !/\d/.test(password) ||
+      !/[@$!%*#?&]/.test(password)
+    ) {
+      return res.status(400).json({ error: 'Password must be at least 8 characters long and contain at least one letter, one number, and one special character.' });
+    }
+
+    const decoded = jwt.verify(token, process.env.JWT_SECRET);
+    const hashedPassword = await bcrypt.hash(password, 10);
+    const user = await User.findByIdAndUpdate(decoded._id, { password: hashedPassword }, { new: true });
+
+    if (!user) return res.status(400).json({ error: 'Invalid token.' });
+
+    res.status(200).json({ message: 'Password reset successfully.' });
+  } catch (err) {
+    res.status(400).json({ error: 'Invalid token.' });
+  }
+};

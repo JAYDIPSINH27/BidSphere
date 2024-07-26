@@ -48,4 +48,37 @@ router.post(
 
 router.get('/verify-email/:token', authController.verifyEmail);
 
+router.post(
+  '/request-password-reset',
+  [check('email').isEmail()],
+  (req, res, next) => {
+    const errors = validationResult(req);
+    if (!errors.isEmpty()) {
+      return res.status(400).json({ errors: errors.array() });
+    }
+    next();
+  },
+  authController.requestPasswordReset
+);
+
+router.post(
+  '/reset-password/:token',
+  [
+    check('password')
+      .isLength({ min: 8 })
+      .matches(/[A-Za-z]/)
+      .matches(/\d/)
+      .matches(/[@$!%*#?&]/)
+      .withMessage('Password must be at least 8 characters long and contain at least one letter, one number, and one special character.'),
+  ],
+  (req, res, next) => {
+    const errors = validationResult(req);
+    if (!errors.isEmpty()) {
+      return res.status(400).json({ errors: errors.array() });
+    }
+    next();
+  },
+  authController.resetPassword
+);
+
 module.exports = router;
