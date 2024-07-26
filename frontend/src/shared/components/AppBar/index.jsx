@@ -6,19 +6,36 @@ import {
   Typography,
 } from '@material-tailwind/react';
 import { motion } from 'framer-motion';
-import React from 'react';
-import { Link } from 'react-router-dom';
+import React, { useEffect, useState } from 'react';
+import { Link, useNavigate } from 'react-router-dom';
 import Logo from '../../../../public/bidphere_logo_notext_v1.png';
 import { navLinks } from '../../constants/index';
+import { getUserFromToken, clearUserToken } from '../../utils/auth';
 
 function AppBar() {
-  const [openNav, setOpenNav] = React.useState(false);
-  React.useEffect(() => {
+  const [openNav, setOpenNav] = useState(false);
+  const [isAuthenticated, setIsAuthenticated] = useState(false);
+  const [username, setUsername] = useState('');
+  const navigate = useNavigate();
+
+  useEffect(() => {
     window.addEventListener(
       'resize',
       () => window.innerWidth >= 960 && setOpenNav(false),
     );
+
+    const user = getUserFromToken();
+    if (user) {
+      setIsAuthenticated(true);
+      setUsername(user.name || 'User');
+    }
   }, []);
+
+  const handleLogout = () => {
+    clearUserToken();
+    setIsAuthenticated(false);
+    navigate('/signin');
+  };
 
   const navList = (
     <ul className="mt-2 mb-4 flex flex-col gap-2 lg:mb-0 lg:mt-0 lg:flex-row lg:items-center lg:gap-6">
@@ -48,23 +65,39 @@ function AppBar() {
           <div className="flex items-center gap-4">
             <div className="mr-4 hidden lg:block">{navList}</div>
             <div className="flex items-center gap-x-1">
-              <Link to="/signup">
-                <Button
-                  variant="text"
-                  size="sm"
-                  className="hidden lg:inline-block"
-                >
-                  <span className="text-primary-50">Sign Up</span>
-                </Button>
-              </Link>
-              <Link to="/signin">
-                <Button
-                  size="sm"
-                  className="hidden lg:inline-block bg-bslightgreen"
-                >
-                  <span className="text-black">Sign In</span>
-                </Button>
-              </Link>
+              {isAuthenticated ? (
+                <>
+                  <Typography color="white" className="align-middle font-bold">{username}</Typography>
+                  <Button
+                    variant="text"
+                    size="sm"
+                    className="hidden lg:inline-block"
+                    onClick={handleLogout}
+                  >
+                    <span className="text-primary-50">Logout</span>
+                  </Button>
+                </>
+              ) : (
+                <>
+                  <Link to="/signup">
+                    <Button
+                      variant="text"
+                      size="sm"
+                      className="hidden lg:inline-block"
+                    >
+                      <span className="text-primary-50">Sign Up</span>
+                    </Button>
+                  </Link>
+                  <Link to="/signin">
+                    <Button
+                      size="sm"
+                      className="hidden lg:inline-block bg-bslightgreen"
+                    >
+                      <span className="text-black">Sign In</span>
+                    </Button>
+                  </Link>
+                </>
+              )}
             </div>
             <IconButton
               variant="text"
@@ -108,16 +141,29 @@ function AppBar() {
         <Collapse open={openNav}>
           {navList}
           <div className="flex items-center gap-x-1">
-            <Link to="/signup">
-              <Button fullWidth variant="text" className="" size="sm">
-                <span className="text-primary-50">Sign Up</span>
+            {isAuthenticated ? (
+              <Button
+                fullWidth
+                variant="text"
+                size="sm"
+                onClick={handleLogout}
+              >
+                <span className="text-primary-50">Logout</span>
               </Button>
-            </Link>
-            <Link to="/signin">
-              <Button fullWidth size="sm" className="bg-bslightgreen">
-                <span className="text-black">Sign In</span>
-              </Button>
-            </Link>
+            ) : (
+              <>
+                <Link to="/signup">
+                  <Button fullWidth variant="text" className="" size="sm">
+                    <span className="text-primary-50">Sign Up</span>
+                  </Button>
+                </Link>
+                <Link to="/signin">
+                  <Button fullWidth size="sm" className="bg-bslightgreen">
+                    <span className="text-black">Sign In</span>
+                  </Button>
+                </Link>
+              </>
+            )}
           </div>
         </Collapse>
       </Navbar>
