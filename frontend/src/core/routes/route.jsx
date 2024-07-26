@@ -16,6 +16,8 @@ import VerificationSuccess from '../../components/pages/VerificationSuccess';
 import ProfilePage from '../../components/pages/ProfilePage';
 import ForgetPassword from '../../components/pages/ForgetPassword';
 import ResetPassword from '../../components/pages/ResetPassword';
+import BidderDashboard from '../../components/pages/BidderDashboard';
+import IssuerDashboard from '../../components/pages/IssuerDashboard';
 // import PrivateRoute from './PrivateRoute';
 // import Tenders from '../../components/pages/TenderIssuer/Tenders';
 // import AddTender from '../../components/pages/TenderIssuer/AddTenders';
@@ -39,6 +41,8 @@ function RouteConfig() {
       <Route path="/profile" element={<ProfilePage />} />
       <Route path="/forget-password" element={<ForgetPassword />} />
       <Route path="/reset-password" element={<ResetPassword />} />
+      <Route path="/bidder-dashboard" element={<BidderDashboard />} />
+      <Route path="/issuer-dashboard" element={<IssuerDashboard />} />
       <Route path="*" element={<PageNotFound />} />
     </Routes>
   );

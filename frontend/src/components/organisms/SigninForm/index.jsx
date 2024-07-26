@@ -1,6 +1,8 @@
 // Author: Christin Saji
 
 import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
+import axios from 'axios';
 import FormField from '../../molecules/FormField';
 import CheckboxField from '../../molecules/CheckboxField';
 import Button from '../../atoms/button';
@@ -12,6 +14,7 @@ const SigninForm = () => {
     rememberMe: false,
   });
   const [formErrors, setFormErrors] = useState({});
+  const navigate = useNavigate();
 
   const handleChange = (e) => {
     const {
@@ -63,13 +66,27 @@ const SigninForm = () => {
     return errors;
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     const validationErrors = validate();
     if (Object.keys(validationErrors).length > 0) {
       setFormErrors(validationErrors);
     } else {
-      setFormErrors({ password: 'Wrong password. Please try again.' });
+      try {
+        const response = await axios.post('http://localhost:5001/auth/signin', formData);
+        if (response.status === 200) {
+          const { token, role } = response.data;
+          localStorage.setItem('token', token);
+
+          if (role === 'bidder') {
+            navigate('/bidder-dashboard');
+          } else if (role === 'issuer') {
+            navigate('/issuer-dashboard');
+          }
+        }
+      } catch (err) {
+        setFormErrors({ general: err.response.data.error || 'Signin failed. Please try again.' });
+      }
     }
   };
 
@@ -105,6 +122,7 @@ const SigninForm = () => {
       <div className="flex justify-center mt-8">
         <Button type="submit" className="w-full md:w-auto px-8 py-3 text-lg">Sign In</Button>
       </div>
+      {formErrors.general && <p className="text-red-500 text-center">{formErrors.general}</p>}
     </form>
   );
 };
