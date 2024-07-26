@@ -1,4 +1,5 @@
 {
+  "main": "index.js",
   "scripts": {
     "start": "nodemon index.js",
     "build": "esbuild index.js --platform=node --bundle --minify --outfile=dist/bundle.js"
