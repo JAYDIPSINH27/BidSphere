@@ -1,7 +1,6 @@
 // Author: Christin Saji
 
 const jwt = require('jsonwebtoken');
-const User = require('../model/user');
 
 const authMiddleware = (req, res, next) => {
   const token = req.header('Authorization').replace('Bearer ', '');

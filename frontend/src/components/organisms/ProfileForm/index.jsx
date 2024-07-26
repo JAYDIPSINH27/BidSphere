@@ -1,7 +1,8 @@
 // Author: Christin Saji
 
 /* eslint-disable react/prop-types */
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
+import axios from 'axios';
 import FormField from '../../molecules/FormField';
 import RadioField from '../../molecules/RadioField';
 import Button from '../../atoms/button';
@@ -9,13 +10,40 @@ import defaultProfilePic from '../../../shared/assets/default-profile-pic.jpg';
 
 const ProfileForm = ({ isEditing, setIsEditing }) => {
   const [formData, setFormData] = useState({
-    name: 'Christin Saji',
-    email: 'christin.saji@dal.ca',
-    phone: '1234567890',
-    address: '1234 South St, Halifax, Nova Scotia, Canada',
-    role: 'bidder',
+    name: '',
+    email: '',
+    phone: '',
+    address: '',
+    role: '',
+  });
+  const [initialFormData, setInitialFormData] = useState({
+    name: '',
+    email: '',
+    phone: '',
+    address: '',
+    role: '',
   });
   const [formErrors, setFormErrors] = useState({});
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    const fetchProfile = async () => {
+      try {
+        const token = localStorage.getItem('token') || sessionStorage.getItem('token');
+        const config = {
+          headers: { Authorization: `Bearer ${token}` },
+        };
+        const response = await axios.get('http://localhost:5001/profile/me', config);
+        setFormData(response.data);
+        setInitialFormData(response.data);
+        setLoading(false);
+      } catch (err) {
+        console.error('Failed to fetch profile data:', err);
+      }
+    };
+
+    fetchProfile();
+  }, []);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -64,16 +92,32 @@ const ProfileForm = ({ isEditing, setIsEditing }) => {
     setFormErrors(errors);
   };
 
-  const handleSave = () => {
-    setIsEditing(false);
+  const handleSave = async () => {
+    const token = localStorage.getItem('token') || sessionStorage.getItem('token');
+    const config = {
+      headers: { Authorization: `Bearer ${token}` },
+    };
+    try {
+      const response = await axios.put('http://localhost:5001/profile/me', formData, config);
+      setFormData(response.data);
+      setInitialFormData(response.data);
+      setIsEditing(false);
+    } catch (err) {
+      console.error('Failed to update profile:', err);
+    }
   };
 
   const handleCancel = () => {
+    setFormData(initialFormData);
     setIsEditing(false);
   };
 
   const handleFileChange = () => {
   };
+
+  if (loading) {
+    return <div className="text-xl text-center">Loading...</div>;
+  }
 
   return (
     <form className="space-y-4">

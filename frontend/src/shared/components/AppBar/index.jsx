@@ -67,7 +67,9 @@ function AppBar() {
             <div className="flex items-center gap-x-1">
               {isAuthenticated ? (
                 <>
-                  <Typography color="white" className="align-middle font-bold">{username}</Typography>
+                  <Link to="/profile">
+                    <Typography color="white" className="align-middle font-bold">{username}</Typography>
+                  </Link>
                   <Button
                     variant="text"
                     size="sm"
