@@ -1,4 +1,3 @@
-// Author: Jaydipsinh Padhiyar
 package com.g14.bidsphere.controller;
 
 import com.g14.bidsphere.model.TenderDocument;
@@ -16,41 +15,36 @@ import java.util.List;
 public class TenderDocumentController {
 
     @Autowired
-    private TenderDocumentService documentService;
+    private TenderDocumentService tenderDocumentService;
 
     @GetMapping
     public List<TenderDocument> getAllDocuments() {
-        return documentService.getAllDocuments();
+        return tenderDocumentService.getAllDocuments();
     }
 
     @GetMapping("/{id}")
     public ResponseEntity<TenderDocument> getDocumentById(@PathVariable String id) {
-        return documentService.getDocumentById(id)
+        return tenderDocumentService.getDocumentById(id)
                 .map(ResponseEntity::ok)
                 .orElse(ResponseEntity.notFound().build());
     }
 
     @PostMapping
-    public ResponseEntity<TenderDocument> createDocument(@RequestParam("file") MultipartFile file,
-                                                         @RequestParam("userId") String userId,
-                                                         @RequestParam("tenderId") String tenderId,
-                                                         @RequestParam("type") String type) {
-        try {
-            TenderDocument document = documentService.createDocument(file, userId, tenderId, type);
-            return ResponseEntity.ok(document);
-        } catch (IOException e) {
-            return ResponseEntity.status(500).body(null);
-        }
+    public List<TenderDocument> createDocuments(@RequestParam("files") List<MultipartFile> files,
+                                                @RequestParam("userId") String userId,
+                                                @RequestParam("tenderId") String tenderId,
+                                                @RequestParam("type") String type) throws IOException {
+        return tenderDocumentService.createDocuments(files, userId, tenderId, type);
     }
 
     @PutMapping("/{id}")
     public ResponseEntity<TenderDocument> updateDocument(@PathVariable String id, @RequestBody TenderDocument document) {
-        return ResponseEntity.ok(documentService.updateDocument(id, document));
+        return ResponseEntity.ok(tenderDocumentService.updateDocument(id, document));
     }
 
     @DeleteMapping("/{id}")
     public ResponseEntity<Void> deleteDocument(@PathVariable String id) {
-        documentService.deleteDocument(id);
+        tenderDocumentService.deleteDocument(id);
         return ResponseEntity.noContent().build();
     }
 }

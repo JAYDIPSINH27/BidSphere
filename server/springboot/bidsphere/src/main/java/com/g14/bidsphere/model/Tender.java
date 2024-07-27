@@ -25,6 +25,10 @@ public class Tender {
     private String status;
     private Date createdAt;
     private Date updatedAt;
+    private String organizationId;
+    private String representativeName;
+    private String representativeEmail;
+    private String representativeContact;
     private List<String> documents = new ArrayList<>();
     private List<Bid> bids;
     private TenderStatistics statistics;
