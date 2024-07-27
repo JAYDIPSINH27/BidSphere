@@ -15,6 +15,7 @@ import java.util.List;
 public class Tender {
     @Id
     private String id;
+    private String tenderNumber;
     private String title;
     private String description;
     private String issuerId;

@@ -109,17 +109,24 @@
     "react/self-closing-comp": 0,
     "react/jsx-one-expression-per-line": 0,
     "react/jsx-props-no-spreading": "off",
-    "react/prop-types": 1,
+    "react/prop-types": 0,
     "require-yield": 0
   },
   "overrides": [
     {
-      "files": ["*.js", "*.jsx", "*.ts", "*.tsx"],
+      "files": [
+        "*.js",
+        "*.jsx",
+        "*.ts",
+        "*.tsx"
+      ],
       "rules": {
         "import/no-unresolved": [
           "error",
           {
-            "ignore": ["^@"]
+            "ignore": [
+              "^@"
+            ]
           }
         ]
       }
@@ -129,19 +136,57 @@
     "import/resolver": {
       "alias": {
         "map": [
-          ["@components", "./src/components"],
-          ["@core", "./src/core"],
-          ["@data", "./src/data"],
-          ["@shared", "./src/shared"],
-          ["@services", "./src/services"],
-          ["@atoms", "./src/components/atoms"],
-          ["@molecules", "./src/components/molecules"],
-          ["@organisms", "./src/components/organisms"],
-          ["@pages", "./src/components/pages"],
-          ["@templates", "./src/components/templates"],
-          ["@utils", "./src/components/utils"]
+          [
+            "@components",
+            "./src/components"
+          ],
+          [
+            "@core",
+            "./src/core"
+          ],
+          [
+            "@data",
+            "./src/data"
+          ],
+          [
+            "@shared",
+            "./src/shared"
+          ],
+          [
+            "@services",
+            "./src/services"
+          ],
+          [
+            "@atoms",
+            "./src/components/atoms"
+          ],
+          [
+            "@molecules",
+            "./src/components/molecules"
+          ],
+          [
+            "@organisms",
+            "./src/components/organisms"
+          ],
+          [
+            "@pages",
+            "./src/components/pages"
+          ],
+          [
+            "@templates",
+            "./src/components/templates"
+          ],
+          [
+            "@utils",
+            "./src/components/utils"
+          ]
         ],
-        "extensions": [".js", ".jsx", ".ts", ".tsx"]
+        "extensions": [
+          ".js",
+          ".jsx",
+          ".ts",
+          ".tsx"
+        ]
       }
     }
   }

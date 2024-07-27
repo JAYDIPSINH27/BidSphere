@@ -1,0 +1,20 @@
+/* Author: Ashish Bhasin */
+.askButton {
+    background-color: #4570b0;
+    border: none;
+    border-radius: 10px;
+    padding: 10px 15px;
+    color: white;
+    cursor: pointer;
+    font-size: 15px;
+    height: 40px;
+
+    &:hover {
+        background-color: #0e3e86;
+    }
+
+    @media (max-width: 767px) {
+        font-size: 14px;
+        padding: 8px 12px;
+    }
+}
