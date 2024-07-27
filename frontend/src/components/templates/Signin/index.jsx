@@ -2,6 +2,7 @@
 
 import React from 'react';
 import SigninForm from '../../organisms/SigninForm';
+import { signin } from '../../../shared/assets/signin.jpg';
 
 const SigninTemplate = () => (
   <section className="min-h-0 pt-8 pb-0">
@@ -9,7 +10,7 @@ const SigninTemplate = () => (
       <div className="w-full md:w-6/12 lg:w-6/12">
         {/* Image Source: https://www.freepik.com/free-vector/mobile-login-concept-illustration_4957136.htm */}
         <img
-          src="src/shared/assets/signin.jpg"
+          src={signin}
           className="w-full h-full object-cover"
           alt="Login Illustration"
         />
