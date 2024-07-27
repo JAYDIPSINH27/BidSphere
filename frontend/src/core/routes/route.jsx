@@ -21,7 +21,7 @@ import BidderDashboard from '../../components/pages/BidderDashboard';
 import IssuerDashboard from '../../components/pages/IssuerDashboard';
 // import PrivateRoute from './PrivateRoute';
 // import Tenders from '../../components/pages/TenderIssuer/Tenders';
-// import AddTender from '../../components/pages/TenderIssuer/AddTenders';
+import AddTenders from '../../components/pages/TenderIssuer/AddTenders';
 function RouteConfig() {
   return (
     <Routes>
@@ -45,6 +45,7 @@ function RouteConfig() {
       <Route path="/reset-password/:token" element={<ResetPassword />} />
       <Route path="/bidder-dashboard" element={<BidderDashboard />} />
       <Route path="/issuer-dashboard" element={<IssuerDashboard />} />
+      <Route path="/issuer-dashboard/new-tender" element={<AddTenders />} />
       <Route path="*" element={<PageNotFound />} />
     </Routes>
   );

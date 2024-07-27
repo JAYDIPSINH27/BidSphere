@@ -33,6 +33,7 @@ export default function IconBreadcrumbs() {
                     <Typography
                       sx={{ display: 'flex', alignItems: 'center' }}
                       color="blue"
+                      key={value}
                     >
                       {value === 'home'
                         ? <Home sx={{ mr: 0.5 }} fontSize="inherit" />
@@ -41,7 +42,7 @@ export default function IconBreadcrumbs() {
                     </Typography>
                   )
                   : (
-                    <Link color="inherit" component={RouterLink} to={to}>
+                    <Link color="inherit" component={RouterLink} to={to} key={value}>
                       <Typography color={value === 'home' ? 'black' : 'green'} sx={{ display: 'flex', alignItems: 'center' }}>
                         {value === 'home'
                           ? <Home sx={{ mr: 0.5 }} fontSize="inherit" />

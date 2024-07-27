@@ -5,9 +5,9 @@ import {
   Box, Button, Divider, Typography,
 } from '@mui/material';
 import { useNavigate } from 'react-router-dom';
-import withHeaderFooter from '../../../../shared/hoc/withHeaderFooter';
 import TenderForm from '../../../molecules/TenderForm';
 import BreadCrumb from '../../../molecules/BreadCrumb';
+import withAppBarFooter from '../../../../shared/hoc/withAppBarFooter';
 
 function AddTender() {
   const navigate = useNavigate();
@@ -15,30 +15,27 @@ function AddTender() {
     navigate('/bid-issuer/tenders/add');
   };
   return (
-    <Paper
-      style={{
-        height: '100vh', marginBottom: '1rem', padding: '1rem', overflow: 'auto',
+    <Box
+      sx={{
+        minHeight: '100vh', mb: 1, mt: 5, p: 5,
       }}
     >
       <Box>
         <BreadCrumb />
       </Box>
       <Box>
-
         <Box>
-          <Typography variant="h4" style={{ marginBottom: '2rem' }}>
+          <Typography variant="h4" sx={{ mb: 2 }}>
             Create New Tender
-            <Divider style={{ border: '2' }} />
           </Typography>
-
+          <Divider sx={{ borderBottomWidth: 2 }} />
         </Box>
 
         <TenderForm />
 
       </Box>
-    </Paper>
-
+    </Box>
   );
 }
 
-export default withHeaderFooter(AddTender);
+export default withAppBarFooter(AddTender);
