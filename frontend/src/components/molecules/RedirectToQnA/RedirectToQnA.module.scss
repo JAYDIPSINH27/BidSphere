@@ -1,0 +1,71 @@
+.redirectContainer {
+  display: flex;
+  flex-direction: column;
+  justify-content: start;
+  align-items: center;
+  margin-top: 5rem;
+
+  .actionQuesnSection {
+    all: unset;
+    color: #50545d;
+    font-family: Inter, sans-serif;
+    font-size: 20px;
+    line-height: 21px;
+  }
+
+  .callToActionSection {
+    all: unset;
+
+    .callToAction {
+      padding-top: 6px;
+      font-size: 24px;
+      line-height: 34px;
+    }
+
+    .logoContainer {
+      display: flex;
+      justify-content: center;
+      margin-left: 6rem;
+
+      .supportLogoWrapper {
+        display: flex;
+        align-items: flex-end;
+
+        .supportLogo {
+          height: 80px;
+          width: 80px;
+          border-radius: 1.5rem;
+          cursor: pointer;
+          transition: transform 0.2s cubic-bezier(0.25, 0.1, 0.25, 1);
+        }
+
+        &:hover .supportLogo {
+          transform: scale(1.1);
+        }
+      }
+
+      .arrowWrapper {
+        .arrow {
+          width: 7rem;
+          transform: translateY(-2px) scale(.9) rotate(-107deg);
+        }
+      }
+    }
+  }
+}
+
+@keyframes scaleUpDown {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.1);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+.supportLogo {
+  animation: scaleUpDown 0.3s cubic-bezier(0.25, 0.1, 0.25, 1);
+}

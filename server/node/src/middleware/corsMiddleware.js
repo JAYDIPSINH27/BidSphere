@@ -2,7 +2,7 @@ const cors = require("cors");
 
 const corsMiddleware = (req, res, next) => {
   const options = {
-    origin: process.env.FRONTEND_URL, 
+    origin: '*', 
     credentials: true,
     optionSuccessStatus: 200,
     exposedHeaders: ["accessToken"],

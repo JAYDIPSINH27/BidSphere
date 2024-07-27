@@ -1,7 +1,8 @@
 {
+  "main": "index.js",
   "scripts": {
-    "start": "nodemon server.js",
-    "build": "esbuild server.js --platform=node --bundle --minify --outfile=dist/bundle.js"
+    "start": "nodemon index.js",
+    "build": "esbuild index.js --platform=node --bundle --minify --outfile=dist/bundle.js"
   },
   "dependencies": {
     "bcryptjs": "^2.4.3",
