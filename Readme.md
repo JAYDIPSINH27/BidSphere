@@ -692,6 +692,89 @@ export default {
 <!---How--->  
 - [Responsive Landing Page](https://github.com/xdcode2/course-website)'s Code was modified by integrating it with our other color schemes and requirements.
 
+### server/node/src/routes/auth.js
+
+_Lines 08 - 31_
+
+```
+router.post(
+  '/signup',
+  [
+    check('name').isString().notEmpty().matches(/^[A-Za-z\s]+$/),
+    check('email').isEmail(),
+    check('phone').isLength({ min: 10, max: 10 }).matches(/^\d{10}$/),
+    check('address').notEmpty(),
+    check('password')
+      .isLength({ min: 8 })
+      .matches(/[A-Za-z]/)
+      .matches(/\d/)
+      .matches(/[@$!%*#?&]/)
+      .withMessage('Password must be at least 8 characters long and contain at least one letter, one number, and one special character.'),
+    check('role').notEmpty(),
+  ],
+  (req, res, next) => {
+    const errors = validationResult(req);
+    if (!errors.isEmpty()) {
+      return res.status(400).json({ errors: errors.array() });
+    }
+    next();
+  },
+  authController.signup
+);
+
+```
+
+The code above was created by adapting the code in [A Clean Approach to Using Express Validator](https://dev.to/nedsoft/a-clean-approach-to-using-express-validator-8go) as shown below:
+
+```
+app.post(
+  '/user',
+  [
+    // username must be an email
+    check('username').isEmail(),
+    // password must be at least 5 chars long
+    check('password').isLength({ min: 5 }),
+  ],
+  (req, res) => {
+    // Finds the validation errors in this request and wraps them in an object with handy functions
+    const errors = validationResult(req)
+    if (!errors.isEmpty()) {
+      return res.status(422).json({ errors: errors.array() })
+    }
+
+    User.create({
+      username: req.body.username,
+      password: req.body.password,
+    }).then(user => res.json(user))
+  }
+)
+
+```
+
+- <!---How---> The code in [A Clean Approach to Using Express Validator](https://dev.to/nedsoft/a-clean-approach-to-using-express-validator-8go) was implemented by defining a POST route for user signup with validation checks for various input fields such as name, email, phone, address, password, and role.
+- <!---Why---> [A Clean Approach to Using Express Validator](https://dev.to/nedsoft/a-clean-approach-to-using-express-validator-8go)'s Code was used because it provides a robust and easy-to-use validation mechanism for handling input validation in Express.js applications.
+- <!---How---> [A Clean Approach to Using Express Validator](https://dev.to/nedsoft/a-clean-approach-to-using-express-validator-8go)'s Code was modified by adding additional validation rules specific to our application's requirements, such as stricter password policies.
+
+### server/node/src/controller/auth.js
+
+_Line 43_
+
+```
+const token = jwt.sign({ _id: user._id, email: user.email }, process.env.JWT_SECRET, { expiresIn: '1h' });
+
+```
+
+The code above was created by adapting the code in [JSON web token (JWT) authentication in NodeJS applications](https://mattermost.com/blog/json-web-token-jwt-authentication-in-nodejs-applications/) as shown below:
+
+```
+const token = jwt.sign({email}, process.env.JWT_SECRET, { expiresIn: "1800s" })
+
+```
+
+- <!---How---> The code in [JSON web token (JWT) authentication in NodeJS applications](https://mattermost.com/blog/json-web-token-jwt-authentication-in-nodejs-applications/) was implemented by defining a token generation method using JWT, including user-specific payload data.
+- <!---Why---> [JSON web token (JWT) authentication in NodeJS applications](https://mattermost.com/blog/json-web-token-jwt-authentication-in-nodejs-applications/)'s Code was used because it provides a secure way to create JSON Web Tokens, which are essential for user authentication and session management.
+- <!---How---> [JSON web token (JWT) authentication in NodeJS applications](https://mattermost.com/blog/json-web-token-jwt-authentication-in-nodejs-applications/)'s Code was modified by including additional user data in the payload and changing the token expiration time to meet the application's requirements.
+
 ### frontend/src/shared/assets
 - All the image assets in this folder are referenced from multiple sources which are as below:
 - [Enjoy the versatility of vector graphics](https://www.freepik.com/vectors)
