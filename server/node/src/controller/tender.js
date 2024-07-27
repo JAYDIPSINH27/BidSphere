@@ -1,3 +1,4 @@
+// Author: Dheemanth Rajendra Prasad Kumawat
 const Tender = require("../model/tender");
 
 exports.getAllTenders = async (req, res) => {
