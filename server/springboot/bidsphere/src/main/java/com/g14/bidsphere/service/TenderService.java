@@ -6,9 +6,11 @@ import com.g14.bidsphere.repository.TenderRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
 import java.util.Optional;
+import java.util.Random;
 
 @Service
 public class TenderService {
@@ -27,6 +29,8 @@ public class TenderService {
     public Tender createTender(Tender tender) {
         tender.setCreatedAt(new Date());
         tender.setUpdatedAt(new Date());
+        var tenderNumber = generateTenderNumber(new Date());
+        tender.setTenderNumber(tenderNumber);
         return tenderRepository.save(tender);
     }
 
@@ -46,5 +50,18 @@ public class TenderService {
             throw new TenderNotFoundException(id);
         }
         tenderRepository.deleteById(id);
+    }
+
+    private String generateTenderNumber(Date createDate){
+        // Create a SimpleDateFormat to format the date as "ddMM"
+        SimpleDateFormat dateFormat = new SimpleDateFormat("MMyy");
+        String formattedDate = dateFormat.format(createDate);
+
+        // Generate a 4-digit random number
+        Random random = new Random();
+        int randomNumber = 10000 + random.nextInt(99999);
+
+        // Construct the final string
+        return "T-" + formattedDate + randomNumber;
     }
 }
