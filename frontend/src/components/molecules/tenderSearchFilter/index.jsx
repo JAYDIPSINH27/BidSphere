@@ -1,4 +1,5 @@
 /* Author: Ashish Bhasin */
+import { useNavigate } from 'react-router-dom';
 import React, { useState } from 'react';
 import Input from '../../atoms/input/index';
 import Button from '../../atoms/button/index';
@@ -10,6 +11,8 @@ const TenderSearchFilter = ({ setFilters }) => {
   const [endDate, setEndDate] = useState(null);
   const [name, setName] = useState('');
   const [status, setStatus] = useState('');
+
+  const navigate = useNavigate();
   const filterResult = () => {
     setFilters({
       filterName: name, startDate, endDate, status,
@@ -24,6 +27,10 @@ const TenderSearchFilter = ({ setFilters }) => {
     setEndDate(null);
     setStatus('');
     setName('');
+  };
+
+  const handleNavigate = () => {
+    navigate('/issuer-dashboard/new-tender');
   };
   return (
     <div className="flex flex-col md:flex-row md:justify-self-end lg:w-full sm:w-auto space-y-2 md:space-y-0 md:space-x-2">
@@ -66,7 +73,7 @@ const TenderSearchFilter = ({ setFilters }) => {
       </Button>
       <Button
         classes="rounded w-2 px-3 py-1 w-full md:w-auto bg-black text-white"
-        onClick={() => clearResult()}
+        onClick={() => handleNavigate()}
       >
         Tender
       </Button>
