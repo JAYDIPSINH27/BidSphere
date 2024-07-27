@@ -1,5 +1,6 @@
 /* eslint-disable react/prop-types */
 import React from 'react';
+import RedirectToQnA from '@components/molecules/RedirectToQnA';
 import FaqGroup from '../../organisms/FaqGroup';
 
 function Faqs({ faqs }) {
@@ -13,6 +14,7 @@ function Faqs({ faqs }) {
           </p>
         </div>
         <FaqGroup faqs={faqs}></FaqGroup>
+        <RedirectToQnA />
       </div>
     </section>
   );
