@@ -1,3 +1,4 @@
+// Author: Jaydipsinh Padhiyar
 package com.g14.bidsphere.model;
 
 import lombok.Data;

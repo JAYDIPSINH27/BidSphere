@@ -26,7 +26,7 @@ const TenderSearchFilter = ({ setFilters }) => {
     setName('');
   };
   return (
-    <div className="flex flex-col md:flex-row md:justify-self-end lg:w-4/5 sm:w-auto space-y-2 md:space-y-0 md:space-x-2">
+    <div className="flex flex-col md:flex-row md:justify-self-end lg:w-full sm:w-auto space-y-2 md:space-y-0 md:space-x-2">
       <Input
         className="rounded px-3 py-1 w-4/5 lg:w-auto border-gray-90"
         placeholder="Name"
@@ -63,6 +63,12 @@ const TenderSearchFilter = ({ setFilters }) => {
         onClick={() => clearResult()}
       >
         Clear
+      </Button>
+      <Button
+        classes="rounded w-2 px-3 py-1 w-full md:w-auto bg-black text-white"
+        onClick={() => clearResult()}
+      >
+        Tender
       </Button>
     </div>
   );
