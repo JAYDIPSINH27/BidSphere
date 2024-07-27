@@ -35,7 +35,7 @@ const ProfileForm = ({ isEditing, setIsEditing }) => {
         const config = {
           headers: { Authorization: `Bearer ${token}` },
         };
-        const response = await axios.get('http://localhost:5001/profile/me', config);
+        const response = await axios.get(`${import.meta.env.VITE_BACKEND_URL}/profile/me`, config);
         setFormData(response.data);
         setInitialFormData(response.data);
         setLoading(false);
@@ -100,7 +100,7 @@ const ProfileForm = ({ isEditing, setIsEditing }) => {
       headers: { Authorization: `Bearer ${token}` },
     };
     try {
-      const response = await axios.put('http://localhost:5001/profile/me', formData, config);
+      const response = await axios.put(`${import.meta.env.VITE_BACKEND_URL}/profile/me`, formData, config);
       setFormData(response.data);
       setInitialFormData(response.data);
       setIsEditing(false);
@@ -120,7 +120,7 @@ const ProfileForm = ({ isEditing, setIsEditing }) => {
       headers: { Authorization: `Bearer ${token}` },
     };
     try {
-      await axios.delete('http://localhost:5001/profile/me', config);
+      await axios.delete(`${import.meta.env.VITE_BACKEND_URL}/profile/me`, config);
       localStorage.removeItem('token');
       sessionStorage.removeItem('token');
       navigate('/signin');

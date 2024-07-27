@@ -39,7 +39,7 @@ const ForgetPasswordForm = () => {
       setError(validationErrors);
     } else {
       try {
-        await axios.post('http://localhost:5001/auth/request-password-reset', { email });
+        await axios.post(`${import.meta.env.VITE_BACKEND_URL}/auth/request-password-reset`, { email });
         setEmail('');
         setError('');
         setSuccessMessage('Password reset link has been sent to your email.');

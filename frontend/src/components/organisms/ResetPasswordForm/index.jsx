@@ -64,7 +64,7 @@ const ResetPasswordForm = () => {
       setError(validationErrors);
     } else {
       try {
-        await axios.post(`http://localhost:5001/auth/reset-password/${token}`, { password });
+        await axios.post(`${import.meta.env.VITE_BACKEND_URL}/auth/reset-password/${token}`, { password });
         setPassword('');
         setConfirmPassword('');
         setError({});

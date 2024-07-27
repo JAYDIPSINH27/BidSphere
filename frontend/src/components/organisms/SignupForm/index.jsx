@@ -160,7 +160,7 @@ const SignupForm = () => {
       setFormErrors(validationErrors);
     } else {
       try {
-        const response = await axios.post('http://localhost:5001/auth/signup', formData);
+        const response = await axios.post(`${import.meta.env.VITE_BACKEND_URL}/auth/signup`, formData);
         if (response.status === 201) {
           setSignupSuccess(true);
           setFormData({
