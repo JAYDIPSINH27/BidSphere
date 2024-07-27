@@ -1,0 +1,54 @@
+/* Author: Ashish Bhasin */
+.table {
+  border-collapse: collapse;
+  border: none;
+  width: 100%;
+  height: 200px;
+
+}
+
+.rowHeader {
+  background-color: #A8DADC;
+  transition: all 0.25s ease;
+  border-radius: 10px;
+  font-size: 14px;
+}
+
+.header {
+  padding: 12px;
+  font-weight: 700;
+  text-align: left;
+  font-size: 14px;
+  color: #000000;
+}
+
+.header:first-child {
+  border-top-left-radius: 15px;
+}
+
+.header:last-child {
+  border-top-right-radius: 15px;
+}
+
+.rowItems {
+  cursor: auto;
+}
+
+.rowItems:nth-child(odd) {
+  background-color: #f9f9f9;
+}
+
+.rowItems:nth-child(even) {
+  background-color: #ededed;
+}
+
+
+.cell {
+  padding: 12px;
+  font-size: 12px;
+  color: grey;
+}
+
+.emptyCell {
+  height: 38px;
+}
