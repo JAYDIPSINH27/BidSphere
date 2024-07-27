@@ -2,6 +2,7 @@
 
 import React from 'react';
 import SignupForm from '../../organisms/SignupForm';
+import { signup } from '../../../shared/assets/signup.jpg';
 
 const SignupTemplate = () => (
   <section className="min-h-0 pt-8 pb-0">
@@ -9,7 +10,7 @@ const SignupTemplate = () => (
       <div className="w-full md:w-6/12 lg:w-6/12">
         {/* Image Source: https://www.freepik.com/free-vector/sign-concept-illustration_5423351.htm */}
         <img
-          src="src/shared/assets/signup.jpg"
+          src={signup}
           className="w-full h-full object-cover"
           alt="Signup Illustration"
         />
