@@ -6,13 +6,18 @@ const Button = ({
   type = 'button',
   children,
   onClick = () => {},
+  className = '',
   classname = '',
   ...rest
 }) => (
   <button
     type={type}
     onClick={onClick}
-    className={cx('px-6 py-2 text-white bg-bsnavyblue rounded-md focus:outline-none focus:ring-2 focus:ring-bsnavyblue', classname)}
+    className={cx(
+      'px-6 py-2 text-white bg-bsnavyblue rounded-md focus:outline-none focus:ring-2 focus:ring-bsnavyblue',
+      className,
+      classname,
+    )}
     {...rest}
   >
     {children}
