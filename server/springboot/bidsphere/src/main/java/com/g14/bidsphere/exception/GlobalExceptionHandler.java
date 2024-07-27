@@ -1,3 +1,4 @@
+// Author: Jaydipsinh Padhiyar
 package com.g14.bidsphere.exception;
 
 import org.springframework.http.HttpStatus;
