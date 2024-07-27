@@ -1,3 +1,4 @@
+// Author: Jaydipsinh Padhiyar
 package com.g14.bidsphere.service;
 
 import com.g14.bidsphere.exception.TenderNotFoundException;
@@ -45,6 +46,7 @@ public class TenderService {
             existingTender.setRepresentativeName(tender.getRepresentativeName());
             existingTender.setRepresentativeEmail(tender.getRepresentativeEmail());
             existingTender.setRepresentativeContact(tender.getRepresentativeContact());
+            existingTender.setRepresentativeEmployeeId(tender.getRepresentativeEmployeeId());  // Handle new field
             return tenderRepository.save(existingTender);
         }).orElseThrow(() -> new TenderNotFoundException(id));
     }

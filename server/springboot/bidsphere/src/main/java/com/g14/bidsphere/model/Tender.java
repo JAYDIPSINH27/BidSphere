@@ -29,6 +29,7 @@ public class Tender {
     private String representativeName;
     private String representativeEmail;
     private String representativeContact;
+    private String representativeEmployeeId;
     private List<String> documents = new ArrayList<>();
     private List<Bid> bids;
     private TenderStatistics statistics;
