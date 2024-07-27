@@ -7,7 +7,7 @@ import { useNavigate } from 'react-router-dom';
 import FormField from '../../molecules/FormField';
 import RadioField from '../../molecules/RadioField';
 import Button from '../../atoms/button';
-import defaultProfilePic from '../../../shared/assets/default-profile-pic.jpg';
+import { DefaultProfilePic } from '../../../shared/constants/images';
 
 const ProfileForm = ({ isEditing, setIsEditing }) => {
   const [formData, setFormData] = useState({
@@ -138,7 +138,7 @@ const ProfileForm = ({ isEditing, setIsEditing }) => {
       <div className="flex flex-col items-center">
         <div className="w-32 h-32 rounded-full overflow-hidden mb-4">
           {/* Image Source: https://www.freepik.com/free-vector/blue-circle-with-white-user_145857007.htm */}
-          <img src={defaultProfilePic} alt="Profile" />
+          <img src={DefaultProfilePic} alt="Profile" />
         </div>
         <h2 className="text-2xl font-bold text-center text-bsnavyblue">{formData.name}</h2>
       </div>

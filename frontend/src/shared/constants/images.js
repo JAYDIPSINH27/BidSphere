@@ -45,6 +45,9 @@ import Handshake from '../assets/4Handshake.jpg';
 import Hero4 from '../assets/5Hero.svg';
 import Hero5 from '../assets/6Hero-2.svg';
 import TenderContract from '../assets/7TenderContract.svg';
+import Signup from '../assets/signup.jpg';
+import Signin from '../assets/signin.jpg';
+import DefaultProfilePic from '../assets/default-profile-pic.jpg';
 export {
   Bidding1,
   Document2,
@@ -92,4 +95,7 @@ export {
   arrowRightUp,
   arrowLeft,
   arrowLeftUp,
+  Signup,
+  Signin,
+  DefaultProfilePic,
 };
