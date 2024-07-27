@@ -114,9 +114,6 @@ const ProfileForm = ({ isEditing, setIsEditing }) => {
     setIsEditing(false);
   };
 
-  const handleFileChange = () => {
-  };
-
   const handleDelete = async () => {
     const token = localStorage.getItem('token') || sessionStorage.getItem('token');
     const config = {
@@ -143,12 +140,6 @@ const ProfileForm = ({ isEditing, setIsEditing }) => {
           {/* Image Source: https://www.freepik.com/free-vector/blue-circle-with-white-user_145857007.htm */}
           <img src={defaultProfilePic} alt="Profile" />
         </div>
-        {isEditing && (
-          <Button type="button" onClick={() => document.getElementById('fileInput').click()} className="mb-4">
-            Change Profile Pic
-          </Button>
-        )}
-        <input type="file" id="fileInput" className="hidden" onChange={handleFileChange} />
         <h2 className="text-2xl font-bold text-center text-bsnavyblue">{formData.name}</h2>
       </div>
       <FormField
