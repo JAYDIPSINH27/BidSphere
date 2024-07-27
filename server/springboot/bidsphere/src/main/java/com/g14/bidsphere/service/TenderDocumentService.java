@@ -14,6 +14,7 @@ import software.amazon.awssdk.services.s3.model.PutObjectResponse;
 
 import java.io.IOException;
 import java.nio.file.Paths;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.Optional;
@@ -44,40 +45,50 @@ public class TenderDocumentService {
         return tenderDocumentRepository.findById(id);
     }
 
-    public TenderDocument createDocument(MultipartFile file, String userId, String tenderId, String type) throws IOException {
-        String key = Paths.get("documents", userId, tenderId, file.getOriginalFilename()).toString().replace("\\", "/");
+    public List<TenderDocument> createDocuments(List<MultipartFile> files, String userId, String tenderId, String type) throws IOException {
+        List<TenderDocument> savedDocuments = new ArrayList<>();
+        List<String> documentIds = new ArrayList<>();
 
-        PutObjectRequest putObjectRequest = PutObjectRequest.builder()
-                .bucket(bucketName)
-                .key(key)
-                .build();
+        for (MultipartFile file : files) {
+            String key = Paths.get("documents", userId, tenderId, file.getOriginalFilename()).toString().replace("\\", "/");
 
-        PutObjectResponse putObjectResponse = s3Client.putObject(putObjectRequest, software.amazon.awssdk.core.sync.RequestBody.fromBytes(file.getBytes()));
+            PutObjectRequest putObjectRequest = PutObjectRequest.builder()
+                    .bucket(bucketName)
+                    .key(key)
+                    .build();
 
-        if (putObjectResponse.sdkHttpResponse().isSuccessful()) {
-            String fileUrl = String.format("https://%s.s3.%s.amazonaws.com/%s", bucketName, region, key);
+            PutObjectResponse putObjectResponse = s3Client.putObject(putObjectRequest, software.amazon.awssdk.core.sync.RequestBody.fromBytes(file.getBytes()));
 
-            TenderDocument document = new TenderDocument();
-            document.setUserId(userId);
-            document.setTenderId(tenderId);
-            document.setUrl(fileUrl);
-            document.setType(type);
-            document.setUploadedAt(new Date());
+            if (putObjectResponse.sdkHttpResponse().isSuccessful()) {
+                String fileUrl = String.format("https://%s.s3.%s.amazonaws.com/%s", bucketName, region, key);
 
-            TenderDocument savedDocument = tenderDocumentRepository.save(document);
+                TenderDocument document = new TenderDocument();
+                document.setUserId(userId);
+                document.setTenderId(tenderId);
+                document.setUrl(fileUrl);
+                document.setType(type);
+                document.setUploadedAt(new Date());
 
-            // Update Tender with new document reference
-            Optional<Tender> tenderOptional = tenderRepository.findById(tenderId);
-            if (tenderOptional.isPresent()) {
-                Tender tender = tenderOptional.get();
-                tender.getDocuments().add(savedDocument.getId());
-                tenderRepository.save(tender);
+                TenderDocument savedDocument = tenderDocumentRepository.save(document);
+                savedDocuments.add(savedDocument);
+                documentIds.add(savedDocument.getId());
+            } else {
+                throw new RuntimeException("Failed to upload document to S3");
             }
-
-            return savedDocument;
-        } else {
-            throw new RuntimeException("Failed to upload document to S3");
         }
+
+        // Update Tender with new document references
+        Optional<Tender> tenderOptional = tenderRepository.findById(tenderId);
+        if (tenderOptional.isPresent()) {
+            Tender tender = tenderOptional.get();
+            if (tender.getDocuments() == null) {
+                tender.setDocuments(new ArrayList<>());
+            }
+            tender.getDocuments().addAll(documentIds);
+            tenderRepository.save(tender);
+        }
+
+        return savedDocuments;
     }
 
     public TenderDocument updateDocument(String id, TenderDocument document) {

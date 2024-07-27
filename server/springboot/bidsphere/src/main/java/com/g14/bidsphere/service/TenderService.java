@@ -41,6 +41,10 @@ public class TenderService {
             existingTender.setStatus(tender.getStatus());
             existingTender.setDocuments(tender.getDocuments());
             existingTender.setUpdatedAt(new Date());
+            existingTender.setOrganizationId(tender.getOrganizationId());
+            existingTender.setRepresentativeName(tender.getRepresentativeName());
+            existingTender.setRepresentativeEmail(tender.getRepresentativeEmail());
+            existingTender.setRepresentativeContact(tender.getRepresentativeContact());
             return tenderRepository.save(existingTender);
         }).orElseThrow(() -> new TenderNotFoundException(id));
     }
