@@ -20,7 +20,7 @@ public class AppConfig extends AbstractMongoClientConfiguration {
 
     @Override
     protected String getDatabaseName() {
-        return "TutorialDB";
+        return "test";
     }
 
     @Bean
