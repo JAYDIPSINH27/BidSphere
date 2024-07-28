@@ -50,7 +50,7 @@ exports.signup = async (req, res) => {
       text: `Click the link to verify your email: ${verificationUrl}`,
     };
 
-    transporter.sendMail(mailOptions);
+    await transporter.sendMail(mailOptions);
 
     res.status(201).json({ message: 'User registered. Please verify your email.' });
   } catch (err) {
@@ -109,7 +109,7 @@ exports.requestPasswordReset = async (req, res) => {
       text: `Click the link to reset your password: ${resetUrl}`,
     };
 
-    transporter.sendMail(mailOptions);
+    await transporter.sendMail(mailOptions);
 
     res.status(200).json({ message: 'Password reset link sent to your email.' });
   } catch (err) {
