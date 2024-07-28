@@ -1,14 +1,28 @@
 /* eslint-disable */
-//Author: Dheemanth Rajendra Prasad Kumawat
 import React, { useEffect, useState } from 'react';
 import withAppBarFooter from '../../../shared/hoc/withAppBarFooter';
 import { getAllTenders, bid } from './functions/getAllTenders';
-import 'bootstrap/dist/css/bootstrap.min.css';
-import { Modal } from 'react-bootstrap';
+import Modal from '@mui/material/Modal';
+import Box from '@mui/material/Box';
+import Button from '@mui/material/Button';
+import Typography from '@mui/material/Typography';
 import './bidder-dashboard.css';
 
-
+const style = {
+  position: 'absolute',
+  top: '50%',
+  left: '50%',
+  transform: 'translate(-50%, -50%)',
+  width: 400,
+  bgcolor: 'background.paper',
+  border: '2px solid #000',
+  boxShadow: 24,
+  p: 4,
+};
 function BidderDashboard() {
+  const [open, setOpen] = React.useState(false);
+  const handleOpen = () => setOpen(true);
+  const handleClose = () => setOpen(false);
   useEffect(() => {
     document.title = 'Bidder Dashboard';
   }, []);
@@ -29,6 +43,7 @@ function BidderDashboard() {
     // Find the selected tender from the data array
     const tender = data.find((item) => item._id === tenderId);
     setSelectedTender(tender);
+    handleOpen();
   };
 
   const handleCloseModal = () => {
@@ -36,6 +51,7 @@ function BidderDashboard() {
     //To Do: Pass the user ID from Auth context
     setSelectedTender(null);
     setBidAmount(0);
+    handleClose();
   };
 
   const handleBidAmountChange = (event) => {
@@ -44,77 +60,83 @@ function BidderDashboard() {
   };
 
   return (
-    <div className='container m-5'>
-      <h1 className='text-center my-4'>All Tenders</h1>
-      <table className='table table-bordered table-white table-striped'>
-        <thead>
-          <tr>
-            <th>Title</th>
-            <th>Description</th>
-            <th>Tender Number</th>
-            <th>Issuer ID</th>
-            <th>Created At</th>
-            <th>Status</th>
-            <th>Actions</th>
+    <div className='container m-5 p-5 flex justify-self-center'  >
+    <table className='m-5 p-5 table-auto w-full '>
+      <thead>
+        <tr>
+          <th className='px-4 py-2'>Title</th>
+          <th className='px-4 py-2'>Description</th>
+          <th className='px-4 py-2'>Tender Number</th>
+          <th className='px-4 py-2'>Issuer ID</th>
+          <th className='px-4 py-2'>Created At</th>
+          <th className='px-4 py-2'>Status</th>
+          <th className='px-4 py-2'>Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        {data.map((item) => (
+          <tr key={item._id}>
+            <td className='border px-4 py-2'>{item.title}</td>
+            <td className='border px-4 py-2'>{item.description}</td>
+            <td className='border px-4 py-2'>{item.tenderNumber}</td>
+            <td className='border px-4 py-2'>{item.issuerId}</td>
+            <td className='border px-4 py-2'>{item.createdAt}</td>
+            <td className='border px-4 py-2'>{item.status}</td>
+            <td className='border px-4 py-2 text-center'>
+              <button
+                className='btn btn-warning'
+                onClick={() => handleViewTender(item._id)}
+              >
+                View
+              </button>
+            </td>
           </tr>
-        </thead>
-        <tbody>
-          {data.map((item) => (
-            <tr key={item._id}>
-              <td>{item.title}</td>
-              <td>{item.description}</td>
-              <td>{item.tenderNumber}</td>
-              <td>{item.issuerId}</td>
-              <td>{item.createdAt}</td>
-              <td>{item.status}</td>
-              <td className='text-center'>
-                <button
-                  className='btn btn-warning'
-                  onClick={() => handleViewTender(item._id)}
-                >
-                  View
-                </button>
-              </td>
-            </tr>
-          ))}
-        </tbody>
-      </table>
-
-      {/* Modal to display tender details */}
-      <Modal show={selectedTender !== null} onHide={handleCloseModal}>
-        <Modal.Header closeButton>
-          <Modal.Title>Tender Details</Modal.Title>
-        </Modal.Header>
-        <Modal.Body>
-          {selectedTender && (
-            <div>
-              <h5>Title: {selectedTender.title}</h5>
-              <p>Description: {selectedTender.description}</p>
-              <p>Tender Number: {selectedTender.tenderNumber}</p>
-              <p>Issuer ID: {selectedTender.issuerId}</p>
-              <p>Created At: {selectedTender.createdAt}</p>
-              <p>Status: {selectedTender.status}</p>
-            </div>
-          )}
-        </Modal.Body>
-        <Modal.Footer className='text-center'>
-          <button
-            className='btn btn-primary mx-auto px-5'
-            onClick={handleCloseModal}
-            disabled={selectedTender && selectedTender.status !== 'open'} // Disable the button if the status is not 'open'
-          >
-            Bid
-          </button>
-          <input
-            type="number"
-            value={bidAmount}
-            onChange={handleBidAmountChange}
-            className='mx-auto text-center'
-            disabled={selectedTender && selectedTender.status !== 'open'} // Disable the input if the status is not 'open'
-          />
-        </Modal.Footer>
+        ))}
+      </tbody>
+    </table>
+    <Modal
+        open={open}
+        onClose={handleClose}
+        aria-labelledby="modal-modal-title"
+        aria-describedby="modal-modal-description"
+      >
+        <Box sx={style}>
+        {selectedTender && (
+          <div>
+            <Typography id="modal-modal-title" variant="h6" component="h2">
+              {selectedTender.title}
+            </Typography>
+            <Typography id="modal-modal-description" sx={{ mt: 2 }}>
+              Description: {selectedTender.description}
+            </Typography>
+            <Typography id="modal-modal-description" sx={{ mt: 2 }}>
+              Tender Number: {selectedTender.tenderNumber}
+            </Typography>
+            <Typography id="modal-modal-description" sx={{ mt: 2 }}>
+              Issuer ID: {selectedTender.issuerId}
+            </Typography>
+            <Typography id="modal-modal-description" sx={{ mt: 2 }}>
+              Created At: {selectedTender.createdAt}
+            </Typography>
+            <Typography id="modal-modal-description" sx={{ mt: 2 }}>
+              Status: {selectedTender.status}
+            </Typography>
+            <Typography className='my-5' id="modal-modal-description" sx={{ mt: 2 }}>
+              Bid Amount:
+              <input
+                type="number"
+                value={bidAmount}
+                onChange={handleBidAmountChange}
+                className='mx-4'
+              />
+            </Typography>
+            <Button onClick={handleCloseModal} className='mx-4' variant="contained">Submit Bid</Button>
+          </div>
+        )}
+        </Box>
       </Modal>
-    </div>
+
+  </div>
   );
 }
 

@@ -1,5 +1,4 @@
 /* eslint-disable */    
-//Author: Dheemanth Rajendra Prasad Kumawat
 import axios from 'axios';
 
 export async function getAllTenders() {
