@@ -1,6 +1,5 @@
-/* eslint-disable no-nested-ternary */
-/* eslint-disable no-shadow */
-/* eslint-disable no-unused-vars */
+/* eslint-disable */
+/* Author: Jaydipsinh Padhiyar */
 import React, { useState } from 'react';
 import {
   Box,
@@ -8,257 +7,236 @@ import {
   TextField,
   Button,
   Typography,
-  Paper,
 } from '@mui/material';
 import ReactQuill from 'react-quill';
 import 'react-quill/dist/quill.snow.css';
+import { useForm, Controller } from 'react-hook-form';
+import { useNavigate } from 'react-router-dom';
+import { createTender, uploadDocuments } from '../../../services/tender';
 
 function TenderForm() {
   const [value, setValue] = useState('');
+  const [step, setStep] = useState(1);
+  const navigate = useNavigate(); // Initialize useNavigate hook
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+    control,
+    setValue: setFormValue,
+    trigger,
+  } = useForm();
 
-  const [formData, setFormData] = useState({
-    tenderName: '',
-    tenderBudget: '',
-    tenderDeadline: '',
-    tenderDescription: '',
-    name: '',
-    email: '',
-    organizationcontact: '',
+  const onSubmit = async (formData) => {
+    try {
+      // Step 1: Create the tender and get the tender ID
+      const tenderData = {
+        title: formData.title,
+        description: value,
+        issuerId: formData.issuerId,
+        organizationId: formData.organizationId,
+        representativeName: formData.name,
+        representativeEmail: formData.email,
+        representativeContact: formData.contactNumber,
+        representativeEmployeeId: formData.employeeId,
+        status: 'open',
+      };
 
-  });
+      const createdTender = await createTender(tenderData);
+      const tenderId = createdTender.id;
 
-  // const handleChange = (e) => {
-  //   setFormData({ ...formData, [e.target.name]: e.target.value });
-  // };
+      // Step 2: Upload documents using the tender ID
+      await uploadDocuments(formData.documents, 'exampleUserId', tenderId);
 
-  const handleChange = (event) => {
-    const { name, value } = event.target;
-
-    let error = '';
-    switch (name) {
-      case 'name':
-        error = value === '' ? 'Name is required' : '';
-        break;
-      case 'email':
-        error = value === ''
-          ? 'Email is required'
-          : !/\S+@\S+\.\S+/.test(value)
-            ? 'Invalid email address'
-            : '';
-        break;
-      case 'contactNumber':
-        error = value === ''
-          ? 'Contact number is required'
-          : !/^\d+$/.test(value)
-            ? 'Invalid contact number'
-            : '';
-        break;
-      case 'employeeId':
-        error = value === '' ? 'Employee ID is required' : '';
-        break;
-      case 'tenderName':
-        error = value === '' ? 'Tender Name is required' : '';
-        break;
-      case 'tenderBudget':
-        error = value === '' ? 'Tender Budget is required' : '';
-        break;
-      case 'tenderDeadline':
-        error = value === '' ? 'Tender Deadline is required' : '';
-        break;
-      default:
-        break;
+      // Navigate to issuer-dashboard after successful creation
+      navigate('/issuer-dashboard');
+    } catch (error) {
+      console.error('There was an error!', error);
     }
-
-    setFormData({
-      ...formData,
-      [name]: value,
-      [`${name}Error`]: error,
-    });
   };
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
+  const handleNextStep = async () => {
+    const isValid =
+      step === 1
+        ? await trigger(['title', 'issuerId', 'organizationId'])
+        : await trigger(['name', 'email', 'contactNumber', 'employeeId']);
+
+    if (isValid && (step === 1 ? value !== '' : true)) {
+      setStep(step + 1);
+    }
+  };
+
+  const handlePrevStep = () => {
+    setStep(step - 1);
   };
 
   return (
-
-  // <Box style={{height:"100vh"}}>
-
     <Box style={{ padding: '1rem', overflow: 'auto' }}>
-      <form onSubmit={handleSubmit}>
+      <form onSubmit={handleSubmit(onSubmit)}>
         <Grid container spacing={3} alignContent="center" justifyContent="center">
-          {/* <Grid  item xs={12}>
-              <Box sx={{ border: '1px solid grey', padding: "2rem" }}>
-                <Typography variant="h6" gutterBottom>
-                  General Information
-                </Typography>
-                <Grid container spacing={2}>
-                  <Grid item xs={6}>
-                    <TextField
-                      name="tenderName"
-                      label="Tender Name"
-                      value={formData.tenderName}
-                      onChange={handleChange}
-                      fullWidth
-                    />
+          {step === 1 && (
+            <>
+              <Grid item xs={12}>
+                <Box sx={{ border: '1px solid grey', padding: '2rem', borderRadius: '8px' }}>
+                  <Typography variant="h6" gutterBottom>
+                    General Information
+                  </Typography>
+                  <Grid container spacing={2}>
+                    <Grid item xs={12} md={6}>
+                      <TextField
+                        name="title"
+                        label="Tender Title"
+                        fullWidth
+                        required
+                        {...register('title', { required: 'Tender Title is required' })}
+                        error={!!errors.title}
+                        helperText={errors.title?.message}
+                      />
+                    </Grid>
+                    <Grid item xs={12} md={6}>
+                      <TextField
+                        name="issuerId"
+                        label="Issuer ID"
+                        fullWidth
+                        required
+                        {...register('issuerId', { required: 'Issuer ID is required' })}
+                        error={!!errors.issuerId}
+                        helperText={errors.issuerId?.message}
+                      />
+                    </Grid>
+                    <Grid item xs={12} md={6}>
+                      <TextField
+                        name="organizationId"
+                        label="Organization ID"
+                        fullWidth
+                        required
+                        {...register('organizationId', { required: 'Organization ID is required' })}
+                        error={!!errors.organizationId}
+                        helperText={errors.organizationId?.message}
+                      />
+                    </Grid>
                   </Grid>
-                  <Grid item xs={12} sm={6}>
-                    <TextField
-                      name="tenderBudget"
-                      label="Tender Budget"
-                      value={formData.tenderBudget}
-                      onChange={handleChange}
-                      fullWidth
-                    />
-                  </Grid>
-                  <Grid item xs={12}>
-                    <TextField
-                      name="tenderDeadline"
-                      label="Tender Deadline"
-                      type="date"
-                      value={formData.tenderDeadline}
-                      onChange={handleChange}
-                      fullWidth
-                      InputLabelProps={{
-                        shrink: true,
-                      }}
-                    />
-                  </Grid>
-                </Grid>
-              </Box>
-            </Grid> */}
-          <Grid item xs={12}>
-            <Box sx={{ border: '1px solid grey', padding: '2rem' }}>
-              <Typography variant="h6" gutterBottom>
-                General Information
-              </Typography>
-              <Grid container spacing={2}>
-                <Grid item xs={6}>
-                  <TextField
-                    name="tenderName"
-                    label="Tender Name"
-                    value={formData.tenderName}
-                    onChange={handleChange}
-                    fullWidth
-                    required
-                    error={!!formData.tenderNameError}
-                    helperText={formData.tenderNameError}
-                  />
-                </Grid>
-                <Grid item xs={12} sm={6}>
-                  <TextField
-                    name="tenderBudget"
-                    label="Tender Budget"
-                    value={formData.tenderBudget}
-                    onChange={handleChange}
-                    fullWidth
-                    required
-                    error={!!formData.tenderBudgetError}
-                    helperText={formData.tenderBudgetError}
-                  />
-                </Grid>
-                <Grid item xs={3}>
-                  <TextField
-                    name="tenderDeadline"
-                    label="Tender Deadline"
-                    type="date"
-                    value={formData.tenderDeadline}
-                    onChange={handleChange}
-                    fullWidth
-                    required
-                    error={!!formData.tenderDeadlineError}
-                    helperText={formData.tenderDeadlineError}
-                    InputLabelProps={{
-                      shrink: true,
-                    }}
-                  />
-                </Grid>
+                </Box>
               </Grid>
-            </Box>
-          </Grid>
-          <Grid item xs={12}>
-            <Box sx={{ border: '1px solid grey', padding: 2 }}>
-              <Typography variant="h6" gutterBottom>
-                Project Description
-              </Typography>
-
-              <ReactQuill theme="snow" value={value} onChange={setValue} />
-            </Box>
-          </Grid>
-
-          <Grid item xs={12}>
-            <Box sx={{ border: '1px solid grey', padding: '2rem' }}>
-              <Typography variant="h6" gutterBottom>
-                Purchase Representative Contact Details
-              </Typography>
-              <Grid container spacing={2}>
-                <Grid item xs={12} sm={6}>
-                  <TextField
-                    name="name"
-                    label="Name"
-                    value={formData.name}
-                    onChange={handleChange}
-                    fullWidth
-                    required
-                    error={formData.nameError}
-                    helperText={formData.nameError}
+              <Grid item xs={12}>
+                <Box sx={{ border: '1px solid grey', padding: '2rem', borderRadius: '8px' }}>
+                  <Typography variant="h6" gutterBottom>
+                    Project Description
+                  </Typography>
+                  <Controller
+                    control={control}
+                    name="description"
+                    render={({ field }) => (
+                      <ReactQuill theme="snow" value={value} onChange={setValue} />
+                    )}
                   />
-                </Grid>
-                <Grid item xs={12} sm={6}>
-                  <TextField
-                    name="email"
-                    label="Email"
-                    value={formData.email}
-                    onChange={handleChange}
-                    fullWidth
-                    required
-                    error={formData.emailError}
-                    helperText={formData.emailError}
-                  />
-                </Grid>
-                <Grid item xs={12} sm={6}>
-                  <TextField
-                    name="contactNumber"
-                    label="Contact Number"
-                    value={formData.contactNumber}
-                    onChange={handleChange}
-                    fullWidth
-                    required
-                    error={formData.contactNumberError}
-                    helperText={formData.contactNumberError}
-                  />
-                </Grid>
-                <Grid item xs={12} sm={6}>
-                  <TextField
-                    name="employeeId"
-                    label="Employee ID"
-                    value={formData.employeeId}
-                    onChange={handleChange}
-                    fullWidth
-                    required
-                    error={formData.employeeIdError}
-                    helperText={formData.employeeIdError}
-                  />
-                </Grid>
+                  {errors.description && <span className="text-red-500 text-sm">{errors.description.message}</span>}
+                </Box>
               </Grid>
-            </Box>
-          </Grid>
-
-          <Grid item lg={4}>
-            <Button
-              type="submit"
-              variant="contained"
-              color="primary"
-              fullWidth
-            >
-              Create Tender
-            </Button>
-          </Grid>
+              <Grid item xs={3}>
+                <Button variant="contained" color="primary" onClick={handleNextStep} fullWidth>
+                  Next
+                </Button>
+              </Grid>
+            </>
+          )}
+          {step === 2 && (
+            <>
+              <Grid item xs={12}>
+                <Box sx={{ border: '1px solid grey', padding: '2rem', borderRadius: '8px' }}>
+                  <Typography variant="h6" gutterBottom>
+                    Purchase Representative Contact Details
+                  </Typography>
+                  <Grid container spacing={2}>
+                    <Grid item xs={12} md={6}>
+                      <TextField
+                        name="name"
+                        label="Name"
+                        fullWidth
+                        required
+                        {...register('name', { required: 'Name is required' })}
+                        error={!!errors.name}
+                        helperText={errors.name?.message}
+                      />
+                    </Grid>
+                    <Grid item xs={12} md={6}>
+                      <TextField
+                        name="email"
+                        label="Email"
+                        fullWidth
+                        required
+                        {...register('email', { 
+                          required: 'Email is required', 
+                          pattern: {
+                            value: /\S+@\S+\.\S+/,
+                            message: 'Invalid email address'
+                          } 
+                        })}
+                        error={!!errors.email}
+                        helperText={errors.email?.message}
+                      />
+                    </Grid>
+                    <Grid item xs={12} md={6}>
+                      <TextField
+                        name="contactNumber"
+                        label="Contact Number"
+                        fullWidth
+                        required
+                        {...register('contactNumber', { 
+                          required: 'Contact number is required', 
+                          pattern: {
+                            value: /^\d+$/,
+                            message: 'Invalid contact number'
+                          } 
+                        })}
+                        error={!!errors.contactNumber}
+                        helperText={errors.contactNumber?.message}
+                      />
+                    </Grid>
+                    <Grid item xs={12} md={6}>
+                      <TextField
+                        name="employeeId"
+                        label="Employee ID"
+                        fullWidth
+                        required
+                        {...register('employeeId', { required: 'Employee ID is required' })}
+                        error={!!errors.employeeId}
+                        helperText={errors.employeeId?.message}
+                      />
+                    </Grid>
+                  </Grid>
+                </Box>
+              </Grid>
+              <Grid item xs={12}>
+                <Box sx={{ border: '1px solid grey', padding: '2rem', borderRadius: '8px' }}>
+                  <Typography variant="h6" gutterBottom>
+                    Document Upload
+                  </Typography>
+                  <Controller
+                    control={control}
+                    name="documents"
+                    render={({ field }) => (
+                      <input type="file" multiple onChange={(e) => setFormValue('documents', e.target.files)} />
+                    )}
+                  />
+                  {errors.documents && <span className="text-red-500 text-sm">{errors.documents.message}</span>}
+                </Box>
+              </Grid>
+              <Grid item xs={6}>
+                <Button variant="contained" color="primary" onClick={handlePrevStep} fullWidth>
+                  Back
+                </Button>
+              </Grid>
+              <Grid item xs={6}>
+                <Button type="submit" variant="contained" color="primary" fullWidth>
+                  Create Tender
+                </Button>
+              </Grid>
+            </>
+          )}
         </Grid>
       </form>
     </Box>
-    // </Box>
-
   );
 }
 
