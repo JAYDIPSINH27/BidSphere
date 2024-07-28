@@ -44,7 +44,7 @@ function RouteConfig() {
       <Route path="/forget-password" element={<ForgetPassword />} />
       <Route path="/reset-password/:token" element={<ResetPassword />} />
       <Route path="/bidder-dashboard" element={<BidderDashboard />} />
-      <Route path="/issuer-dashboard" element={<IssuerDashboard />} />
+      <Route path="/issuer-dashboard/:issuerId" element={<IssuerDashboard />} />
       <Route path="/issuer-dashboard/new-tender" element={<AddTenders />} />
       <Route path="*" element={<PageNotFound />} />
     </Routes>
