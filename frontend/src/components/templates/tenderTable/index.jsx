@@ -1,5 +1,5 @@
 /* Author: Ashish Bhasin */
-/* eslint-disable react/no-array-index-key */
+/* eslint-disable*/
 import PropTypes from 'prop-types';
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
@@ -9,6 +9,7 @@ import TableFooter from '../../atoms/tableFooter';
 import useTable from './hooks/useTable';
 import TenderSearchFilter from '../../molecules/tenderSearchFilter';
 import useFilter from './hooks/useFilter';
+import { Edit, Delete } from '@mui/icons-material';
 
 export const TenderTable = ({ data, rowsPerPage }) => {
   const navigate = useNavigate();
@@ -70,6 +71,13 @@ export const TenderTable = ({ data, rowsPerPage }) => {
                         <img className="h-5 w-5 sm:h-6 sm:w-6 rounded-full bg-white mr-1 sm:mr-2" src={view} alt="view" />
                         <span className="hidden sm:inline">View</span>
                       </button>
+                      <button>
+                      <Edit /><span className="hidden sm:inline">Edit</span>
+                    </button>
+                    <button>
+
+                      <Delete /> <span className="hidden sm:inline">Delete</span>
+                    </button>
                     </div>
                   </td>
                 </tr>
