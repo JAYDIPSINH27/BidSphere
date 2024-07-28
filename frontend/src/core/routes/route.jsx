@@ -5,6 +5,7 @@ import { Route, Routes } from 'react-router-dom';
 /* internal components */
 import QuestionAndAnswer from '@organisms/Q&A/Questionaire';
 import QnAPage from '@components/organisms/Q&A/NestedComment';
+import ContractManagement from '@pages/ManageContract';
 import App from '../App';
 import Pricing from '../../components/pages/Pricing';
 import PageNotFound from '../../shared/components/PageNotFound';
@@ -22,6 +23,7 @@ import IssuerDashboard from '../../components/pages/IssuerDashboard';
 // import PrivateRoute from './PrivateRoute';
 // import Tenders from '../../components/pages/TenderIssuer/Tenders';
 import AddTenders from '../../components/pages/TenderIssuer/AddTenders';
+
 function RouteConfig() {
   return (
     <Routes>
@@ -46,6 +48,7 @@ function RouteConfig() {
       <Route path="/bidder-dashboard" element={<BidderDashboard />} />
       <Route path="/issuer-dashboard/:issuerId" element={<IssuerDashboard />} />
       <Route path="/issuer-dashboard/new-tender" element={<AddTenders />} />
+      <Route path="/manage-contract/:tenderId" element={<ContractManagement />} />
       <Route path="*" element={<PageNotFound />} />
     </Routes>
   );
