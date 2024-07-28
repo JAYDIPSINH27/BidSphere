@@ -9,7 +9,7 @@ import GrainIcon from '@mui/icons-material/Grain';
 import WorkIcon from '@mui/icons-material/Work';
 import { useLocation, NavLink as RouterLink } from 'react-router-dom';
 import { Box } from '@mui/material';
-
+import Home from '@mui/icons-material/Home';
 export default function IconBreadcrumbs() {
   function handleClick(event) {
     event.preventDefault();
@@ -44,9 +44,7 @@ export default function IconBreadcrumbs() {
                   : (
                     <Link color="inherit" component={RouterLink} to={to} key={value}>
                       <Typography color={value === 'home' ? 'black' : 'green'} sx={{ display: 'flex', alignItems: 'center' }}>
-                        {value === 'home'
-                          ? <Home sx={{ mr: 0.5 }} fontSize="inherit" />
-                          : <WorkIcon sx={{ mr: 0.5 }} fontSize="inherit" />}
+                        <Home sx={{ mr: 0.5 }} fontSize="inherit" />
                         {value}
                       </Typography>
                     </Link>

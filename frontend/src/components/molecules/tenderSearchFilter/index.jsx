@@ -75,7 +75,7 @@ const TenderSearchFilter = ({ setFilters }) => {
         classes="rounded px-1 py-1 w-full md:w-auto bg-black text-white"
         onClick={() => handleNavigate()}
       >
-        Tender
+        Tender+
       </Button>
     </div>
   );

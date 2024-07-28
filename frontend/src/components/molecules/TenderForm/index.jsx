@@ -1,4 +1,4 @@
-/* eslint-disable */
+/*eslint-disable*/
 /* Author: Jaydipsinh Padhiyar */
 import React, { useState } from 'react';
 import {
@@ -15,7 +15,9 @@ import { useNavigate } from 'react-router-dom';
 import { createTender, uploadDocuments } from '../../../services/tender';
 
 function TenderForm() {
-  const [value, setValue] = useState('');
+  const issuerId = sessionStorage.getItem('issuer_id');
+  console.log(issuerId)
+  const [value, setValue] = useState('<p>Tender description goes here.</p><p>Provide as much project details as required.</p>');
   const [step, setStep] = useState(1);
   const navigate = useNavigate(); // Initialize useNavigate hook
   const {
@@ -33,7 +35,7 @@ function TenderForm() {
       const tenderData = {
         title: formData.title,
         description: value,
-        issuerId: formData.issuerId,
+        issuerId,
         organizationId: formData.organizationId,
         representativeName: formData.name,
         representativeEmail: formData.email,
@@ -45,8 +47,7 @@ function TenderForm() {
       const createdTender = await createTender(tenderData);
       const tenderId = createdTender.id;
 
-      // Step 2: Upload documents using the tender ID
-      await uploadDocuments(formData.documents, 'exampleUserId', tenderId);
+      await uploadDocuments(formData.documents, issuerId, tenderId);
 
       // Navigate to issuer-dashboard after successful creation
       navigate('/issuer-dashboard');
@@ -56,10 +57,9 @@ function TenderForm() {
   };
 
   const handleNextStep = async () => {
-    const isValid =
-      step === 1
-        ? await trigger(['title', 'issuerId', 'organizationId'])
-        : await trigger(['name', 'email', 'contactNumber', 'employeeId']);
+    const isValid = step === 1
+      ? await trigger(['title', 'organizationId'])
+      : await trigger(['name', 'email', 'contactNumber', 'employeeId']);
 
     if (isValid && (step === 1 ? value !== '' : true)) {
       setStep(step + 1);
@@ -77,7 +77,7 @@ function TenderForm() {
           {step === 1 && (
             <>
               <Grid item xs={12}>
-                <Box sx={{ border: '1px solid grey', padding: '2rem', borderRadius: '8px' }}>
+                <Box sx={{ border: '1px solid grey', padding: '2rem', borderRadius: '8px', backgroundColor:'whitesmoke' }}>
                   <Typography variant="h6" gutterBottom>
                     General Information
                   </Typography>
@@ -95,13 +95,11 @@ function TenderForm() {
                     </Grid>
                     <Grid item xs={12} md={6}>
                       <TextField
+                        disabled
+                        value={issuerId}
                         name="issuerId"
                         label="Issuer ID"
                         fullWidth
-                        required
-                        {...register('issuerId', { required: 'Issuer ID is required' })}
-                        error={!!errors.issuerId}
-                        helperText={errors.issuerId?.message}
                       />
                     </Grid>
                     <Grid item xs={12} md={6}>
@@ -119,14 +117,14 @@ function TenderForm() {
                 </Box>
               </Grid>
               <Grid item xs={12}>
-                <Box sx={{ border: '1px solid grey', padding: '2rem', borderRadius: '8px' }}>
+                <Box sx={{ border: '1px solid grey', padding: '2rem', borderRadius: '8px', backgroundColor:'whitesmoke' }}>
                   <Typography variant="h6" gutterBottom>
                     Project Description
                   </Typography>
                   <Controller
                     control={control}
                     name="description"
-                    render={({ field }) => (
+                    render={() => (
                       <ReactQuill theme="snow" value={value} onChange={setValue} />
                     )}
                   />
@@ -143,7 +141,7 @@ function TenderForm() {
           {step === 2 && (
             <>
               <Grid item xs={12}>
-                <Box sx={{ border: '1px solid grey', padding: '2rem', borderRadius: '8px' }}>
+                <Box sx={{ border: '1px solid grey', padding: '2rem', borderRadius: '8px', backgroundColor:'whitesmoke' }}>
                   <Typography variant="h6" gutterBottom>
                     Purchase Representative Contact Details
                   </Typography>
@@ -165,12 +163,12 @@ function TenderForm() {
                         label="Email"
                         fullWidth
                         required
-                        {...register('email', { 
-                          required: 'Email is required', 
+                        {...register('email', {
+                          required: 'Email is required',
                           pattern: {
                             value: /\S+@\S+\.\S+/,
-                            message: 'Invalid email address'
-                          } 
+                            message: 'Invalid email address',
+                          },
                         })}
                         error={!!errors.email}
                         helperText={errors.email?.message}
@@ -182,12 +180,12 @@ function TenderForm() {
                         label="Contact Number"
                         fullWidth
                         required
-                        {...register('contactNumber', { 
-                          required: 'Contact number is required', 
+                        {...register('contactNumber', {
+                          required: 'Contact number is required',
                           pattern: {
                             value: /^\d+$/,
-                            message: 'Invalid contact number'
-                          } 
+                            message: 'Invalid contact number',
+                          },
                         })}
                         error={!!errors.contactNumber}
                         helperText={errors.contactNumber?.message}
@@ -208,15 +206,15 @@ function TenderForm() {
                 </Box>
               </Grid>
               <Grid item xs={12}>
-                <Box sx={{ border: '1px solid grey', padding: '2rem', borderRadius: '8px' }}>
+                <Box sx={{ border: '1px solid grey', padding: '2rem', borderRadius: '8px', backgroundColor:'whitesmoke' }}>
                   <Typography variant="h6" gutterBottom>
                     Document Upload
                   </Typography>
                   <Controller
                     control={control}
                     name="documents"
-                    render={({ field }) => (
-                      <input type="file" multiple onChange={(e) => setFormValue('documents', e.target.files)} />
+                    render={() => (
+                      <input type="file" multiple onChange={e => setFormValue('documents', e.target.files)} />
                     )}
                   />
                   {errors.documents && <span className="text-red-500 text-sm">{errors.documents.message}</span>}
