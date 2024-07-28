@@ -11,7 +11,7 @@ export default function SelectBox({
 }) {
   return (
     <FormControl
-      className="mx-1 w-full md:w-[20rem] bg-white"
+      className="mx-1 w-full md:w-4/5 lg:3/5 lg:max-w-56 bg-white"
       size="small"
     >
       <InputLabel id="demo-select-small-label">Status</InputLabel>

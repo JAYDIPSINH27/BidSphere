@@ -35,14 +35,14 @@ const TenderSearchFilter = ({ setFilters }) => {
   return (
     <div className="flex flex-col md:flex-row md:justify-self-end lg:w-full sm:w-auto space-y-2 md:space-y-0 md:space-x-2">
       <Input
-        className="rounded px-3 py-1 w-4/5 lg:w-auto border-gray-90"
+        className="rounded px-3 py-2 w-full md:w-4/5 lg:max-w-56 border border-gray-90 focus:outline-none focus:ring-2 focus:ring-bsnavyblue"
         placeholder="Name"
         value={name}
         onChange={e => setName(e.target.value)}
       />
       <SelectBox
         classes="rounded px-3 py-1 w-full md:w-auto"
-        options={['closed', 'open']}
+        options={['closed', 'open', 'awarded']}
         label="Status"
         value={status}
         onChange={e => setStatus(e.target.value)}
@@ -60,19 +60,19 @@ const TenderSearchFilter = ({ setFilters }) => {
         onChange={date => setEndDate(date)}
       />
       <Button
-        classes="rounded px-3 py-1 w-full md:w-auto bg-bslightblue text-white"
+        classes="rounded px-1 py-1 w-full md:w-auto bg-bslightblue text-white"
         onClick={() => filterResult()}
       >
         Filter
       </Button>
       <Button
-        classes="rounded px-3 py-1 w-full md:w-auto bg-black text-white"
+        classes="rounded px-1 py-1 w-full md:w-auto bg-black text-white"
         onClick={() => clearResult()}
       >
         Clear
       </Button>
       <Button
-        classes="rounded w-2 px-3 py-1 w-full md:w-auto bg-black text-white"
+        classes="rounded px-1 py-1 w-full md:w-auto bg-black text-white"
         onClick={() => handleNavigate()}
       >
         Tender

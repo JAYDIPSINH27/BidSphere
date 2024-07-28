@@ -6,7 +6,7 @@ import { LocalizationProvider } from '@mui/x-date-pickers';
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 import dayjs from 'dayjs';
 
-export const DateSelector = ({ date = null, onChange = () => {}, label = '' }) => (
+export const DateSelector = ({ date = null, onChange = () => { }, label = '' }) => (
   <LocalizationProvider dateAdapter={AdapterDayjs}>
     <DatePicker
       className="text-sm bg-white"
@@ -24,7 +24,7 @@ export const DateSelector = ({ date = null, onChange = () => {}, label = '' }) =
           height: '40px',
         },
         '& .MuiInputBase-input': {
-          padding: '10px 14px',
+          padding: '10px 10px',
         },
         '& .MuiOutlinedInput-notchedOutline': {
           borderColor: 'rgba(0, 0, 0, 0.23)',
