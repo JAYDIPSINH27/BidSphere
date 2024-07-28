@@ -41,7 +41,7 @@ function RouteConfig() {
       <Route path="/forget-password" element={<ForgetPassword />} />
       <Route path="/reset-password/:token" element={<ResetPassword />} />
       <Route path="/bidder-dashboard" element={<PrivateRoute><BidderDashboard /></PrivateRoute>} />
-      <Route path="/issuer-dashboard/:issuerId" element={<PrivateRoute><IssuerDashboard /></PrivateRoute>} />
+      <Route path="/issuer-dashboard" element={<PrivateRoute><IssuerDashboard /></PrivateRoute>} />
       <Route path="/issuer-dashboard/new-tender" element={<PrivateRoute><AddTenders /></PrivateRoute>} />
       <Route path="/manage-contract/:tenderId" element={<PrivateRoute><ContractManagement /></PrivateRoute>} />
       <Route path="*" element={<PageNotFound />} />
