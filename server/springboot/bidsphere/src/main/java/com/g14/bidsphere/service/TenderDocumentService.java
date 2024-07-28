@@ -92,12 +92,32 @@ public class TenderDocumentService {
         return savedDocuments;
     }
 
-    public TenderDocument updateDocument(String id, TenderDocument document) {
+    public TenderDocument updateDocument(String id, MultipartFile file) throws IOException {
         return tenderDocumentRepository.findById(id).map(existingDocument -> {
-            existingDocument.setUrl(document.getUrl());
-            existingDocument.setType(document.getType());
-            existingDocument.setUploadedAt(new Date());
-            return tenderDocumentRepository.save(existingDocument);
+            String key = Paths.get("documents", existingDocument.getUserId(), existingDocument.getTenderId(), file.getOriginalFilename()).toString().replace("\\", "/");
+
+            PutObjectRequest putObjectRequest = PutObjectRequest.builder()
+                    .bucket(bucketName)
+                    .key(key)
+                    .build();
+
+            PutObjectResponse putObjectResponse = null;
+            try {
+                putObjectResponse = s3Client.putObject(putObjectRequest, software.amazon.awssdk.core.sync.RequestBody.fromBytes(file.getBytes()));
+            } catch (IOException e) {
+                throw new RuntimeException(e);
+            }
+
+            if (putObjectResponse.sdkHttpResponse().isSuccessful()) {
+                String fileUrl = String.format("https://%s.s3.%s.amazonaws.com/%s", bucketName, region, key);
+
+                existingDocument.setUrl(fileUrl);
+                existingDocument.setUploadedAt(new Date());
+
+                return tenderDocumentRepository.save(existingDocument);
+            } else {
+                throw new RuntimeException("Failed to upload document to S3");
+            }
         }).orElseThrow(() -> new RuntimeException("Document not found with id " + id));
     }
 

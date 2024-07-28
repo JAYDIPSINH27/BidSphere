@@ -13,7 +13,7 @@ import 'react-quill/dist/quill.snow.css';
 import { useForm, Controller } from 'react-hook-form';
 import { useNavigate } from 'react-router-dom';
 import { createTender, uploadDocuments } from '../../../services/tender';
-
+import toast from 'react-hot-toast';
 function TenderForm() {
   const issuerId = sessionStorage.getItem('issuer_id');
   console.log(issuerId)
@@ -47,7 +47,10 @@ function TenderForm() {
       const createdTender = await createTender(tenderData);
       const tenderId = createdTender.id;
 
-      await uploadDocuments(formData.documents, issuerId, tenderId);
+      await uploadDocuments(formData.documents, issuerId, tenderId)
+      .then(() => {
+        toast.success('Tender Created Successfully');
+      });
 
       // Navigate to issuer-dashboard after successful creation
       navigate('/issuer-dashboard');

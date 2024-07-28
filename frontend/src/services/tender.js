@@ -57,3 +57,21 @@ export const updateTender = async (tenderId, tenderData) => {
     throw error;
   }
 };
+
+// Function to update a document
+export const updateDocument = async (documentId, file) => {
+  const formData = new FormData();
+  formData.append('file', file);
+
+  try {
+    const response = await axios.put(`${API_BASE_URL}/documents/${documentId}`, formData, {
+      headers: {
+        'Content-Type': 'multipart/form-data',
+      },
+    });
+    return response.data;
+  } catch (error) {
+    console.error('Error updating document:', error);
+    throw error;
+  }
+};

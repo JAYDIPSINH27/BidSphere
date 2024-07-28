@@ -39,8 +39,8 @@ public class TenderDocumentController {
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<TenderDocument> updateDocument(@PathVariable String id, @RequestBody TenderDocument document) {
-        return ResponseEntity.ok(tenderDocumentService.updateDocument(id, document));
+    public ResponseEntity<TenderDocument> updateDocument(@PathVariable String id, @RequestParam("file") MultipartFile file) throws IOException {
+        return ResponseEntity.ok(tenderDocumentService.updateDocument(id, file));
     }
 
     @DeleteMapping("/{id}")

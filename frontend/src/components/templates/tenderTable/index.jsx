@@ -10,12 +10,20 @@ import useTable from './hooks/useTable';
 import TenderSearchFilter from '../../molecules/tenderSearchFilter';
 import useFilter from './hooks/useFilter';
 import { Edit, Delete } from '@mui/icons-material';
+import EditTenderDialog from '../../atoms/EditTenderDialogue';
+import DeleteTenderDialog from '../../atoms/DeleteTenderDialogue';
+import EditDocumentDialog from '../../atoms/EditDocumentDialogue';
 
 export const TenderTable = ({ data, rowsPerPage }) => {
   const navigate = useNavigate();
   const [page, setPage] = useState(1);
   const [filters, setFilters] = useState({});
   const [open, setOpen] = React.useState(false);
+  const [editOpen, setEditOpen] = useState(false);
+  const [deleteOpen, setDeleteOpen] = useState(false);
+  const [editDocOpen, setEditDocOpen] = useState(false);
+  const [selectedTender, setSelectedTender] = useState(null);
+  const [selectedDocument, setSelectedDocument] = useState(null);
   const columnKeys = ['tenderNumber', 'title', 'status', 'createdAt'];
   const { filterData } = useFilter(data, filters, setOpen);
   const { slice, range } = useTable(filterData, page, rowsPerPage);
@@ -24,6 +32,36 @@ export const TenderTable = ({ data, rowsPerPage }) => {
   const checkTender = (id) => {
     navigate(`/manage-contract/${id}`);
   };
+
+  const handleEditOpen = (tender) => {
+    setSelectedTender(tender);
+    setEditOpen(true);
+  };
+
+  const handleEditClose = () => {
+    setEditOpen(false);
+    setSelectedTender(null);
+  };
+
+  const handleDeleteOpen = (tender) => {
+    setSelectedTender(tender);
+    setDeleteOpen(true);
+  };
+
+  const handleDeleteClose = () => {
+    setDeleteOpen(false);
+    setSelectedTender(null);
+  };
+
+  // const handleEditDocOpen = (document) => {
+  //   setSelectedDocument(document);
+  //   setEditDocOpen(true);
+  // };
+
+  // const handleEditDocClose = () => {
+  //   setEditDocOpen(false);
+  //   setSelectedDocument(null);
+  // };
 
   const handleClose = () => {
     setOpen(false);
@@ -66,11 +104,23 @@ export const TenderTable = ({ data, rowsPerPage }) => {
                     col !== 'id' && <td key={col} className="max-w-44 truncate ... px-4 py-2 sm:px-6 sm:py-3 whitespace-nowrap text-sm text-gray-600">{obj[col]}</td>
                   ))}
                   <td className="px-4 py-2 sm:px-6 sm:py-3 whitespace-nowrap text-sm text-gray-600">
-                    <div className="flex items-center">
-                      <button className="flex items-center" onClick={() => checkTender(obj.id)}>
-                        <img className="h-5 w-5 sm:h-6 sm:w-6 rounded-full bg-white mr-1 sm:mr-2" src={view} alt="view" />
+                    <div className="flex items-center space-x-4">
+                      <button className="flex items-center mr-1 sm:mr-2" onClick={() => checkTender(obj.id)}>
+                        <img className="h-5 w-5 sm:h-6  rounded-full bg-white mr-1 text-black" src={view} alt="view" />
                         <span className="hidden sm:inline">View</span>
                       </button>
+                      <button className="flex items-center mr-1" onClick={() => handleEditOpen(obj)}>
+                        <Edit className='text-black mr-1 sm:mr-2' />
+                        <span className="hidden sm:inline">Edit</span>
+                      </button>
+                      <button className="flex items-center mr-1" onClick={() => handleDeleteOpen(obj)}>
+                        <Delete className='text-black mr-1 sm:mr-2 '/>
+                        <span className="hidden sm:inline">Delete</span>
+                      </button>
+                      {/* <button className="flex items-center mr-1" onClick={() => handleEditDocOpen(obj)}>
+                        <Edit className='text-black mr-1 sm:mr-2' />
+                        <span className="hidden sm:inline">Edit Document</span>
+                      </button> */}
                     </div>
                   </td>
                 </tr>
@@ -89,6 +139,21 @@ export const TenderTable = ({ data, rowsPerPage }) => {
         </div>
         <TableFooter range={range} slice={slice} setPage={setPage} page={page} />
       </div>
+      <EditTenderDialog
+        open={editOpen}
+        handleClose={handleEditClose}
+        tender={selectedTender}
+      />
+      <DeleteTenderDialog
+        open={deleteOpen}
+        handleClose={handleDeleteClose}
+        tenderId={selectedTender?.id}
+      />
+      {/* <EditDocumentDialog
+        open={editDocOpen}
+        handleClose={handleEditDocClose}
+        document={selectedDocument}
+      /> */}
     </>
   );
 };
@@ -97,3 +162,5 @@ TenderTable.propTypes = {
   data: PropTypes.array.isRequired,
   rowsPerPage: PropTypes.number.isRequired,
 };
+
+export default TenderTable;
