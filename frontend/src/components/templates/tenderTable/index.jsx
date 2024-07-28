@@ -71,13 +71,6 @@ export const TenderTable = ({ data, rowsPerPage }) => {
                         <img className="h-5 w-5 sm:h-6 sm:w-6 rounded-full bg-white mr-1 sm:mr-2" src={view} alt="view" />
                         <span className="hidden sm:inline">View</span>
                       </button>
-                      <button>
-                      <Edit /><span className="hidden sm:inline">Edit</span>
-                    </button>
-                    <button>
-
-                      <Delete /> <span className="hidden sm:inline">Delete</span>
-                    </button>
                     </div>
                   </td>
                 </tr>

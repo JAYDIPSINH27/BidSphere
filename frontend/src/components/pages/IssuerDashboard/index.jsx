@@ -1,7 +1,6 @@
 /* Author: Ashish Bhasin */
-/* eslint-disable no-unused-vars */
 import React, { useEffect, useState } from 'react';
-import { useParams } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import {
   Chart as ChartJS, ArcElement,
   CategoryScale,
@@ -27,26 +26,37 @@ ChartJS.register(
   Legend,
 );
 function IssuerDashboard() {
-  useEffect(() => {
-    document.title = 'Issuer Dashboard';
-  }, []);
-  const { issuerId } = useParams();
+  const [issuerId, setIssuerId] = useState(null);
+  const navigate = useNavigate();
   const [tenders, setTenders] = useState([]);
   const [statusData, setStatusData] = useState(null);
   const [tenderCountData, setTenderCountData] = useState(null);
   const [showGraphs, setShowGraphs] = useState(false);
   useEffect(() => {
-    getTenders(issuerId).then((data) => {
-      if (data.status === 200) {
-        setTenders(data.data.tenderItems);
-        if (Object.keys(data.data.tenderStatusDetails).length > 0) {
-          statusChartData(data.data.tenderStatusDetails);
-          tendersData(data.data.tenderCountDetails);
-          setShowGraphs(true);
+    document.title = 'Issuer Dashboard';
+    const issuer = sessionStorage.getItem('issuer_id');
+    if (!issuer) {
+      navigate('/signin');
+    } else {
+      setIssuerId(issuer);
+    }
+  }, [navigate]);
+
+  useEffect(() => {
+    if (issuerId) {
+      getTenders(issuerId).then((data) => {
+        if (data.status === 200) {
+          const tenderData = data.data.data;
+          setTenders(tenderData.tenderItems);
+          if (Object.keys(tenderData.tenderStatusDetails).length > 0) {
+            statusChartData(tenderData.tenderStatusDetails);
+            tendersData(tenderData.tenderCountDetails);
+            setShowGraphs(true);
+          }
         }
-      }
-    });
-  }, []);
+      });
+    }
+  }, [issuerId]);
 
   function statusChartData(tenderStatusDetails) {
     const data = {

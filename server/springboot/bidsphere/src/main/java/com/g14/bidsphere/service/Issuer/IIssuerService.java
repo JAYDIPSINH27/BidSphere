@@ -1,5 +1,5 @@
 // Author: Ashish Bhasin
-package com.g14.bidsphere.service;
+package com.g14.bidsphere.service.Issuer;
 
 
 import com.g14.bidsphere.Dto.IssuerDashboardDto;

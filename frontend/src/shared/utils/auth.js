@@ -21,4 +21,5 @@ export const getUserFromToken = () => {
 export const clearUserToken = () => {
   localStorage.removeItem('token');
   sessionStorage.removeItem('token');
+  sessionStorage.removeItem('issuer_id');
 };
