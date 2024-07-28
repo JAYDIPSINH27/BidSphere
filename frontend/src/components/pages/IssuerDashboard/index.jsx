@@ -1,6 +1,7 @@
 /* Author: Ashish Bhasin */
 /* eslint-disable no-unused-vars */
 import React, { useEffect, useState } from 'react';
+import { useParams } from 'react-router-dom';
 import {
   Chart as ChartJS, ArcElement,
   CategoryScale,
@@ -29,19 +30,21 @@ function IssuerDashboard() {
   useEffect(() => {
     document.title = 'Issuer Dashboard';
   }, []);
+  const { issuerId } = useParams();
   const [tenders, setTenders] = useState([]);
   const [statusData, setStatusData] = useState(null);
   const [tenderCountData, setTenderCountData] = useState(null);
   const [showGraphs, setShowGraphs] = useState(false);
   useEffect(() => {
-    getTenders().then((data) => {
+    getTenders(issuerId).then((data) => {
       if (data.status === 200) {
         setTenders(data.data.tenderItems);
-        statusChartData(data.data.tenderStatusDetails);
-        tendersData(data.data.tenderCountDetails);
-        setShowGraphs(true);
+        if (Object.keys(data.data.tenderStatusDetails).length > 0) {
+          statusChartData(data.data.tenderStatusDetails);
+          tendersData(data.data.tenderCountDetails);
+          setShowGraphs(true);
+        }
       }
-      // console.log(tenders);
     });
   }, []);
 

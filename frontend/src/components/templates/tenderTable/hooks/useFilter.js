@@ -1,7 +1,7 @@
 /* Author: Ashish Bhasin */
 import { useState, useEffect } from 'react';
 
-const useFilter = (data, filters) => {
+const useFilter = (data, filters, setOpen) => {
   const [filterData, setFilterData] = useState([]);
   let isFilterPresent = false;
   useEffect(() => {
@@ -28,8 +28,7 @@ const useFilter = (data, filters) => {
     }
     setFilterData([...filteredTenders]);
     if (filteredTenders.length === 0 && isFilterPresent) {
-      // eslint-disable-next-line no-console
-      console.log('No results found matching result criteria! please try again');
+      setOpen(true);
     }
   }, [data, setFilterData, filters]);
 
