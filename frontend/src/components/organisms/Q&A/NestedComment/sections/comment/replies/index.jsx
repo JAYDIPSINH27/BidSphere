@@ -8,13 +8,15 @@ import { message } from 'antd';
 import cx from 'classnames';
 import moment from 'moment';
 import { CaretUpOutlined, CaretDownOutlined } from '@ant-design/icons';
+/* utils */
+import { getUserFromToken } from '@shared/utils/auth';
+import QnAUtility from '../../../utils';
 /* service */
 import { replyToComment } from '../comment.service';
 /* slice */
 import { setComment } from '../slice/commentsSlice';
 /* styles */
 import styles from '../../../NestedComment.module.scss';
-import QnAUtility from '../../../utils';
 
 const Replies = ({ comment = {}, fetchComment }) => {
   const { qId } = useParams();
@@ -22,8 +24,7 @@ const Replies = ({ comment = {}, fetchComment }) => {
   const [replyText, setReplyText] = useState('');
   const [replyCardCollapse, setReplyCardCollapse] = useState(true);
   const [showReplyInput, setShowReplyInput] = useState(false);
-  // const { userFullName = '' } = useSelector(state => state.userSlice); // TODO
-  const userFullName = 'userFullName';
+  const { name = '' } = getUserFromToken();
 
   const {
     userName = 'anonymous',
@@ -40,7 +41,7 @@ const Replies = ({ comment = {}, fetchComment }) => {
       questionId: qId,
       text: replyText,
       answeredDate: new Date().valueOf(),
-      userName: /* userFullName */ 'userFullName',
+      userName: name,
     };
     await replyToComment(payload)
       .then((response) => {
@@ -150,10 +151,10 @@ const Replies = ({ comment = {}, fetchComment }) => {
                   <span
                     style={{
                       backgroundColor: QnAUtility.getColorForLetter(
-                        (userFullName.charAt(0) || '').toUpperCase(),
+                        (userName.charAt(0) || '').toUpperCase(),
                       ),
                     }}
-                  >{(userFullName.charAt(0) || '').toUpperCase()}
+                  >{(userName.charAt(0) || '').toUpperCase()}
                   </span>
                 </div>
                 <div className={styles.inputContainer}>

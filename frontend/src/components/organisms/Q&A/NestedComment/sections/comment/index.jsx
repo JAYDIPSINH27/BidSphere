@@ -3,6 +3,7 @@ import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
 import { message } from 'antd';
+import { getUserFromToken } from '@shared/utils/auth';
 import Replies from './replies';
 import { getCommentByQid, replyToComment } from './comment.service';
 import { setComment, setNewCommentText, resetCommentData } from './slice/commentsSlice';
@@ -13,7 +14,7 @@ const CommentContainer = () => {
   const dispatch = useDispatch();
   const comment = useSelector(state => state.QuesnAndAnswerReducer.NestedCommentReducer.CommentReducer.comment);
   const newCommentText = useSelector(state => state.QuesnAndAnswerReducer.NestedCommentReducer.CommentReducer.newCommentText);
-  // const { userFullName = '' } = useSelector(state => state.userSlice);
+  const { name = '' } = getUserFromToken();
 
   useEffect(() => {
     fetchComment();
@@ -39,7 +40,7 @@ const CommentContainer = () => {
       parentId: comment?._id,
       text: newCommentText,
       parentLvlCmt: true,
-      userName: /* userFullName, */ 'userFullName', // TODO
+      userName: name,
       answeredDate: new Date().valueOf(),
     };
     await replyToComment(payload)

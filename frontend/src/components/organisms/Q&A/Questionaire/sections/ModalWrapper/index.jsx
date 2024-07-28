@@ -8,6 +8,8 @@ import {
 import { Editor, EditorState, RichUtils } from 'draft-js';
 /* internal components */
 import Modal from '@molecules/Modal';
+/* utils */
+import { getUserFromToken } from '@shared/utils/auth';
 /* slices */
 import { setDescription, setTitle, setModalVisible } from './slice/modalSlice';
 /* services */
@@ -23,8 +25,7 @@ const ModalWrapper = ({
   const dispatch = useDispatch();
   const qTitle = useSelector(state => state.QuesnAndAnswerReducer.QuestionaireReducer.ModelWrappereReducer.qTitle);
   const isModalVisible = useSelector(state => state.QuesnAndAnswerReducer.QuestionaireReducer.ModelWrappereReducer.isModalVisible);
-  // const { userFullName = '' } = useSelector(state => state.userSlice);
-  const userFullName = 'John Doe'; // TODO
+  const { name = '' } = getUserFromToken();
 
   const onChange = (editorStateData) => {
     setEditorState(editorStateData);
@@ -56,7 +57,7 @@ const ModalWrapper = ({
     const payload = {
       qTitle,
       qDesc: editorState.getCurrentContent().getPlainText(),
-      askedByUsername: userFullName,
+      askedByUsername: name,
     };
     postQuestion(payload)
       .then(() => {
