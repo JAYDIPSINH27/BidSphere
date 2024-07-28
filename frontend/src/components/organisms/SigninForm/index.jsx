@@ -75,7 +75,7 @@ const SigninForm = () => {
       try {
         const response = await axios.post(`${import.meta.env.VITE_BACKEND_URL}/auth/signin`, formData);
         if (response.status === 200) {
-          const { token, role } = response.data;
+          const { token, role, id } = response.data;
           if (formData.rememberMe) {
             localStorage.setItem('token', token);
           } else {
@@ -85,6 +85,7 @@ const SigninForm = () => {
           if (role === 'bidder') {
             navigate('/bidder-dashboard');
           } else if (role === 'issuer') {
+            sessionStorage.setItem('issuer_id', id);
             navigate('/issuer-dashboard');
           }
         }

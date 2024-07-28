@@ -10,5 +10,6 @@ import java.util.List;
 
 @Repository
 public interface TenderRepository extends MongoRepository<Tender, String> {
+    // Find all tenders for issuer.
     List<Tender> findAllByIssuerId(String issuerId);
 }
