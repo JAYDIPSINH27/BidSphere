@@ -12,8 +12,10 @@ import {
   DialogTitle,
 } from '@mui/material';
 import { updateDocument } from '../../../services/tender';
+import {useNavigate} from 'react-router-dom';
 
 const EditDocumentDialog = ({ open, handleClose, document }) => {
+  const navigate = useNavigate();
   const [formData, setFormData] = useState({
     userId: '',
     tenderId: '',
@@ -45,7 +47,7 @@ const EditDocumentDialog = ({ open, handleClose, document }) => {
         await updateDocument(document.id, file);
       }
       handleClose();
-      window.location.reload(); // Refresh the page to show the updated document
+      navigate('/issuer-dashboard');
     } catch (error) {
       console.error('Error updating document:', error);
     }

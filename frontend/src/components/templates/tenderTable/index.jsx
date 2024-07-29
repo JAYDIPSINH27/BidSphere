@@ -13,7 +13,7 @@ import useFilter from './hooks/useFilter';
 import EditTenderDialog from '../../atoms/EditTenderDialogue';
 import DeleteTenderDialog from '../../atoms/DeleteTenderDialogue';
 
-export const TenderTable = ({ data, rowsPerPage }) => {
+export const TenderTable = ({ data, rowsPerPage,setUpdated }) => {
   const navigate = useNavigate();
   const [page, setPage] = useState(1);
   const [filters, setFilters] = useState({});
@@ -126,11 +126,13 @@ export const TenderTable = ({ data, rowsPerPage }) => {
         open={editOpen}
         handleClose={handleEditClose}
         tender={selectedTender}
+        setUpdated={setUpdated}
       />
       <DeleteTenderDialog
         open={deleteOpen}
         handleClose={handleDeleteClose}
         tenderId={selectedTender?.id}
+        setUpdated={setUpdated}
       />
     </>
   );

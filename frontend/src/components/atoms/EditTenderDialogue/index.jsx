@@ -12,49 +12,60 @@ import {
   DialogTitle,
 } from "@mui/material";
 import ReactQuill from "react-quill";
+import { useForm, Controller } from "react-hook-form";
 import { updateTender } from "../../../services/tender";
+import { useNavigate } from "react-router-dom";
+import {toast} from 'react-hot-toast'
 
-const EditTenderDialog = ({ open, handleClose, tender }) => {
-  console.log(tender);
-  const [value, setValue] = useState();
-  const [formData, setFormData] = useState({
-    title: "",
-    description: "",
-    issuerId: "",
-    organizationId: "",
-    representativeName: "",
-    representativeEmail: "",
-    representativeContact: "",
-    representativeEmployeeId: "",
-    status: "open",
+const EditTenderDialog = ({ open, handleClose, tender,setUpdated }) => {
+  console.log(tender)
+  const navigate = useNavigate();
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+    control,
+    setValue: setFormValue,
+    reset,
+  } = useForm({
+    defaultValues: {
+      title: "",
+      organizationId: "",
+      representativeName: "",
+      representativeEmail: "",
+      representativeContact: "",
+      representativeEmployeeId: "",
+      description: "",
+    },
   });
 
   useEffect(() => {
     if (tender) {
-      setFormData({
+      reset({
         title: tender.title,
-        description: tender.description,
         organizationId: tender.organizationId,
         representativeName: tender.representativeName,
         representativeEmail: tender.representativeEmail,
         representativeContact: tender.representativeContact,
         representativeEmployeeId: tender.representativeEmployeeId,
-        documents: tender.documents,
-        status: tender.status,
+        description: tender.description,
       });
     }
-  }, [tender]);
+  }, [tender, reset]);
 
-  const handleChange = (e) => {
-    const { name, value } = e.target;
-    setFormData((prev) => ({ ...prev, [name]: value }));
-  };
+  const onSubmit = async (data) => {
+    const { createdAt,...tenderdata } = tender
+    const updatedData = {
+      ...tenderdata, // Existing tender data
+      ...data, // Form data to override existing tender data
+    };
 
-  const handleSubmit = async () => {
     try {
-      await updateTender(tender.id, formData);
+      await updateTender(tender.id, updatedData);
+      setUpdated(true)
       handleClose();
-      window.location.reload(); // Refresh the page to show the updated tender
+      toast.success("Successfully Updated Tender!!")
+      navigate("/issuer-dashboard");
     } catch (error) {
       console.error("Error updating tender:", error);
     }
@@ -64,77 +75,105 @@ const EditTenderDialog = ({ open, handleClose, tender }) => {
     <Dialog open={open} onClose={handleClose}>
       <DialogTitle>Edit Tender</DialogTitle>
       <DialogContent>
-        <Box component="form" sx={{ mt: 2 }}>
+        <Box component="form" onSubmit={handleSubmit(onSubmit)} sx={{ mt: 2 }}>
           <Grid container spacing={2}>
             <Grid item xs={12} md={6}>
               <TextField
-                name="title"
+                {...register("title", { required: "Tender Title is required" })}
                 label="Tender Title"
                 fullWidth
                 required
-                value={formData.title}
-                onChange={handleChange}
+                error={!!errors.title}
+                helperText={errors.title?.message}
               />
             </Grid>
             <Grid item xs={12} md={6}>
               <TextField
-                name="organizationId"
+                {...register("organizationId", { required: "Organization ID is required" })}
                 label="Organization ID"
                 fullWidth
                 required
-                value={formData.organizationId}
-                onChange={handleChange}
+                error={!!errors.organizationId}
+                helperText={errors.organizationId?.message}
               />
             </Grid>
             <Grid item xs={12} md={6}>
               <TextField
-                name="representativeName"
+                {...register("representativeName", { required: "Representative Name is required" })}
                 label="Representative Name"
                 fullWidth
                 required
-                value={formData.representativeName}
-                onChange={handleChange}
+                error={!!errors.representativeName}
+                helperText={errors.representativeName?.message}
               />
             </Grid>
             <Grid item xs={12} md={6}>
               <TextField
-                name="representativeEmail"
+                {...register("representativeEmail", {
+                  required: "Representative Email is required",
+                  pattern: {
+                    value: /\S+@\S+\.\S+/,
+                    message: "Invalid email address",
+                  },
+                })}
                 label="Representative Email"
                 fullWidth
                 required
-                value={formData.representativeEmail}
-                onChange={handleChange}
+                error={!!errors.representativeEmail}
+                helperText={errors.representativeEmail?.message}
               />
             </Grid>
             <Grid item xs={12} md={6}>
               <TextField
-                name="representativeContact"
+                {...register("representativeContact", {
+                  required: "Representative Contact is required",
+                  pattern: {
+                    value: /^\d+$/,
+                    message: "Invalid contact number",
+                  },
+                })}
                 label="Representative Contact"
                 fullWidth
                 required
-                value={formData.representativeContact}
-                onChange={handleChange}
+                error={!!errors.representativeContact}
+                helperText={errors.representativeContact?.message}
               />
             </Grid>
             <Grid item xs={12} md={6}>
               <TextField
-                name="representativeEmployeeId"
+                {...register("representativeEmployeeId", {
+                  required: "Representative Employee ID is required",
+                })}
                 label="Representative Employee ID"
                 fullWidth
                 required
-                value={formData.representativeEmployeeId}
-                onChange={handleChange}
+                error={!!errors.representativeEmployeeId}
+                helperText={errors.representativeEmployeeId?.message}
               />
             </Grid>
             <Grid item xs={12}>
-              <ReactQuill theme="snow" value={formData.description} onChange={setValue} />
+              <Controller
+                name="description"
+                control={control}
+                rules={{ required: "Description is required" }}
+                render={({ field }) => (
+                  <ReactQuill
+                    theme="snow"
+                    value={field.value}
+                    onChange={(value) => field.onChange(value)}
+                  />
+                )}
+              />
+              {errors.description && (
+                <span className="text-red-500 text-sm">{errors.description.message}</span>
+              )}
             </Grid>
           </Grid>
         </Box>
       </DialogContent>
       <DialogActions>
         <Button onClick={handleClose}>Cancel</Button>
-        <Button onClick={handleSubmit} color="primary" variant="contained">
+        <Button onClick={handleSubmit(onSubmit)} color="primary" variant="contained">
           Save
         </Button>
       </DialogActions>
