@@ -16,7 +16,6 @@ import { createTender, uploadDocuments } from '../../../services/tender';
 import toast from 'react-hot-toast';
 function TenderForm() {
   const issuerId = sessionStorage.getItem('issuer_id');
-  console.log(issuerId)
   const [value, setValue] = useState('<p>Tender description goes here.</p><p>Provide as much project details as required.</p>');
   const [step, setStep] = useState(1);
   const navigate = useNavigate(); // Initialize useNavigate hook

@@ -18,7 +18,6 @@ import { useNavigate } from "react-router-dom";
 import {toast} from 'react-hot-toast'
 
 const EditTenderDialog = ({ open, handleClose, tender,setUpdated }) => {
-  console.log(tender)
   const navigate = useNavigate();
   const {
     register,

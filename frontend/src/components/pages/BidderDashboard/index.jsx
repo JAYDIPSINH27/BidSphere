@@ -56,7 +56,6 @@ function BidderDashboard() {
 
   const handleBidAmountChange = (event) => {
     setBidAmount(event.target.value);
-    console.log(event.target.value);
   };
 
   return (
