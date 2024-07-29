@@ -54,6 +54,13 @@ public class IssuerService implements IIssuerService {
         dto.setCreatedAt(tender.getCreatedAt());
         dto.setTenderNumber(tender.getTenderNumber());
         dto.setId(tender.getId().toString());
+        dto.setOrganizationId(tender.getOrganizationId());
+        dto.setRepresentativeName(tender.getRepresentativeName());
+        dto.setRepresentativeEmail(tender.getRepresentativeEmail());
+        dto.setRepresentativeContact(tender.getRepresentativeContact());
+        dto.setRepresentativeEmployeeId(tender.getRepresentativeEmployeeId());
+        dto.setDocuments(tender.getDocuments());
+        dto.setDescription(tender.getDescription());
         return dto;
     }
 

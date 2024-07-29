@@ -6,6 +6,7 @@ import { Provider } from 'react-redux';
 import { BrowserRouter } from 'react-router-dom';
 import { fas } from '@fortawesome/free-solid-svg-icons';
 import { library } from '@fortawesome/fontawesome-svg-core';
+import { Toaster } from 'react-hot-toast';
 /* data */
 import store from '../data/store';
 /* internal components */
@@ -23,6 +24,9 @@ root.render(
     <ErrorBoundary>
       <BrowserRouter>
         <Routes />
+        <Toaster
+          position="bottom-right"
+        />
       </BrowserRouter>
     </ErrorBoundary>
   </Provider>
