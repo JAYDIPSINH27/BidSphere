@@ -10,13 +10,16 @@ import {
   DialogTitle,
 } from '@mui/material';
 import { deleteTender } from '../../../services/tender';
+import {useNavigate} from 'react-router-dom';
 
-const DeleteTenderDialog = ({ open, handleClose, tenderId }) => {
+const DeleteTenderDialog = ({ open, handleClose, tenderId,setUpdated }) => {
+  const navigate = useNavigate();
   const handleDelete = async () => {
     try {
       await deleteTender(tenderId);
+      setUpdated(true)
       handleClose();
-      window.location.reload(); // Refresh the page to remove the deleted tender
+      navigate('/issuer-dashboard');
     } catch (error) {
       console.error('Error deleting tender:', error);
     }

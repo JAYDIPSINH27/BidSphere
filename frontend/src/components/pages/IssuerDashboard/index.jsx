@@ -27,6 +27,7 @@ ChartJS.register(
 );
 function IssuerDashboard() {
   const [issuerId, setIssuerId] = useState(null);
+  const [updated, setUpdated] = useState(false);
   const navigate = useNavigate();
   const [tenders, setTenders] = useState([]);
   const [statusData, setStatusData] = useState(null);
@@ -56,7 +57,7 @@ function IssuerDashboard() {
         }
       });
     }
-  }, [issuerId]);
+  }, [issuerId, updated]);
 
   function statusChartData(tenderStatusDetails) {
     const data = {
@@ -107,7 +108,7 @@ function IssuerDashboard() {
         )}
       </div>
       <div className="basis-12 p-2 md:container md:mx-auto justify-items-center">
-        <TenderTable data={tenders} rowsPerPage={5}></TenderTable>
+        <TenderTable data={tenders} rowsPerPage={5} setUpdated={setUpdated}></TenderTable>
       </div>
     </div>
   );

@@ -14,7 +14,7 @@ import EditTenderDialog from '../../atoms/EditTenderDialogue';
 import DeleteTenderDialog from '../../atoms/DeleteTenderDialogue';
 import EditDocumentDialog from '../../atoms/EditDocumentDialogue';
 
-export const TenderTable = ({ data, rowsPerPage }) => {
+export const TenderTable = ({ data, rowsPerPage,setUpdated }) => {
   const navigate = useNavigate();
   const [page, setPage] = useState(1);
   const [filters, setFilters] = useState({});
@@ -106,7 +106,7 @@ export const TenderTable = ({ data, rowsPerPage }) => {
                   <td className="px-4 py-2 sm:px-6 sm:py-3 whitespace-nowrap text-sm text-gray-600">
                     <div className="flex items-center space-x-4">
                       <button className="flex items-center mr-1 sm:mr-2" onClick={() => checkTender(obj.id)}>
-                        <img className="h-5 w-5 sm:h-6  rounded-full bg-white mr-1 text-black" src={view} alt="view" />
+                        <img className="h-5 w-5 sm:h-6 sm:w-6 sm:mr-2  rounded-full bg-white mr-1 text-black" src={view} alt="view" />
                         <span className="hidden sm:inline">View</span>
                       </button>
                       <button className="flex items-center mr-1" onClick={() => handleEditOpen(obj)}>
@@ -143,11 +143,13 @@ export const TenderTable = ({ data, rowsPerPage }) => {
         open={editOpen}
         handleClose={handleEditClose}
         tender={selectedTender}
+        setUpdated={setUpdated}
       />
       <DeleteTenderDialog
         open={deleteOpen}
         handleClose={handleDeleteClose}
         tenderId={selectedTender?.id}
+        setUpdated={setUpdated}
       />
       {/* <EditDocumentDialog
         open={editDocOpen}
