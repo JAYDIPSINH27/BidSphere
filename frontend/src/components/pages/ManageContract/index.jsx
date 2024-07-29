@@ -12,6 +12,7 @@ import axios, { HttpStatusCode } from 'axios';
 import dayjs from 'dayjs';
 import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
+import parse from 'html-react-parser';
 
 const baseUrl = import.meta.env.VITE_Spring_BACKEND_URL;
 
@@ -126,7 +127,7 @@ const ContractManagement = () => {
           <strong>Tender Name:</strong> {tender.title}
         </p>
         <p className="mb-2">
-          <strong>Project Description:</strong> {tender.description}
+          <strong>Project Description:</strong> {parse(tender.description)}
         </p>
         {tender.createdAt && (
           <p className="mb-2">
