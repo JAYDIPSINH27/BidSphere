@@ -76,6 +76,7 @@
     "typescript": "^5.0.0"
   },
   "optionalDependencies": {
-    "@rollup/rollup-linux-x64-gnu": "4.9.5"
+    "@rollup/rollup-linux-x64-gnu": "4.9.5",
+    "@esbuild/linux-x64":"0.23.0"
   }
 }
