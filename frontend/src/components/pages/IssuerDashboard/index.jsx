@@ -1,4 +1,5 @@
 /* Author: Ashish Bhasin */
+import Loader from '@atoms/Loader';
 import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import {
@@ -33,6 +34,7 @@ function IssuerDashboard() {
   const [statusData, setStatusData] = useState(null);
   const [tenderCountData, setTenderCountData] = useState(null);
   const [showGraphs, setShowGraphs] = useState(false);
+  const [loading, setLoading] = useState(false);
   useEffect(() => {
     document.title = 'Issuer Dashboard';
     const issuer = sessionStorage.getItem('issuer_id');
@@ -44,8 +46,10 @@ function IssuerDashboard() {
   }, [navigate]);
 
   useEffect(() => {
+    setLoading(true);
     if (issuerId) {
       getTenders(issuerId).then((data) => {
+        setLoading(false);
         if (data.status === 200) {
           const tenderData = data.data.data;
           setTenders(tenderData.tenderItems);
@@ -90,6 +94,10 @@ function IssuerDashboard() {
       }],
     };
     setTenderCountData(data);
+  }
+
+  if (loading) {
+    return <Loader />;
   }
 
   return (

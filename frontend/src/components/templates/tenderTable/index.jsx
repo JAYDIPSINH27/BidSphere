@@ -4,15 +4,14 @@ import PropTypes from 'prop-types';
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import CustomDialog from '@components/atoms/dialog';
-import view from '../../../shared/assets/eye.svg';
+import { Edit, Delete } from '@mui/icons-material';
+import VisibilityIcon from '@mui/icons-material/Visibility';
 import TableFooter from '../../atoms/tableFooter';
 import useTable from './hooks/useTable';
 import TenderSearchFilter from '../../molecules/tenderSearchFilter';
 import useFilter from './hooks/useFilter';
-import { Edit, Delete } from '@mui/icons-material';
 import EditTenderDialog from '../../atoms/EditTenderDialogue';
 import DeleteTenderDialog from '../../atoms/DeleteTenderDialogue';
-import EditDocumentDialog from '../../atoms/EditDocumentDialogue';
 
 export const TenderTable = ({ data, rowsPerPage,setUpdated }) => {
   const navigate = useNavigate();
@@ -21,9 +20,7 @@ export const TenderTable = ({ data, rowsPerPage,setUpdated }) => {
   const [open, setOpen] = React.useState(false);
   const [editOpen, setEditOpen] = useState(false);
   const [deleteOpen, setDeleteOpen] = useState(false);
-  const [editDocOpen, setEditDocOpen] = useState(false);
   const [selectedTender, setSelectedTender] = useState(null);
-  const [selectedDocument, setSelectedDocument] = useState(null);
   const columnKeys = ['tenderNumber', 'title', 'status', 'createdAt'];
   const { filterData } = useFilter(data, filters, setOpen);
   const { slice, range } = useTable(filterData, page, rowsPerPage);
@@ -52,16 +49,6 @@ export const TenderTable = ({ data, rowsPerPage,setUpdated }) => {
     setDeleteOpen(false);
     setSelectedTender(null);
   };
-
-  // const handleEditDocOpen = (document) => {
-  //   setSelectedDocument(document);
-  //   setEditDocOpen(true);
-  // };
-
-  // const handleEditDocClose = () => {
-  //   setEditDocOpen(false);
-  //   setSelectedDocument(null);
-  // };
 
   const handleClose = () => {
     setOpen(false);
@@ -93,7 +80,7 @@ export const TenderTable = ({ data, rowsPerPage,setUpdated }) => {
                     </th>
                   )
                 ))}
-                <th scope="col" className="px-4 py-2 sm:px-6 sm:py-3 text-left text-xs font-semibold text-black-500 uppercase tracking-wider">Actions</th>
+                <th scope="col" className="px-2 py-2 sm:px-2 sm:py-3 text-left text-xs font-semibold text-black-500 uppercase tracking-wider">Actions</th>
               </tr>
             </thead>
             <tbody className="bg-white divide-y divide-gray-200">
@@ -103,24 +90,20 @@ export const TenderTable = ({ data, rowsPerPage,setUpdated }) => {
                   {columnKeys.map(col => (
                     col !== 'id' && <td key={col} className="max-w-44 truncate ... px-4 py-2 sm:px-6 sm:py-3 whitespace-nowrap text-sm text-gray-600">{obj[col]}</td>
                   ))}
-                  <td className="px-4 py-2 sm:px-6 sm:py-3 whitespace-nowrap text-sm text-gray-600">
+                  <td className="md:px-1 py-2 sm:px-2 sm:py-3 whitespace-nowrap text-sm text-gray-600">
                     <div className="flex items-center space-x-4">
                       <button className="flex items-center mr-1 sm:mr-2" onClick={() => checkTender(obj.id)}>
-                        <img className="h-5 w-5 sm:h-6 sm:w-6 sm:mr-2  rounded-full bg-white mr-1 text-black" src={view} alt="view" />
+                        <VisibilityIcon className="text-black mr-1 sm:mr-2"></VisibilityIcon>
                         <span className="hidden sm:inline">View</span>
                       </button>
                       <button className="flex items-center mr-1" onClick={() => handleEditOpen(obj)}>
-                        <Edit className='text-black mr-1 sm:mr-2' />
+                        <Edit className="text-black mr-1 sm:mr-2" />
                         <span className="hidden sm:inline">Edit</span>
                       </button>
                       <button className="flex items-center mr-1" onClick={() => handleDeleteOpen(obj)}>
-                        <Delete className='text-black mr-1 sm:mr-2 '/>
+                        <Delete className="text-black mr-1 sm:mr-2 " />
                         <span className="hidden sm:inline">Delete</span>
                       </button>
-                      {/* <button className="flex items-center mr-1" onClick={() => handleEditDocOpen(obj)}>
-                        <Edit className='text-black mr-1 sm:mr-2' />
-                        <span className="hidden sm:inline">Edit Document</span>
-                      </button> */}
                     </div>
                   </td>
                 </tr>
@@ -151,11 +134,6 @@ export const TenderTable = ({ data, rowsPerPage,setUpdated }) => {
         tenderId={selectedTender?.id}
         setUpdated={setUpdated}
       />
-      {/* <EditDocumentDialog
-        open={editDocOpen}
-        handleClose={handleEditDocClose}
-        document={selectedDocument}
-      /> */}
     </>
   );
 };
