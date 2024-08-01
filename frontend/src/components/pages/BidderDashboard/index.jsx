@@ -7,6 +7,8 @@ import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
 import './bidder-dashboard.css';
+import parse from 'html-react-parser';
+import { useNavigate } from 'react-router-dom';
 
 const style = {
   position: 'absolute',
@@ -20,12 +22,21 @@ const style = {
   p: 4,
 };
 function BidderDashboard() {
+  const navigate = useNavigate();
   const [open, setOpen] = React.useState(false);
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
+  const [bidderId, setBidder] = useState(null);
+
   useEffect(() => {
     document.title = 'Bidder Dashboard';
-  }, []);
+    const bidder = sessionStorage.getItem('bidder_id');
+    if (!bidder) {
+      navigate('/signin');
+    } else {
+      setBidder(bidder);
+    }
+  }, [navigate]);
 
   const [data, setData] = useState([]);
   useEffect(() => {
@@ -47,7 +58,7 @@ function BidderDashboard() {
   };
 
   const handleCloseModal = () => {
-    bid(selectedTender._id, 'bidderId', bidAmount);
+    bid(selectedTender._id, bidderId, bidAmount);
     //To Do: Pass the user ID from Auth context
     setSelectedTender(null);
     setBidAmount(0);
@@ -60,82 +71,82 @@ function BidderDashboard() {
 
   return (
     <div className='container m-5 p-5 flex justify-self-center'  >
-    <table className='m-5 p-5 table-auto w-full '>
-      <thead>
-        <tr>
-          <th className='px-4 py-2'>Title</th>
-          <th className='px-4 py-2'>Description</th>
-          <th className='px-4 py-2'>Tender Number</th>
-          <th className='px-4 py-2'>Issuer ID</th>
-          <th className='px-4 py-2'>Created At</th>
-          <th className='px-4 py-2'>Status</th>
-          <th className='px-4 py-2'>Actions</th>
-        </tr>
-      </thead>
-      <tbody>
-        {data.map((item) => (
-          <tr key={item._id}>
-            <td className='border px-4 py-2'>{item.title}</td>
-            <td className='border px-4 py-2'>{item.description}</td>
-            <td className='border px-4 py-2'>{item.tenderNumber}</td>
-            <td className='border px-4 py-2'>{item.issuerId}</td>
-            <td className='border px-4 py-2'>{item.createdAt}</td>
-            <td className='border px-4 py-2'>{item.status}</td>
-            <td className='border px-4 py-2 text-center'>
-              <button
-                className='btn btn-warning'
-                onClick={() => handleViewTender(item._id)}
-              >
-                View
-              </button>
-            </td>
+      <table className='m-5 p-5 table-auto w-full '>
+        <thead>
+          <tr>
+            <th className='px-4 py-2'>Title</th>
+            <th className='px-4 py-2'>Description</th>
+            <th className='px-4 py-2'>Tender Number</th>
+            <th className='px-4 py-2'>Issuer ID</th>
+            <th className='px-4 py-2'>Created At</th>
+            <th className='px-4 py-2'>Status</th>
+            <th className='px-4 py-2'>Actions</th>
           </tr>
-        ))}
-      </tbody>
-    </table>
-    <Modal
+        </thead>
+        <tbody>
+          {data.map((item) => (
+            <tr key={item._id}>
+              <td className='border px-4 py-2'>{item.title}</td>
+              <td className='border px-4 py-2'>{parse(item.description)}</td>
+              <td className='border px-4 py-2'>{item.tenderNumber}</td>
+              <td className='border px-4 py-2'>{item.issuerId}</td>
+              <td className='border px-4 py-2'>{item.createdAt}</td>
+              <td className='border px-4 py-2'>{item.status}</td>
+              <td className='border px-4 py-2 text-center'>
+                <button
+                  className='btn btn-warning'
+                  onClick={() => handleViewTender(item._id)}
+                >
+                  View
+                </button>
+              </td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
+      <Modal
         open={open}
         onClose={handleClose}
         aria-labelledby="modal-modal-title"
         aria-describedby="modal-modal-description"
       >
         <Box sx={style}>
-        {selectedTender && (
-          <div>
-            <Typography id="modal-modal-title" variant="h6" component="h2">
-              {selectedTender.title}
-            </Typography>
-            <Typography id="modal-modal-description" sx={{ mt: 2 }}>
-              Description: {selectedTender.description}
-            </Typography>
-            <Typography id="modal-modal-description" sx={{ mt: 2 }}>
-              Tender Number: {selectedTender.tenderNumber}
-            </Typography>
-            <Typography id="modal-modal-description" sx={{ mt: 2 }}>
-              Issuer ID: {selectedTender.issuerId}
-            </Typography>
-            <Typography id="modal-modal-description" sx={{ mt: 2 }}>
-              Created At: {selectedTender.createdAt}
-            </Typography>
-            <Typography id="modal-modal-description" sx={{ mt: 2 }}>
-              Status: {selectedTender.status}
-            </Typography>
-            <Typography className='my-5' id="modal-modal-description" sx={{ mt: 2 }}>
-              Bid Amount:
-              <input
-                type="number"
-                value={bidAmount}
-                onChange={handleBidAmountChange}
-                className='mx-4'
-              />
-            </Typography>
-            <Button onClick={handleCloseModal} className='mx-4' variant="contained">Submit Bid</Button>
-          </div>
-        )}
+          {selectedTender && (
+            <div>
+              <Typography id="modal-modal-title" variant="h6" component="h2">
+                {selectedTender.title}
+              </Typography>
+              <Typography id="modal-modal-description" sx={{ mt: 2 }}>
+                Description: {selectedTender.description}
+              </Typography>
+              <Typography id="modal-modal-description" sx={{ mt: 2 }}>
+                Tender Number: {selectedTender.tenderNumber}
+              </Typography>
+              <Typography id="modal-modal-description" sx={{ mt: 2 }}>
+                Issuer ID: {selectedTender.issuerId}
+              </Typography>
+              <Typography id="modal-modal-description" sx={{ mt: 2 }}>
+                Created At: {selectedTender.createdAt}
+              </Typography>
+              <Typography id="modal-modal-description" sx={{ mt: 2 }}>
+                Status: {selectedTender.status}
+              </Typography>
+              <Typography className='my-5' id="modal-modal-description" sx={{ mt: 2 }}>
+                Bid Amount:
+                <input
+                  type="number"
+                  value={bidAmount}
+                  onChange={handleBidAmountChange}
+                  className='mx-4'
+                />
+              </Typography>
+              <Button onClick={handleCloseModal} className='mx-4' variant="contained">Submit Bid</Button>
+            </div>
+          )}
         </Box>
       </Modal>
 
-  </div>
+    </div>
   );
 }
 

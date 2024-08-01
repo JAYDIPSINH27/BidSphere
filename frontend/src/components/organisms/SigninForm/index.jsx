@@ -83,6 +83,7 @@ const SigninForm = () => {
           }
 
           if (role === 'bidder') {
+            sessionStorage.setItem('bidder_id', id);
             navigate('/bidder-dashboard');
           } else if (role === 'issuer') {
             sessionStorage.setItem('issuer_id', id);
