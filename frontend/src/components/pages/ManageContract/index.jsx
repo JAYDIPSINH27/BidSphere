@@ -13,11 +13,13 @@ import dayjs from 'dayjs';
 import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import parse from 'html-react-parser';
+import TenderDocumentManagement from '@components/organisms/TenderDocumentManagement';
 
 const baseUrl = import.meta.env.VITE_Spring_BACKEND_URL;
 
 const ContractManagement = () => {
   const { tenderId } = useParams();
+  const userId = sessionStorage.getItem('issuer_id');
   const [bids, setBids] = useState([]);
   const [loading, setLoading] = useState(false);
   const [selectedBid, setSelectedBid] = useState(null);
@@ -25,11 +27,12 @@ const ContractManagement = () => {
   const [confirmationVisible, setConfirmationVisible] = useState(false);
   const [declineConfirmationVisible, setDeclineConfirmationVisible] = useState(false);
   const [tender, setTender] = useState(null);
+  const [tenderChanged, setTenderChanged] = useState(false);
 
   useEffect(() => {
     setLoading(true);
     fetchTenderDetails().then();
-  }, []);
+  }, [tenderChanged]);
 
   useEffect(() => {
     if (!tender || !tender.bids || tender.bids.size === 0) {
@@ -49,6 +52,7 @@ const ContractManagement = () => {
       const response = await axios.get(`${baseUrl}/api/tenders/${tenderId}`);
       if (response.status === HttpStatusCode.Ok) {
         setTender(response.data);
+        console.log(response.data);
       } else {
         setTender(null);
       }
@@ -140,6 +144,7 @@ const ContractManagement = () => {
           </p>
         )}
       </div>
+      <TenderDocumentManagement tender={tender} userId={userId} tenderChanged={tenderChanged} setTenderChanged={setTenderChanged} />
       {awardedBid ? (
         <div>
           <BidderDetails

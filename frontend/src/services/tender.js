@@ -27,14 +27,14 @@ export const uploadDocuments = async (files, userId, tenderId) => {
 
   try {
     await axios.post(`${API_BASE_URL}/documents`, formData, {
-      headers: {
-        'Content-Type': 'multipart/form-data',
-      },
-    });
-  } catch (error) {
-    console.error('Failed to upload documents:', error);
-    throw error;
-  }
+    headers: {
+      'Content-Type': 'multipart/form-data',
+    },
+  });
+} catch (error) {
+  console.error('Failed to upload documents:', error);
+  throw error;
+}
 };
 
 // Function to delete a tender
@@ -58,20 +58,40 @@ export const updateTender = async (tenderId, tenderData) => {
   }
 };
 
+// Function to delete a document
+export const deleteDocument = async (documentId) => {
+  try {
+    await axios.delete(`${API_BASE_URL}/documents/${documentId}`);
+  } catch (error) {
+    console.error('Error deleting document:', error);
+    throw error;
+  }
+};
+
 // Function to update a document
 export const updateDocument = async (documentId, file) => {
   const formData = new FormData();
   formData.append('file', file);
 
   try {
-    const response = await axios.put(`${API_BASE_URL}/documents/${documentId}`, formData, {
+    await axios.put(`${API_BASE_URL}/documents/${documentId}`, formData, {
       headers: {
         'Content-Type': 'multipart/form-data',
       },
     });
-    return response.data;
   } catch (error) {
     console.error('Error updating document:', error);
+    throw error;
+  }
+};
+
+// Function to get a document by its ID
+export const getDocumentById = async (documentId) => {
+  try {
+    const response = await axios.get(`${API_BASE_URL}/documents/${documentId}`);
+    return response.data;
+  } catch (error) {
+    console.error('Error fetching document:', error);
     throw error;
   }
 };
