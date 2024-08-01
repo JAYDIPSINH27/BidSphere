@@ -122,9 +122,22 @@ public class TenderDocumentService {
     }
 
     public void deleteDocument(String id) {
-        if (!tenderDocumentRepository.existsById(id)) {
+        Optional<TenderDocument> documentOptional = tenderDocumentRepository.findById(id);
+        if (!documentOptional.isPresent()) {
             throw new RuntimeException("Document not found with id " + id);
         }
+
+        TenderDocument document = documentOptional.get();
+        String tenderId = document.getTenderId();
+
         tenderDocumentRepository.deleteById(id);
+
+        // Update Tender to remove the document reference
+        Optional<Tender> tenderOptional = tenderRepository.findById(tenderId);
+        if (tenderOptional.isPresent()) {
+            Tender tender = tenderOptional.get();
+            tender.getDocuments().remove(id);
+            tenderRepository.save(tender);
+        }
     }
 }
