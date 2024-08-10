@@ -811,6 +811,350 @@ export default {
 <!---How--->  
 - [Responsive Landing Page](https://github.com/xdcode2/course-website)'s Code was modified by integrating it with our other color schemes and requirements.
 
+### frontend/src/components/atoms/dialog/index.jsx
+
+_Lines 14 - 33_
+
+```
+ <Dialog
+      open={open}
+      onClose={handleClose}
+      aria-labelledby="alert-dialog-title"
+      aria-describedby="alert-dialog-description"
+    >
+      <DialogTitle id="alert-dialog-title">
+        {title}
+      </DialogTitle>
+      <DialogContent>
+        <DialogContentText id="alert-dialog-description">
+          {content}
+        </DialogContentText>
+      </DialogContent>
+      <DialogActions>
+        <Button onClick={handleClose} autoFocus>
+          {okbutton}
+        </Button>
+      </DialogActions>
+  </Dialog>
+
+```
+
+The code above was created by adapting the code from official material ui components guide (https://mui.com/material-ui/react-dialog/) as shown below:
+
+```
+  <React.Fragment>
+      <Button variant="outlined" onClick={handleClickOpen}>
+        Open alert dialog
+      </Button>
+      <Dialog
+        open={open}
+        onClose={handleClose}
+        aria-labelledby="alert-dialog-title"
+        aria-describedby="alert-dialog-description"
+      >
+        <DialogTitle id="alert-dialog-title">
+          {"Use Google's location service?"}
+        </DialogTitle>
+        <DialogContent>
+          <DialogContentText id="alert-dialog-description">
+            Let Google help apps determine location. This means sending anonymous
+            location data to Google, even when no apps are running.
+          </DialogContentText>
+        </DialogContent>
+        <DialogActions>
+          <Button onClick={handleClose}>Disagree</Button>
+          <Button onClick={handleClose} autoFocus>
+            Agree
+          </Button>
+        </DialogActions>
+      </Dialog>
+    </React.Fragment>
+```
+
+We have used the code in material Ui's dialog usage examples for Diaog in issuer dashboard page when no results are found using search filter. 
+We changed the code by using just the dialog snippit and changed it as an atom in our code base, passing properties from parent component and making the dialog display dynamic values and perfrom open operation from the parent component.
+
+### frontend/src/components/templates/tenderTable/hooks/useTable.js
+
+_line 1-33_
+
+```
+import { useState, useEffect } from "react";
+
+const useTable = (data, page, rowsPerPage) => {
+  const [tableRange, setTableRange] = useState([]);
+  const [slice, setSlice] = useState([]);
+
+  useEffect(() => {
+    const range = calculateRange(data, rowsPerPage);
+    setTableRange([...range]);
+
+    const slice = sliceData(data, page, rowsPerPage);
+    setSlice([...slice]);
+  }, [data, setTableRange, page, setSlice]);
+
+  return { slice, range: tableRange };
+};
+
+const calculateRange = (data, rowsPerPage) => {
+  const range = [];
+  const num = Math.ceil(data.length / rowsPerPage);
+  let i = 1;
+  for (let i = 1; i <= num; i++) {
+    range.push(i);
+  }
+  return range;
+};
+
+const sliceData = (data, page, rowsPerPage) => {
+  return data.slice((page - 1) * rowsPerPage, page * rowsPerPage);
+};
+
+export default useTable;
+```
+
+### frontend/src/components/atoms/tableFooter/index.jsx
+
+_line 2-27_
+
+```
+import React, { useState } from "react";
+import style from "./tableFooter.module.css";
+import { useEffect } from "react";
+
+const TableFooter = ({ range, setPage, page, slice }) => {
+  useEffect(() => {
+    if (slice.length < 1 && page !== 1) {
+      setPage(page - 1);
+    }
+  }, [slice, page, setPage]);
+  return (
+    <div className={style.tableFooter}>
+      {range.map((el, index) => (
+        <button
+          key={index}
+          className={`${style.button} ${
+            page === el ? style.activeButton : style.inactiveButton
+          }`}
+          onClick={() => setPage(el)}
+        >
+          {el}
+        </button>
+      ))}
+    </div>
+  );
+};
+
+
+export default TableFooter;
+```
+
+The above 2 code snippets have been picked from (https://dev.to/franciscomendes10866/how-to-create-a-table-with-pagination-in-react-4lpd) and the full credit goes to the author. 
+We have used this code with slight modification to create a paginator in the footer of the table. This article helped us a lot as we are following the atomic design approach and were looking for some sources to have the footer of the table as a separate component.
+
+### Loader.jsx
+_Lines 6 - 21_
+
+```
+export default function Loader() {
+  return (
+          <div className="flex h-screen w-full items-center justify-center">
+            <div
+                    className="inline-block h-8 w-8 animate-spin rounded-full border-4 border-solid
+       border-current border-r-transparent align-[-0.125em] motion-reduce:animate-[spin_1.5s_linear_infinite]"
+                    role="status"
+            >
+              <span
+                      className="!absolute !-m-px !h-px !w-px !overflow-hidden !whitespace-nowrap !border-0 !p-0 ![clip:rect(0,0,0,0)]"
+              >Loading...
+              </span>
+            </div>
+          </div>
+  );
+}
+
+```
+
+The code above was created by adapting the code in [Tailwind CSS React Spinner / Loader][SpinnerComponent] as shown below:
+
+```
+import React from 'react';
+
+export default function App() {
+  return (
+          <div
+                  className="inline-block h-8 w-8 animate-spin rounded-full border-4 border-solid border-current border-r-transparent align-[-0.125em] motion-reduce:animate-[spin_1.5s_linear_infinite]"
+                  role="status">
+            <span
+                    className="!absolute !-m-px !h-px !w-px !overflow-hidden !whitespace-nowrap !border-0 !p-0 ![clip:rect(0,0,0,0)]"
+            >Loading...</span>
+          </div>
+  );
+}
+```
+
+- The code in [Tailwind CSS React Spinner / Loader][SpinnerComponent] was implemented by thoroughly studying original component.
+  After understanding its functionality and source code, I adapted the code to suit the requirements of my assignment.
+- [Tailwind CSS React Spinner / Loader][SpinnerComponent]'s Code was used because I believed it will help in making UI more suitable by showcasing buffer.
+- [Tailwind CSS React Spinner / Loader][SpinnerComponent]'s Code was modified by altering it according to the need of component with minor changes in code like adding or updating attributes and
+  properties as required and integrating it with other components, along with updating the content based on requirements of the assignment.
+
+### frontend/src/components/organisms/Q&A/Questionaire/index.jsx
+
+```
+/* external imports */
+import React, { useEffect } from 'react';
+import { message } from 'antd';
+import cx from 'classnames';
+import moment from 'moment';
+import { useNavigate, useLocation } from 'react-router-dom';
+import { FaUser } from 'react-icons/fa';
+import { useDispatch, useSelector } from 'react-redux';
+/* internal components */
+import Button from '@atoms/button';
+import withNavbar from '@shared/hoc/withNavBar';
+import ModalWrapper from './sections/ModalWrapper';
+import { setquestionData } from './data/questionaire.slice';
+import { setModalVisible } from './sections/ModalWrapper/slice/modalSlice';
+/* styles */
+import styles from './Questionaire.module.scss';
+/* services */
+import { getAllQuestions } from './service/Questionaire.service';
+
+const Questions = () => {
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+  const location = useLocation();
+
+  const questionData = useSelector(
+    state => state.QuesnAndAnswerReducer.QuestionaireReducer.QuestionaireReducer.questionData,
+  );
+  const isModalVisible = useSelector(
+    state => state.QuesnAndAnswerReducer.QuestionaireReducer.ModelWrappereReducer.isModalVisible,
+  );
+
+  useEffect(() => {
+    fetchQuestionData();
+  }, []);
+
+  const fetchQuestionData = () => {
+    getAllQuestions()
+      .then(({ data }) => {
+        dispatch(setquestionData(data));
+      })
+      .catch((err) => {
+        message.error(err);
+      });
+  };
+
+  const handleButtonClick = () => {
+    dispatch(setModalVisible(true));
+  };
+
+  const handleQuestionClick = (questionId) => {
+    navigate(`${location.pathname}/${questionId}`);
+  };
+
+  return (
+    <>
+      <div className={styles.questions}>
+        <div className={styles.topQuestions}>
+          <div>Q <sub style={{ bottom: 'unset' }}>&</sub> A</div>
+          <Button
+            title="Ask a Question"
+            className={styles.askButton}
+            onClick={handleButtonClick}
+          >Ask a Question
+          </Button>
+        </div>
+        <div className={styles.questionList}>
+          {(questionData || []).map((question) => {
+            const {
+              _id: qId = '',
+              qTitle = '',
+              qDesc = '',
+              timeStamp = 0,
+              askedByUsername = '',
+              totalAnswers = 0,
+            } = question || {};
+
+            return (
+              <div
+                key={qId}
+                role="button"
+                tabIndex={0}
+                className={styles.questionContainer}
+                onClick={() => handleQuestionClick(qId)}
+              >
+                <div className={styles.authorSection}>
+                  <FaUser className={styles.icon} />
+                  <span className={styles.authorName}>{askedByUsername}</span>
+                  <span className={styles.created}>asked {moment(timeStamp).fromNow()}</span>
+                  <span
+                    className={cx(styles.totalAnswers, {
+                      [styles.noAnswers]: totalAnswers === 0,
+                      [styles.hasAnswers]: totalAnswers > 0,
+                    })}
+                  >
+                    {totalAnswers} Answers
+                  </span>
+                </div>
+                <div className={styles.questionContent}>
+                  <div className={styles.questionTitle}>{qTitle}</div>
+                  <div className={styles.questionDescription}>{qDesc}</div>
+                </div>
+              </div>
+            );
+          })}
+        </div>
+      </div>
+      {isModalVisible && (
+        <ModalWrapper title="Ask a Question" onSubmit={fetchQuestionData} />
+      )}
+    </>
+  );
+};
+
+export default withNavbar(Questions);
+```
+
+### server/node/src/controller/payment.js
+
+```
+require('dotenv').config();
+const stripe = require('stripe')(process.env.SECRET_KEY)
+
+exports.initPayment = async(req, res) => {
+  const { product } = req.body;
+
+  const lineItems = product.map((products) => {
+    return {
+      price_data: {
+        currency: "cad",
+        product_data: {
+          name: products.title
+        },
+        unit_amount: products.amount * 100,
+      },
+      quantity: 1
+    };
+  });
+
+  const session = await stripe.checkout.sessions.create({
+    payment_method_types: ['card'],
+    line_items: lineItems,
+    mode: "payment",
+    success_url: `${process.env.FRONTEND_URL}/payment-success`,
+    cancel_url: `${process.env.FRONTEND_URL}/payment-failure`,
+  }) 
+
+  res.json({ session })
+}
+```
+
+The above code was modified by using the code from below link
+https://docs.stripe.com/payments
+
 ### server/node/src/routes/auth.js
 
 _Lines 08 - 31_
