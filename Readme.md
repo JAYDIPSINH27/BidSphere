@@ -1,7 +1,7 @@
 # CSCI 5709 Grp-14
 
 - _Date Created_: 24 May 2024
-- _Last Modification Date_: 24 June 2024
+- _Last Modification Date_: 09 August 2024
 - _Deployed Application URL_: <https://bidsphere.netlify.app/>
 - _Repository GitLab URL_: <https://git.cs.dal.ca/kumawat/csci-5709-grp-14/-/tree/main>
 
@@ -18,75 +18,194 @@
 
 This application is built using React.js as the frontend framework, following the atomic design pattern and Node.js and Springboot as the backend technologies. It aims to simplify the tender bidding process, offering a comprehensive platform for both issuers and bidders. It provides a transparent, efficient, and user-friendly environment where issuers can create and manage tenders, while bidders can easily place and manage their bids. The platform is designed to enhance user experience with secure transactions, smooth communication, and effective contract manage.
 
-## Getting Started
+## Built With
 
-See deployment for notes on how to deploy the project on a live system.
+- [Spring Boot](https://spring.io/projects/spring-boot) - Backend framework for Java applications
+- [Maven](https://maven.apache.org/) - Dependency Management and build tool
+- [Docker](https://www.docker.com/) - Containerization platform
+- [Render](https://render.com/) - Cloud platform for deploying backend
+- [React](https://reactjs.org/) - Frontend JavaScript library
+- [Vite](https://vitejs.dev/) - Frontend build tool
+- [Netlify](https://www.netlify.com/) - Frontend deployment platform
+- [AWS](https://aws.amazon.com/) - Cloud platform for file storage
+- [Amazon S3](https://aws.amazon.com/s3/) - Service for storing files
+
+## Setup and Installation
+
+### Languages and Tools Used
+
+<p align="left"> 
+<a href="https://nodejs.org/" target="_blank" rel="noreferrer"> <img src="https://www.vectorlogo.zone/logos/nodejs/nodejs-icon.svg" alt="nodejs" width="40" height="40"/> </a>
+<a href="https://www.oracle.com/java/" target="_blank" rel="noreferrer"> <img src="https://www.vectorlogo.zone/logos/java/java-vertical.svg" alt="java" width="30" height="50"/> </a>
+<a href="https://maven.apache.org/" target="_blank" rel="noreferrer"> <img src="https://www.vectorlogo.zone/logos/apache_maven/apache_maven-icon.svg" alt="maven" width="40" height="40"/> </a> 
+<a href="https://spring.io/projects/spring-boot" target="_blank" rel="noreferrer"> <img src="https://www.vectorlogo.zone/logos/springio/springio-icon.svg" alt="spring boot" width="40" height="40"/> </a> 
+<a href="https://www.docker.com/" target="_blank" rel="noreferrer"> <img src="https://www.vectorlogo.zone/logos/docker/docker-icon.svg" alt="docker" width="40" height="40"/> </a> 
+<a href="https://render.com/" target="_blank" rel="noreferrer"> <img src="https://upload.vectorlogo.zone/logos/render/images/6549c51d-de40-4016-97ae-8f49f5c94043.svg" alt="render" width="40" height="40"/> </a> 
+<a href="https://reactjs.org/" target="_blank" rel="noreferrer"> <img src="https://www.vectorlogo.zone/logos/reactjs/reactjs-icon.svg" alt="react" width="40" height="40"/> </a>
+<a href="https://vitejs.dev/" target="_blank" rel="noreferrer"> <img src="https://www.vectorlogo.zone/logos/vitejsdev/vitejsdev-ar21.svg" alt="vite" width="40" height="40"/> </a>
+<a href="https://www.netlify.com/" target="_blank" rel="noreferrer"> <img src="https://www.vectorlogo.zone/logos/netlify/netlify-icon.svg" alt="netlify" width="40" height="40"/> </a>
+<a href="https://aws.amazon.com/" target="_blank" rel="noreferrer"> <img src="https://www.vectorlogo.zone/logos/amazon_aws/amazon_aws-icon.svg" alt="aws" width="40" height="40"/> </a>
+<a href="https://aws.amazon.com/s3/" target="_blank" rel="noreferrer"> <img src="https://seeklogo.com/images/A/amazon-s3-simple-storage-service-logo-9A3F37976E-seeklogo.com.png" alt="amazon s3" width="40" height="40"/> </a>
+</p>
 
 ### Prerequisites
 
-To have a local copy of this project up and running on your local machine, you will first need to install the following software / libraries / plug-ins:
+Before you begin, ensure you have the following installed:
 
-- Node.js
-- npm (Node Package Manager)
-- Java 21
+- [Java 17](https://www.oracle.com/java/technologies/javase/jdk17-archive-downloads.html)
+- [Maven 3.8.4](https://maven.apache.org/download.cgi)
+- [Docker](https://www.docker.com/products/docker-desktop)
+- [Node.js](https://nodejs.org/)
+- [npm](https://www.npmjs.com/)
+- [AWS CLI](https://aws.amazon.com/cli/)
+- [AWS S3 Bucket](https://aws.amazon.com/s3/)
 
-See the following section for detailed step-by-step instructions on how to install this software / libraries / plug-ins.
+### Installation Steps
 
-### Installing
+Follow these steps to set up and run the project locally.
 
-A step-by-step series of instructions to get a development environment running:
+#### 1. Clone the Repository
 
-1. **Install Node.js and npm**
+Clone the repository using HTTPS:
 
-   - Download and install Node.js from [Node.js](https://nodejs.org/).
-   - npm is included with Node.js.
+```bash
+git clone https://git.cs.dal.ca/kumawat/csci-5709-grp-14.git
+```
 
-2. **Navigate to the Assignment1 Directory**
+#### 2. Navigate to the Project Directory
 
-   - Open a terminal/command prompt.
-   - Navigate to the `frontend` directory.
-     ```bash
-     cd frontend
-     ```
+Navigate to the project directory for the tutorial:
 
-3. **Install Dependencies**
+```bash
+cd csci-5709-grp-14/
+```
 
-   - Install the necessary dependencies using npm:
-     ```bash
-     npm install
-     ```
+#### 3. Build and Run the Backend (Spring Boot)
 
-4. **Start the Development Server**
-   - Start the application development server:
-     ```bash
-     npm run dev
-     ```
-   - The app should open in your default web browser at `http://localhost:5173`.
+Navigate to the Spring Boot directory:
 
-## Deployment
+```bash
+cd server/springboot
+```
 
-To deploy the React app to Netlify using Github repository, follow these steps:
+Build the Docker image:
 
-1. **Link Github with Netlify**
+```bash
+docker build -t assignment3-app .
+```
 
-   - Login to your Netlify account
-   - select Deploy from existing project and choose github
-   - Authorize Github and select the repository
+Run the Docker container:
 
-2. **Deploy to Netlify**
+```bash
+docker run -p 8080:8080 assignment3-app
+```
 
-   - In Build settings specify the base directory where the application is present in the repository which is 'fronend'.
-   - In Build command specify npm run build.
-   - In Publish directory specify 'dist' and click deploy
-   - Netlify will provide a URL for your deployed app.
+Open your web browser and go to [http://localhost:8080](http://localhost:8080) to access the API.
 
-## Built With
+#### 4. Set Up and Run the Frontend (React)
 
-- [React](https://reactjs.org/) - The web framework used
-- [Vite](https://vitejs.dev/guide/) - Build tool
-- [Netlify](https://www.netlify.com/) - For deployment
-- [Node.js](https://nodejs.org/) - JavaScript runtime environment
-- [npm](https://www.npmjs.com/) - Dependency Management
+Navigate to the frontend directory:
+
+```bash
+cd frontend
+```
+
+Install the dependencies:
+
+```bash
+npm install
+```
+
+Start the development server:
+
+```bash
+npm run dev
+```
+
+Open your web browser and go to [http://localhost:5173](http://localhost:5173) to access the frontend application.
+
+#### 5. Build and Run the Node.js Server
+
+Navigate to the Node.js server directory:
+
+```bash
+cd ../server/node
+```
+
+Install the dependencies:
+
+```bash
+npm install
+```
+
+Start the server:
+
+```bash
+npm start
+```
+
+Open your web browser and go to [http://localhost:5001](http://localhost:5001) to access the Node.js server.
+
+This setup ensures that both your frontend and backend are running locally, allowing you to test and develop the application seamlessly. If you have any specific configurations or environment variables, make sure to set them up accordingly.
+
+## Required Task
+
+### Folder Structure 
+#### Frontend:
+```
+frontend/
+├── dist/ # Build output directory
+├── node_modules/ # Node.js packages
+├── public/ # Public assets
+└── src/ # Source files
+├── components/ # Reusable components
+│ ├── atoms/ # Basic building blocks
+│ ├── molecules/ # Compound components made up of atoms
+│ ├── organisms/ # Complex components made up of molecules
+│ ├── pages/ # Page-level components
+│ ├── templates/ # Layout templates
+│ └── utils/ # Utility functions and helpers
+├── core/ # Core application modules
+│ ├── configs/ # Configuration files
+│ ├── routes/ # Application routes
+| ├── App.jsx # Main application component
+| ├── index.css # Global CSS
+└── index.jsx # Entry point of the application
+├── data/ # Data handling and state management
+├── services/ # Services for API calls and business logic
+
+```
+#### Node Backend:
+```
+server/
+└── node/
+├── dist/ # Build output directory
+└── src/ # Source files
+├── controller/ # Route controllers
+├── middleware/ # Middleware functions
+├── model/ # Data models
+└── routes/ # API routes
+```
+
+#### SpringBoot Backend:
+```
+springboot/
+└── bidsphere/
+└── src/
+├── main/
+│ ├── java/com/g14/bidsphere/
+│ │ ├── config/ # Configuration classes
+│ │ ├── controller/ # REST controllers
+│ │ ├── Dto/ # Data Transfer Objects
+│ │ ├── exception/ # Exception handling
+│ │ ├── model/ # Data models
+│ │ ├── repository/ # Repository interfaces
+│ │ ├── request/ # Request payloads
+│ │ ├── service/ # Service classes
+│ │ └── util/ # Utility classes
+│ ├── resources/ # Resource files
+└── test/ # Test files
+```
 
 ## Sources Used
 
@@ -789,3 +908,43 @@ const token = jwt.sign({email}, process.env.JWT_SECRET, { expiresIn: "1800s" })
 .active\:shadow-none:active	Invalid RGB function
 .disabled\:shadow-none:disabled	Invalid RGB function
 ```
+
+## References
+#### Here are some of the sources from where we have taken inspiration for uploading documents to S3, Deplotying spring boot backend on render, SpringBoot global exception handling, connecting MongoDB with SpringBoot.
+- [Uploading Files to Amazon S3 Using Java](https://medium.com/@cemdrman/uploading-files-to-amazon-s3-using-java-d1d0a7e82890)
+- [Free Hosting Bliss: Deploying Your Spring Boot App on Render](https://medium.com/spring-boot/free-hosting-bliss-deploying-your-spring-boot-app-on-render-d0ebd9713b9d)
+-[Spring Boot Global Exception Handler](https://medium.com/@aedemirsen/spring-boot-global-exception-handler-842d7143cf2a)
+-[Connecting Spring Boot to MongoDB: A Step-by-Step Guide](https://medium.com/@samuelcatalano/connecting-spring-boot-to-mongodb-a-step-by-step-guide-b9f2fd9e872d)
+## Acknowledgments
+
+This project was made possible by the collaborative efforts and contributions of various individuals and resources.
+
+### Open Source Libraries and Frameworks
+
+- **Spring Boot** - For providing a robust backend framework.
+- **React** - For an intuitive and dynamic frontend framework.
+- **Lombok** - For reducing boilerplate code in Java.
+- **React Hook Form** - For efficient form handling and validation in React.
+- **Axios** - For making HTTP requests from the frontend to the backend.
+- **Material-UI** - For providing a set of accessible and customizable React components.
+- **Tailwind CSS** - For utility-first CSS framework.
+- **React Quill** - For rich text editor functionality.
+
+### Community and Support
+
+- **Stack Overflow** - For the invaluable support and solutions provided by the developer community.
+- **GitHub Community** - For the collaborative environment and shared knowledge.
+
+### Documentation and Tutorials
+
+- **Spring Boot Documentation** - For comprehensive guides and reference materials.
+- **React Documentation** - For detailed explanations and examples.
+- **MDN Web Docs** - For extensive documentation on HTML, CSS, and JavaScript.
+
+### Tools and Services
+
+- **AWS S3** - For reliable and scalable storage solutions.
+- **GitHub** - For version control and project management.
+- **Postman** - For API testing and debugging.
+
+We are grateful for all the support and resources that made this project possible.
