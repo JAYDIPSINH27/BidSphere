@@ -148,9 +148,109 @@ Open your web browser and go to [http://localhost:5001](http://localhost:5001) t
 
 This setup ensures that both your frontend and backend are running locally, allowing you to test and develop the application seamlessly. If you have any specific configurations or environment variables, make sure to set them up accordingly.
 
-## Required Task
+## Deployment
 
-### Folder Structure 
+After setting up and running the project locally, you can deploy the Node.js backend, Spring Boot backend, and React.js frontend to the cloud platforms Render and Netlify, respectively. Follow the steps below for each deployment:
+
+### Deploying the Node.js Backend to Render
+
+To deploy the Node.js backend to Render, follow these steps:
+
+1. **Sign In to Render**
+
+   - Login to your Render account at [Render](https://render.com/).
+
+2. **Create a New Web Service**
+
+   - Click on "New" and select "Web Service".
+   - Connect to your GitLab repository.
+   - Select the branch to deploy from.
+
+3. **Configure the Web Service**
+
+   - Set the root directory to `server/node`.
+   - Set the build command to `npm install`.
+   - Set the start command to `node index.js` or `npm start`.
+
+4. **Set Environment Variables**
+
+   - Add all required environment variables from your `.env` file.
+
+5. **Deploy**
+
+   - Click "Create Web Service" to start the deployment process.
+
+### Deploying the Spring Boot Backend to Render (Docker)
+
+To deploy the Spring Boot backend using Docker on Render, follow these steps:
+
+1. **Sign In to Render**
+
+   - Login to your Render account at [Render](https://render.com/).
+
+2. **Create a New Web Service**
+
+   - Click on "New" and select "Web Service".
+   - Connect to your GitLab repository.
+   - Select the branch to deploy from.
+
+3. **Configure the Web Service**
+
+   - Set the root directory to `server/springboot`.
+   - Choose "Docker" as the environment.
+   - Set the Dockerfile path if it's not in the root directory (e.g., `Dockerfile`).
+
+4. **Set Environment Variables**
+
+   - Add all required environment variables from your application properties or `.env` file.
+
+5. **Deploy**
+
+   - Click "Create Web Service" to start the deployment process.
+
+### Deploying the React.js Frontend to Netlify
+
+To deploy the React.js frontend to Netlify, follow these steps:
+
+1. **Sign In to Netlify**
+
+   - Login to your Netlify account at [Netlify](https://www.netlify.com/).
+
+2. **Create a New Site**
+
+   - Click on "New site from Git".
+   - Connect to your GitLab repository.
+   - Select the branch to deploy from.
+
+3. **Configure the Site**
+
+   - Set the build command to `npm run build`.
+   - Set the publish directory to `frontend/dist`.
+   - Ensure that the `netlify.toml` file is correctly configured and located in the root directory of your frontend project.
+
+4. **Add the `netlify.toml` File**
+
+   - Ensure the `netlify.toml` file is located in the root of the `frontend` directory. This file should include your build settings, redirects, and other configurations needed for Netlify.
+   - Example `netlify.toml` content:
+     ```toml
+     [build]
+       command = "npm run build"
+       publish = "dist"
+
+     [[redirects]]
+       from = "/*"
+       to = "/index.html"
+       status = 200
+     ```
+
+5. **Deploy**
+
+   - Click "Deploy site" to start the deployment process.
+
+Once deployed, Netlify will provide a URL for the frontend, and Render will provide URLs for the backends. You can use these URLs to access the application in a live environment.
+
+
+## Folder Structure 
 #### Frontend:
 ```
 frontend/
