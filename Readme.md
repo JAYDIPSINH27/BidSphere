@@ -1352,6 +1352,101 @@ const token = jwt.sign({email}, process.env.JWT_SECRET, { expiresIn: "1800s" })
 .active\:shadow-none:active	Invalid RGB function
 .disabled\:shadow-none:disabled	Invalid RGB function
 ```
+## Artificial Intelligence Tools Used
+
+* [ChatGPT by OpenAI](https://openai.com/chatgpt) - The AI Tool used
+
+### Prompt Used on *ChatGPT by OpenAI*
+
+
+### Prompt: "Provide detailed code for uploading files to Amazon S3 using Java in a Spring Boot application. Include the necessary dependencies, configuration, and example methods." 
+
+### Generated Code:
+
+```java
+import com.amazonaws.services.s3.AmazonS3;
+import com.amazonaws.services.s3.model.CannedAccessControlList;
+import com.amazonaws.services.s3.model.PutObjectRequest;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
+
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.IOException;
+
+@Service
+public class S3Service {
+
+    @Autowired
+    private AmazonS3 s3Client;
+
+    private String bucketName = "your-bucket-name";
+
+    public String uploadFile(MultipartFile file) {
+        File fileObj = convertMultiPartFileToFile(file);
+        String fileName = System.currentTimeMillis() + "_" + file.getOriginalFilename();
+        s3Client.putObject(new PutObjectRequest(bucketName, fileName, fileObj)
+                           .withCannedAcl(CannedAccessControlList.PublicRead));
+        fileObj.delete();
+        return "File uploaded : " + fileName;
+    }
+
+    private File convertMultiPartFileToFile(MultipartFile file) {
+        File convertedFile = new File(file.getOriginalFilename());
+        try (FileOutputStream fos = new FileOutputStream(convertedFile)) {
+            fos.write(file.getBytes());
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return convertedFile;
+    }
+}
+```
+
+### Reference Used
+
+file: server/springboot/bidsphere/src/main/java/com/g14/service/TenderDocumentService.java
+```
+public List<TenderDocument> createDocuments(List<MultipartFile> files, String userId, String tenderId, String type) throws IOException {
+        List<TenderDocument> savedDocuments = new ArrayList<>();
+        List<String> documentIds = new ArrayList<>();
+
+        for (MultipartFile file : files) {
+            String key = Paths.get("documents", userId, tenderId, file.getOriginalFilename()).toString().replace("\\", "/");
+
+            PutObjectRequest putObjectRequest = PutObjectRequest.builder()
+                    .bucket(bucketName)
+                    .key(key)
+                    .build();
+
+            PutObjectResponse putObjectResponse = s3Client.putObject(putObjectRequest, software.amazon.awssdk.core.sync.RequestBody.fromBytes(file.getBytes()));
+
+            if (putObjectResponse.sdkHttpResponse().isSuccessful()) {
+                String fileUrl = String.format("https://%s.s3.%s.amazonaws.com/%s", bucketName, region, key);
+
+                TenderDocument document = new TenderDocument();
+                document.setUserId(userId);
+                document.setTenderId(tenderId);
+                document.setUrl(fileUrl);
+                document.setType(type);
+                document.setUploadedAt(new Date());
+
+                TenderDocument savedDocument = tenderDocumentRepository.save(document);
+                savedDocuments.add(savedDocument);
+                documentIds.add(savedDocument.getId());
+            } else {
+                throw new RuntimeException("Failed to upload document to S3");
+            }
+        }
+```
+- <!---How---> The generated code give idea of implementation of file storage in S3 using AWS SDK.
+- <!---Why---> Single file uploading is easy to implement however to implement multiple file upload taken reference of ChatGPT.
+- <!---How---> Using multipart document form data and storing whole object into S3 bucket.
+
+
+
+### Prompt Used on *ChatGPT by OpenAI*
 
 ## References
 #### Here are some of the sources from where we have taken inspiration for uploading documents to S3, Deplotying spring boot backend on render, SpringBoot global exception handling, connecting MongoDB with SpringBoot.
